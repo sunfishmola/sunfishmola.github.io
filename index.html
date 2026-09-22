@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ko">
 <head>
@@ -33,55 +32,171 @@ body:before,body:after{
 body:before{left:-120px;bottom:5%}
 body:after{right:-150px;top:20%}
 .page{width:min(760px,calc(100% - 28px));min-height:100vh;margin:auto;padding:55px 0 45px}
-.hero{text-align:center;margin-bottom:34px;position:relative}
-.orbit{
-  position:absolute;width:330px;height:92px;border:3px solid rgba(255,255,255,.65);
-  border-left-color:transparent;border-right-color:transparent;border-radius:50%;
-  left:50%;top:0;transform:translateX(-50%) rotate(-8deg);pointer-events:none
+.hero{
+  text-align:center;
+  margin-bottom:24px;
+  position:relative;
+  min-height:112px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.logo-wrap{
+  position:relative;
+  display:inline-block;
+  z-index:3;
 }
 .logo{
   position:relative;
-  display:inline-block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
   font-family:"Nunito",sans-serif;
-  font-size:clamp(50px,10vw,76px);
-  line-height:.98;
+  font-size:clamp(52px,10.5vw,80px);
+  line-height:.92;
   font-weight:900;
-  letter-spacing:-.045em;
-  transform:scaleX(1.04);
-  background:linear-gradient(180deg,#ffffff 0%,#ffffff 36%,#e9f8ff 60%,#bce9ff 100%);
+  letter-spacing:-.09em;
+  transform:rotate(-1deg);
+  filter:
+    drop-shadow(0 3px 0 #fff)
+    drop-shadow(0 7px 0 #77aee0)
+    drop-shadow(0 11px 0 rgba(66,125,184,.25))
+    drop-shadow(0 15px 16px rgba(54,108,160,.16));
+}
+.logo span{
+  position:relative;
+  display:inline-block;
+  color:#fafdff;
+  -webkit-text-stroke:3.5px #6b9fd6;
+  paint-order:stroke fill;
+  text-shadow:
+    inset 0 -8px 0 #bce9ff,
+    0 -1px 0 #fff;
+}
+.logo span::after{
+  content:attr(data-letter);
+  position:absolute;
+  inset:0;
+}
+.logo .u{
+  margin-right:.015em;
+}
+.u-star{
+  position:absolute;
+  left:50%;
+  top:52%;
+  transform:translate(-50%,-50%);
+  z-index:5;
+  font-style:normal;
+  font-family:Arial,sans-serif;
+  font-size:.27em;
+  line-height:1;
+  color:#66a7df;
+  -webkit-text-stroke:0;
+  text-shadow:0 1px 0 rgba(255,255,255,.75);
+}
+.logo:before{
+  content:"";
+  position:absolute;
+  left:-13px;right:-15px;top:-11px;bottom:-15px;
+  border-radius:35px;
+  z-index:-2;
+  filter:drop-shadow(0 2px 0 rgba(255,255,255,.95));
+}
+.logo span{
+  background:linear-gradient(180deg,#ffffff 0%,#ffffff 45%,#e8f8ff 66%,#aee1fb 100%);
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-  -webkit-text-stroke:3px #70a8dc;
-  paint-order:stroke fill;
-  filter:
-    drop-shadow(0 2px 0 #ffffff)
-    drop-shadow(0 5px 0 #8dbce2)
-    drop-shadow(0 9px 12px rgba(63,118,170,.18));
 }
-.logo:before{
-  content:"SUNFISH";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  color:#dff4ff;
-  -webkit-text-stroke:8px rgba(255,255,255,.96);
-  paint-order:stroke fill;
-}
-.logo:after{
+.logo span:before{
   content:"";
   position:absolute;
-  left:11%;
-  right:11%;
-  top:8%;
-  height:28%;
+  z-index:-1;
+  inset:-6px -5px -7px;
+  border-radius:40%;
+  filter:blur(.2px);
+}
+.logo span:first-child{transform:rotate(-5deg) translateY(3px)}
+.logo span:nth-child(2){transform:rotate(-2deg)}
+.logo span:nth-child(3){transform:rotate(1deg) translateY(-2px)}
+.logo span:nth-child(4){transform:rotate(2deg)}
+.logo span:nth-child(5){transform:rotate(1deg) translateY(-3px)}
+.logo span:nth-child(6){transform:rotate(3deg)}
+.logo span:nth-child(7){transform:rotate(5deg) translateY(3px)}
+
+.orbit{
+  position:absolute;
+  left:50%;
+  top:50%;
+  border:3px solid rgba(255,255,255,.92);
+  border-left-color:transparent;
+  border-right-color:transparent;
   border-radius:50%;
-  background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,0));
-  filter:blur(3px);
+  pointer-events:none;
+  z-index:1;
+  filter:drop-shadow(0 1px 2px rgba(82,145,195,.18));
+}
+.orbit-one{
+  width:390px;height:86px;
+  transform:translate(-50%,-50%) rotate(-11deg);
+}
+.orbit-two{
+  width:330px;height:68px;
+  opacity:.72;
+  transform:translate(-50%,-48%) rotate(8deg);
+  border-width:2px;
+}
+.star{
+  position:absolute;
+  z-index:4;
+  color:#fff;
+  text-shadow:0 2px 8px #77b7e2;
   pointer-events:none;
 }
-.star{position:absolute;color:#fff;text-shadow:0 2px 8px #77b7e2}
-.star.a{left:8%;top:8px;font-size:25px}.star.b{right:10%;top:55px;font-size:18px}.star.c{right:21%;top:-16px;font-size:13px}
+.star.a{left:7%;top:17px;font-size:23px}
+.star.b{right:8%;top:64px;font-size:18px}
+.star.c{left:19%;bottom:3px;font-size:12px;color:#fff}
+
+.fish{
+  position:absolute;
+  right:-49px;
+  bottom:-5px;
+  width:48px;height:40px;
+  border-radius:52% 48% 48% 52%;
+  background:linear-gradient(145deg,#f8fdff 5%,#d9f4ff 58%,#a9d9f3 100%);
+  border:3px solid #689ed5;
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.9),
+    0 5px 0 rgba(89,145,197,.24),
+    inset 5px 6px 9px rgba(255,255,255,.8);
+  transform:rotate(5deg);
+}
+.fish .tail{
+  position:absolute;
+  left:-13px;top:12px;
+  width:18px;height:18px;
+  background:#d8f2ff;
+  border:3px solid #689ed5;
+  border-radius:65% 20% 65% 20%;
+  transform:rotate(45deg);
+  z-index:-1;
+}
+.fish .eye{
+  position:absolute;
+  right:11px;top:10px;
+  width:5px;height:5px;border-radius:50%;
+  background:#5489bf;
+}
+.fish .fin{
+  position:absolute;
+  left:18px;bottom:5px;
+  width:13px;height:8px;
+  border-radius:50%;
+  background:rgba(116,185,225,.45);
+  transform:rotate(-18deg);
+}
 
 .main-card{
   display:block;position:relative;text-decoration:none;color:white;border-radius:38px;padding:28px 32px;
@@ -140,11 +255,16 @@ body:after{right:-150px;top:20%}
 a{transition:.17s ease}
 a:hover{transform:translateY(-2px);background-color:rgba(255,255,255,.82)}
 @media(max-width:560px){
+  .hero{min-height:95px;margin-bottom:18px}
+  .orbit-one{width:285px;height:68px}
+  .orbit-two{width:245px;height:54px}
+  .fish{right:-34px;bottom:-2px;transform:scale(.78) rotate(5deg)}
+
   .page{padding:38px 0 32px}
-  .hero{margin-bottom:28px}
+  
   .orbit{width:270px;height:80px}
-  .logo{-webkit-text-stroke:2.5px #70a8dc}
-  .logo:before{-webkit-text-stroke:6px white}
+  
+  
   .main-card{padding:25px 22px;border-radius:31px}
   .go{width:45px;height:45px}
   .bottom{grid-template-columns:1fr 1fr}
@@ -154,9 +274,17 @@ a:hover{transform:translateY(-2px);background-color:rgba(255,255,255,.82)}
 <body>
 <main class="page">
   <header class="hero">
-    <div class="orbit"></div>
-    <span class="star a">✦</span><span class="star b">✧</span><span class="star c">✦</span>
-    <div class="logo">SUNFISH</div>
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
+    <span class="star a">✦</span><span class="star b">✦</span><span class="star c">★</span>
+    <div class="logo-wrap">
+      <div class="logo" aria-label="SUNFISH">
+        <span>S</span><span class="u">U<i class="u-star">★</i></span><span>N</span><span>F</span><span>I</span><span>S</span><span>H</span>
+      </div>
+      <div class="fish" aria-hidden="true">
+        <i class="tail"></i><i class="eye"></i><i class="fin"></i>
+      </div>
+    </div>
   </header>
 
   <a class="main-card" href="https://caveduck.io/ko/user/sunfish" target="_blank" rel="noopener noreferrer">
@@ -173,7 +301,7 @@ a:hover{transform:translateY(-2px);background-color:rgba(255,255,255,.82)}
     <p>다만 제가 이용해 보지 않은 사이트의 이식은 제작 방식을 따로 알아보고 테스트하는 과정이 필요해 시간이 다소 오래 소요될 수 있습니다.</p>
   </section>
 
-  <a class="tile email" href="mailto:sunfish.molamola.ocean@gmail.com">✉ &nbsp; EMAIL</a>
+  <a class="tile email" href="mailto:friendlysunfish@gmail.com">✉ &nbsp; EMAIL</a>
 
   <div class="bottom">
     <a class="tile site" href="https://rofan.ai/user/90a80efa-baf1-4bd6-a09d-7d90a6e4a3d1" target="_blank" rel="noopener noreferrer">로판AI</a>
