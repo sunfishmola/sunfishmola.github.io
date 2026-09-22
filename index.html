@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUNFISH</title>
+  <meta name="description" content="SUNFISH의 캐릭터 제작 및 활동 링크">
+  <style>
+    :root{
+      --sky:#cfe8f4;
+      --sky2:#e7f3f8;
+      --ink:#31566f;
+      --muted:#69899d;
+      --line:#bddbea;
+      --white:#f9fcfe;
+      --blue:#69add6;
+      --blue2:#88c5e7;
+    }
+    *{box-sizing:border-box}
+    html{min-height:100%}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: ui-rounded, "Arial Rounded MT Bold", "Noto Sans KR", system-ui, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255,255,255,.75) 0 4px, transparent 5px),
+        radial-gradient(circle at 83% 25%, rgba(255,255,255,.65) 0 3px, transparent 4px),
+        linear-gradient(160deg,var(--sky2),var(--sky));
+      display:grid;
+      place-items:center;
+      padding:42px 18px;
+    }
+    .shell{
+      width:min(680px,100%);
+      position:relative;
+    }
+    .spark{
+      position:absolute;
+      color:rgba(72,139,183,.45);
+      font-size:22px;
+      user-select:none;
+    }
+    .s1{left:-8px;top:70px}.s2{right:5px;top:150px}.s3{right:55px;bottom:40px}
+    .card{
+      background:rgba(249,252,254,.82);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:34px;
+      padding:48px 46px 38px;
+      box-shadow:0 18px 55px rgba(54,105,137,.13);
+      backdrop-filter:blur(8px);
+    }
+    header{text-align:center;margin-bottom:30px}
+    .tiny{font-size:12px;letter-spacing:.28em;color:var(--muted);margin-bottom:10px}
+    h1{font-size:clamp(36px,8vw,58px);letter-spacing:.12em;margin:0;color:#4c82ae}
+    .wave{margin:10px auto 0;color:#83b7d5;font-size:15px;letter-spacing:.45em}
+    .main{
+      display:block;
+      text-decoration:none;
+      color:white;
+      background:linear-gradient(135deg,var(--blue2),var(--blue));
+      border:3px solid rgba(255,255,255,.9);
+      border-radius:25px;
+      padding:20px 24px;
+      box-shadow:0 9px 20px rgba(70,139,181,.18);
+      transition:.18s ease;
+      margin-bottom:25px;
+    }
+    .main:hover{transform:translateY(-3px);box-shadow:0 13px 26px rgba(70,139,181,.23)}
+    .main-row{display:flex;align-items:center;justify-content:space-between;gap:15px}
+    .main strong{font-size:20px;letter-spacing:.12em}
+    .main small{display:block;margin-top:5px;opacity:.88}
+    .notice{
+      background:rgba(255,255,255,.58);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:24px 25px;
+      line-height:1.85;
+      font-size:14px;
+      margin-bottom:20px;
+    }
+    .notice-title{
+      display:flex;align-items:center;gap:9px;
+      font-weight:800;letter-spacing:.04em;
+      margin-bottom:12px;color:#4e7e9c;
+    }
+    .notice p{margin:0 0 12px}
+    .notice p:last-child{margin-bottom:0}
+    .contact,.links a{
+      text-decoration:none;color:var(--ink);
+      background:rgba(255,255,255,.7);
+      border:1px solid var(--line);
+      border-radius:18px;
+      transition:.18s ease;
+    }
+    .contact{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:15px 18px;margin-bottom:12px;font-weight:700;
+    }
+    .contact:hover,.links a:hover{background:white;transform:translateY(-2px)}
+    .links{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .links a{padding:14px 16px;text-align:center;font-size:14px;font-weight:700}
+    footer{text-align:center;margin-top:25px;color:#7ca0b5;font-size:11px;letter-spacing:.18em}
+    @media(max-width:560px){
+      body{padding:20px 12px}
+      .card{padding:36px 20px 28px;border-radius:27px}
+      .links{grid-template-columns:1fr}
+      .notice{padding:20px;font-size:13px}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span>
+
+    <section class="card">
+      <header>
+        <div class="tiny">WELCOME TO MY SPACE</div>
+        <h1>SUNFISH</h1>
+        <div class="wave">· ✦ ·</div>
+      </header>
+
+      <!-- 아래 href의 YOUR_CAVEDUCK_URL을 실제 케이브덕 주소로 바꾸세요. -->
+      <a class="main" href="YOUR_CAVEDUCK_URL" target="_blank" rel="noopener">
+        <div class="main-row">
+          <div>
+            <strong>★ CAVEDUCK</strong>
+            <small>현재 메인으로 제작하고 있습니다.</small>
+          </div>
+          <span>›</span>
+        </div>
+      </a>
+
+      <section class="notice">
+        <div class="notice-title"><span>✦</span><span>캐릭터 이식 안내</span></div>
+        <p>일라이 이전에 제작한 캐릭터는 <b>오리지널</b> 표시가 붙어 있더라도 공식 크리에이터 신청 전에 제작한 캐릭터이기 때문에 이식이 가능합니다. 원하시는 경우 편하게 문의해 주세요.</p>
+        <p>다만 제가 이용해 보지 않은 사이트의 이식은 제작 방식을 따로 알아보고 테스트하는 과정이 필요해 시간이 다소 오래 소요될 수 있습니다.</p>
+      </section>
+
+      <!-- YOUR_EMAIL을 공개용 이메일 주소로 바꾸세요. -->
+      <a class="contact" href="mailto:YOUR_EMAIL">
+        <span>✉ &nbsp; EMAIL / CONTACT</span><span>›</span>
+      </a>
+
+      <div class="links">
+        <!-- 아래 주소와 SITE 이름은 나중에 원하는 것으로 바꾸면 됩니다. -->
+        <a href="YOUR_SITE_01_URL" target="_blank" rel="noopener">SITE 01 &nbsp;↗</a>
+        <a href="YOUR_SITE_02_URL" target="_blank" rel="noopener">SITE 02 &nbsp;↗</a>
+      </div>
+
+      <footer>GOOD CHARACTERS · BRIGHTER DAYS</footer>
+    </section>
+  </main>
+</body>
+</html>
