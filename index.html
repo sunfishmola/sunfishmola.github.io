@@ -10,301 +10,1439 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nunito:wght@700;800;900&display=swap');
 
 :root{
-  --ink:#426b91;
-  --glass:rgba(255,255,255,.68);
+  --ink:#4f83ad;
+  --blue:#4ca8ee;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
-html,body{min-height:100%}
+html,
+body{
+  min-height:100%;
+}
 
 body{
   margin:0;
   color:var(--ink);
-  font-family:"Jua","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+
+  font-family:
+    "Jua",
+    "Apple SD Gothic Neo",
+    "Malgun Gothic",
+    sans-serif;
+
   background:
     radial-gradient(circle at 12% 20%,rgba(255,255,255,.95) 0 2px,transparent 3px),
     radial-gradient(circle at 82% 12%,rgba(255,255,255,.95) 0 3px,transparent 4px),
     radial-gradient(circle at 88% 72%,rgba(255,255,255,.8) 0 2px,transparent 3px),
-    linear-gradient(180deg,#cceaff 0%,#eaf8ff 52%,#d9f0fb 100%);
+    linear-gradient(
+      180deg,
+      #cceaff 0%,
+      #eaf8ff 52%,
+      #d9f0fb 100%
+    );
+
   overflow-x:hidden;
 }
 
-body:before,
-body:after{
+body::before,
+body::after{
   content:"";
   position:fixed;
   z-index:-1;
+
   width:430px;
   height:150px;
+
   border-radius:50%;
+
   background:rgba(255,255,255,.38);
   filter:blur(5px);
 }
 
-body:before{left:-120px;bottom:5%}
-body:after{right:-150px;top:20%}
-
-.page{
-  width:min(760px,calc(100% - 28px));
-  min-height:100vh;
-  margin:auto;
-  padding:45px 0;
+body::before{
+  left:-120px;
+  bottom:5%;
 }
 
-/* ---------- SUNFISH 이미지 로고 ---------- */
+body::after{
+  right:-150px;
+  top:20%;
+}
+
+.page{
+  width:min(720px,calc(100% - 18px));
+  min-height:100vh;
+
+  margin:auto;
+  padding:42px 0 55px;
+}
+
+
+/* =========================
+   SUNFISH LOGO
+========================= */
 
 .hero{
   position:relative;
+
   min-height:150px;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  margin-bottom:14px;
+
+  margin-bottom:13px;
 }
 
 .sunfish-logo{
   position:relative;
   z-index:3;
+
   display:block;
+
   width:min(430px,82vw);
   height:auto;
+
   object-fit:contain;
+
   filter:
     drop-shadow(0 5px 0 rgba(100,157,211,.18))
     drop-shadow(0 11px 17px rgba(65,120,170,.14));
 }
 
-/* 로고 뒤 궤도 */
 .orbit{
   position:absolute;
+
   left:50%;
   top:50%;
+
+  z-index:1;
+
   border:3px solid rgba(255,255,255,.94);
+
   border-left-color:transparent;
   border-right-color:transparent;
+
   border-radius:50%;
+
   pointer-events:none;
-  z-index:1;
-  filter:drop-shadow(0 1px 2px rgba(82,145,195,.18));
 }
 
 .orbit-one{
   width:430px;
   height:100px;
-  transform:translate(-50%,-50%) rotate(-10deg);
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-10deg);
 }
 
 .orbit-two{
   width:350px;
   height:75px;
+
   opacity:.62;
   border-width:2px;
-  transform:translate(-50%,-50%) rotate(8deg);
+
+  transform:
+    translate(-50%,-50%)
+    rotate(8deg);
 }
 
-/* 반짝이 */
 .star{
   position:absolute;
   z-index:4;
+
   color:#fff;
   pointer-events:none;
+
   text-shadow:0 2px 9px #77b7e2;
+
   animation:twinkle 2.4s ease-in-out infinite;
 }
 
-.star.a{left:8%;top:20px;font-size:24px}
-.star.b{right:8%;top:70px;font-size:18px;animation-delay:.8s}
-.star.c{left:20%;bottom:7px;font-size:13px;animation-delay:1.4s}
+.star.a{
+  left:8%;
+  top:20px;
+  font-size:24px;
+}
+
+.star.b{
+  right:8%;
+  top:70px;
+  font-size:18px;
+  animation-delay:.8s;
+}
+
+.star.c{
+  left:20%;
+  bottom:7px;
+  font-size:13px;
+  animation-delay:1.4s;
+}
 
 @keyframes twinkle{
-  0%,100%{opacity:.45;transform:scale(.8)}
-  50%{opacity:1;transform:scale(1.18)}
+  0%,100%{
+    opacity:.45;
+    transform:scale(.8);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.18);
+  }
 }
 
-/* ---------- 메인 CAVEDUCK ---------- */
 
-.main-card{
-  display:block;
+/* =========================
+   GAME DEVICE
+========================= */
+
+.handheld{
   position:relative;
-  text-decoration:none;
-  color:white;
-  border-radius:38px;
-  padding:28px 32px;
-  background:
-    linear-gradient(115deg,rgba(255,255,255,.40),transparent 30%),
-    linear-gradient(145deg,#9bd8f7,#6cb6e8 58%,#82c8ef);
-  border:4px solid rgba(255,255,255,.92);
-  box-shadow:
-    0 0 0 3px rgba(91,157,211,.55),
-    inset 0 4px 12px rgba(255,255,255,.68),
-    inset 0 -10px 20px rgba(72,143,199,.13),
-    0 18px 30px rgba(64,127,174,.17);
-  transition:.18s ease;
-  overflow:hidden;
+
+  display:grid;
+
+  grid-template-columns:
+    94px
+    minmax(0,1fr)
+    94px;
+
+  min-height:540px;
+
+  border-radius:48px;
+
+  filter:
+    drop-shadow(0 18px 18px rgba(60,128,174,.16));
 }
 
-.main-card:before{
+/* 게임기 전체 외곽선 */
+
+.handheld::after{
   content:"";
+
   position:absolute;
-  left:5%;
-  right:5%;
-  top:7px;
-  height:40%;
-  border-radius:999px;
-  background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0));
+  inset:0;
+
+  z-index:20;
+
+  border:3px solid rgba(255,255,255,.96);
+  border-radius:48px;
+
+  box-shadow:
+    0 0 0 2px rgba(76,168,238,.28);
+
   pointer-events:none;
 }
 
-.main-card:hover{
-  transform:translateY(-4px) scale(1.008);
+
+/* =========================
+   CONTROLLERS
+========================= */
+
+.controller{
+  position:relative;
+  z-index:2;
+
+  overflow:hidden;
+
+  border:0;
+
+  background:
+    linear-gradient(
+      130deg,
+      rgba(255,255,255,.94),
+      rgba(255,255,255,.24) 30%,
+      transparent 44%
+    ),
+    linear-gradient(
+      160deg,
+      #edfaff 0%,
+      #d3f2ff 46%,
+      #bce8fb 100%
+    );
+
+  box-shadow:
+    inset 0 0 18px rgba(255,255,255,.95),
+    inset 0 -20px 28px rgba(68,165,222,.09);
 }
 
-.badge{
-  display:inline-block;
-  position:relative;
-  margin-bottom:7px;
-  padding:4px 10px;
+.controller::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  opacity:.10;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49%,
+      var(--blue) 50%,
+      transparent 51%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 49%,
+      var(--blue) 50%,
+      transparent 51%
+    );
+
+  background-size:28px 28px;
+
+  pointer-events:none;
+}
+
+.controller::after{
+  content:"";
+
+  position:absolute;
+
+  left:8px;
+  right:8px;
+  top:5px;
+
+  height:43%;
+
   border-radius:999px;
-  background:rgba(255,255,255,.9);
-  color:#5a93c4;
-  font:900 10px/1 "Nunito",sans-serif;
-  letter-spacing:.14em;
-  box-shadow:0 2px 6px rgba(59,118,163,.12);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.54),
+      transparent
+    );
+
+  pointer-events:none;
 }
 
-.caveduck{
+.controller.left{
+  border-radius:45px 0 0 45px;
+
+  border-right:
+    2px solid rgba(76,168,238,.28);
+}
+
+.controller.right{
+  border-radius:0 45px 45px 0;
+
+  border-left:
+    2px solid rgba(76,168,238,.28);
+}
+
+
+/* =========================
+   CENTER
+========================= */
+
+.center-unit{
   position:relative;
+  z-index:3;
+
+  padding:9px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #dff5ff,
+      #a9dcf5
+    );
+
+  box-shadow:
+    inset 0 3px 7px rgba(255,255,255,.88),
+    inset 0 -4px 8px rgba(66,137,177,.08);
+}
+
+
+/* =========================
+   LCD
+========================= */
+
+.screen{
+  position:relative;
+
+  height:100%;
+  min-height:520px;
+
+  overflow:hidden;
+
+  border-radius:15px;
+
+  border:
+    2px solid rgba(86,180,226,.55);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(68,150,190,.045) 0 1px,
+      transparent 1.1px
+    ),
+    linear-gradient(
+      180deg,
+      #f5fdff 0%,
+      #ebfaff 100%
+    );
+
+  background-size:
+    6px 6px,
+    100% 100%;
+
+  box-shadow:
+    inset 0 0 22px rgba(87,177,199,.08),
+    inset 0 0 0 2px rgba(255,255,255,.78);
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+  height:39px;
+
+  padding:0 12px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+
+  border-bottom:
+    1px solid rgba(76,168,218,.24);
+
+  background:
+    rgba(255,255,255,.45);
+
+  color:#6093b5;
+
+  font:
+    900 10px/1
+    "Nunito",
+    sans-serif;
 }
 
-.cave-title{
-  font-family:"Nunito",sans-serif;
-  font-weight:900;
-  font-size:clamp(31px,7vw,47px);
-  letter-spacing:-.03em;
-  color:#fff;
-  -webkit-text-stroke:3px rgba(74,135,191,.72);
-  paint-order:stroke fill;
-  text-shadow:0 4px 0 rgba(69,132,186,.22);
+.system-name{
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
 
-.go{
-  flex:0 0 auto;
-  width:52px;
-  height:52px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:rgba(255,255,255,.88);
-  color:#679fd0;
-  border:2px solid rgba(82,145,199,.24);
-  font:900 31px/1 "Nunito",sans-serif;
-  box-shadow:
-    inset 0 2px 4px white,
-    0 5px 12px rgba(58,117,165,.14);
+.system-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:2px;
+
+  background:#79c9f5;
+
+  transform:rotate(45deg);
 }
 
-/* ---------- 공통 패널 ---------- */
+.battery{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
 
-.tile{
+.battery-icon{
+  position:relative;
+
+  width:21px;
+  height:10px;
+
+  border:
+    1.5px solid #68a4c9;
+
+  border-radius:2px;
+}
+
+.battery-icon::before{
+  content:"";
+
+  position:absolute;
+
+  left:2px;
+  top:2px;
+
+  width:14px;
+  height:4px;
+
+  background:#8ed4f3;
+}
+
+.battery-icon::after{
+  content:"";
+
+  position:absolute;
+
+  right:-4px;
+  top:2px;
+
+  width:2px;
+  height:4px;
+
+  background:#68a4c9;
+}
+
+
+/* =========================
+   SCREEN PAGE
+========================= */
+
+.screen-page{
+  padding:17px 17px 15px;
+}
+
+.menu-header{
+  display:flex;
+  align-items:center;
+
+  gap:8px;
+
+  margin-bottom:8px;
+
+  color:#6094b5;
+
+  font:
+    900 10px/1
+    "Nunito",
+    sans-serif;
+
+  letter-spacing:.08em;
+}
+
+.menu-header-line{
+  flex:1;
+
+  height:2px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #a1d1e8 0 4px,
+      transparent 4px 9px
+    );
+}
+
+.menu-header-page{
+  color:#8ab0c6;
+}
+
+
+/* =========================
+   CAVEDUCK
+========================= */
+
+.cave-feature{
+  position:relative;
+
+  min-height:185px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:5px 10px 15px;
+
   text-decoration:none;
-  color:var(--ink);
-  background:var(--glass);
-  border:2px solid rgba(255,255,255,.9);
-  box-shadow:
-    0 0 0 1px rgba(102,161,202,.25),
-    inset 0 2px 5px white,
-    0 8px 20px rgba(61,119,160,.09);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+
+  color:inherit;
 }
 
-.info{
-  margin-top:18px;
-  border-radius:24px;
-  padding:22px 23px;
-  line-height:1.85;
-  font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  font-size:14px;
+.cave-feature::after{
+  content:"";
+
+  position:absolute;
+
+  left:4%;
+  right:4%;
+  bottom:0;
+
+  height:2px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #91c9e5 0 5px,
+      transparent 5px 11px
+    );
 }
 
-.info-title{
-  font-family:"Jua","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  margin-bottom:12px;
-  color:#5685a7;
-  font-size:15px;
-}
+.duck-area{
+  height:105px;
 
-.info p{margin:0 0 10px}
-.info p:last-child{margin:0}
-
-/* ---------- EMAIL ---------- */
-
-.email{
-  margin-top:13px;
-  min-height:58px;
-  border-radius:21px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family:"Nunito",sans-serif;
-  font-weight:900;
+
+  margin-bottom:0;
+}
+
+.duck{
+  display:block;
+
+  width:auto;
+  height:100px;
+
+  max-width:160px;
+
+  object-fit:contain;
+
+  filter:
+    drop-shadow(0 5px 7px rgba(70,140,180,.13));
+
+  transition:
+    transform .18s ease;
+}
+
+.cave-feature:hover .duck{
+  transform:
+    translateY(-2px)
+    rotate(-2deg);
+}
+
+.caveduck-title{
+  color:#4b8dbd;
+
+  font:
+    900 clamp(27px,5vw,38px)/1
+    "Nunito",
+    sans-serif;
+
+  letter-spacing:-.045em;
+
+  text-shadow:
+    2px 0 #fff,
+    -2px 0 #fff,
+    0 2px #fff,
+    0 -2px #fff,
+    0 3px 0 rgba(58,135,190,.10);
+}
+
+.caveduck-sub{
+  margin-top:7px;
+
+  color:#96b9cd;
+
+  font:
+    900 8px/1
+    "Nunito",
+    sans-serif;
+
+  letter-spacing:.17em;
+}
+
+
+/* =========================
+   GAME MENU
+========================= */
+
+.game-menu{
+  padding-top:8px;
+}
+
+.game-row{
+  position:relative;
+
+  width:100%;
+  min-height:59px;
+
+  display:grid;
+
+  grid-template-columns:
+    38px 1fr;
+
+  align-items:center;
+
+  padding:7px 5px;
+
+  border:0;
+
+  border-bottom:
+    1px dashed rgba(104,178,213,.38);
+
+  background:transparent;
+
+  color:#4f7f9e;
+
+  text-decoration:none;
+  text-align:left;
+
+  font:inherit;
+
+  cursor:pointer;
+
+  transition:
+    background .15s ease,
+    padding-left .15s ease;
+}
+
+.game-row:hover,
+.game-row:focus-visible{
+  background:
+    rgba(255,255,255,.48);
+
+  padding-left:10px;
+
+  outline:none;
+}
+
+.menu-number{
+  color:#82b9d7;
+
+  font:
+    900 11px/1
+    "Nunito",
+    sans-serif;
+
   letter-spacing:.06em;
 }
 
-/* ---------- 하단 사이트 ---------- */
+.menu-copy{
+  display:flex;
+  flex-direction:column;
 
-.bottom{
-  margin-top:13px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:13px;
+  gap:3px;
 }
 
-.site{
-  min-height:58px;
-  border-radius:21px;
+.menu-ko{
+  color:#4f7d9a;
+
+  font-size:14px;
+}
+
+.menu-en{
+  color:#a0bdcd;
+
+  font:
+    900 7px/1
+    "Nunito",
+    sans-serif;
+
+  letter-spacing:.14em;
+}
+
+.game-row::after{
+  content:"";
+
+  position:absolute;
+
+  right:7px;
+
+  width:5px;
+  height:5px;
+
+  border-right:
+    2px solid #7ab9dc;
+
+  border-bottom:
+    2px solid #7ab9dc;
+
+  transform:
+    rotate(-45deg);
+
+  opacity:0;
+
+  transition:.15s;
+}
+
+.game-row:hover::after,
+.game-row:focus-visible::after{
+  opacity:1;
+}
+
+.small-menu{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+}
+
+.small-menu .game-row{
+  grid-template-columns:
+    33px 1fr;
+}
+
+.small-menu .game-row:first-child{
+  border-right:
+    1px dashed rgba(104,178,213,.38);
+}
+
+.game-row.disabled{
+  cursor:default;
+}
+
+.game-row.disabled:hover{
+  background:transparent;
+  padding-left:5px;
+}
+
+.game-row.disabled::after{
+  display:none;
+}
+
+
+/* =========================
+   SCREEN BOTTOM
+========================= */
+
+.screen-bottom{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-family:"Jua","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  font-size:15px;
-  font-weight:400;
-  letter-spacing:0;
+
+  gap:9px;
+
+  padding-top:13px;
+
+  color:#9abccd;
+
+  font:
+    900 7px/1
+    "Nunito",
+    sans-serif;
+
+  letter-spacing:.15em;
 }
 
-.testing{opacity:.5}
+.screen-bottom::before,
+.screen-bottom::after{
+  content:"";
 
-.sparkline{
+  width:19px;
+  height:2px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #b0d6e7 0 3px,
+      transparent 3px 6px
+    );
+}
+
+
+/* =========================
+   INFO SCREEN
+========================= */
+
+.info-screen{
+  display:none;
+}
+
+.screen.show-info .home-screen{
+  display:none;
+}
+
+.screen.show-info .info-screen{
+  display:block;
+}
+
+.info-top{
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:24px;
+
+  color:#6899b6;
+
+  font:
+    900 9px/1
+    "Nunito",
+    sans-serif;
+}
+
+.back{
+  flex:0 0 auto;
+
+  padding:0;
+
+  border:0;
+
+  background:none;
+
+  color:#5f96b8;
+
+  font:
+    900 9px/1
+    "Nunito",
+    sans-serif;
+
+  cursor:pointer;
+}
+
+.info-top-line{
+  flex:1;
+
+  height:2px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #a1d1e8 0 4px,
+      transparent 4px 9px
+    );
+}
+
+.info-title{
+  margin:0 0 9px;
+
+  color:#4f82a3;
+
   text-align:center;
-  margin-top:25px;
-  color:#8ab7d2;
-  letter-spacing:.65em;
-  font-size:11px;
+
+  font-size:19px;
 }
 
-a{transition:.17s ease}
+.info-subtitle{
+  margin-bottom:22px;
 
-a:hover{
-  transform:translateY(-2px);
-  background-color:rgba(255,255,255,.82);
+  color:#9ab9ca;
+
+  text-align:center;
+
+  font:
+    900 8px/1
+    "Nunito",
+    sans-serif;
+
+  letter-spacing:.14em;
 }
 
-/* ---------- 모바일 ---------- */
+.info-copy{
+  padding:
+    19px 8px 8px;
+
+  border-top:
+    1px dashed rgba(103,177,211,.42);
+
+  color:#557b92;
+
+  font-family:
+    "Apple SD Gothic Neo",
+    "Malgun Gothic",
+    sans-serif;
+
+  font-size:13px;
+
+  line-height:1.9;
+}
+
+.info-copy p{
+  margin:0 0 15px;
+}
+
+.info-close{
+  display:block;
+
+  margin:18px auto 0;
+
+  padding:8px 14px;
+
+  border:0;
+
+  background:transparent;
+
+  color:#77a6c0;
+
+  font:
+    900 9px/1
+    "Nunito",
+    sans-serif;
+
+  letter-spacing:.12em;
+
+  cursor:pointer;
+}
+
+
+/* =========================
+   JOYSTICK
+========================= */
+
+.joy-stick{
+  position:absolute;
+  z-index:4;
+
+  width:46px;
+  height:46px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 38% 30%,
+      #ffffff 0 5%,
+      #e9f9ff 8%,
+      #b6e5f8 47%,
+      #76bee5 75%,
+      #5aa8d5 100%
+    );
+
+  border:
+    3px solid rgba(255,255,255,.95);
+
+  box-shadow:
+    0 0 0 2px rgba(61,151,207,.35),
+    0 5px 7px rgba(49,113,157,.15),
+    inset 0 2px 5px rgba(255,255,255,.65);
+}
+
+.joy-stick::after{
+  content:"";
+
+  position:absolute;
+  inset:9px;
+
+  border-radius:50%;
+
+  border:
+    2px solid rgba(68,156,207,.20);
+}
+
+.left .joy-stick{
+  top:64px;
+  left:50%;
+
+  transform:translateX(-50%);
+}
+
+.right .joy-stick{
+  top:178px;
+  left:50%;
+
+  transform:translateX(-50%);
+}
+
+
+/* =========================
+   MINUS / PLUS
+========================= */
+
+.minus{
+  position:absolute;
+  z-index:4;
+
+  top:24px;
+  right:14px;
+
+  width:20px;
+  height:6px;
+
+  border-radius:999px;
+
+  background:#6fb4da;
+}
+
+.plus{
+  position:absolute;
+  z-index:4;
+
+  top:20px;
+  left:14px;
+
+  width:22px;
+  height:22px;
+}
+
+.plus::before,
+.plus::after{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:2px;
+
+  background:#6fb4da;
+}
+
+.plus::before{
+  width:22px;
+  height:6px;
+}
+
+.plus::after{
+  width:6px;
+  height:22px;
+}
+
+
+/* =========================
+   D-PAD
+========================= */
+
+.dpad{
+  position:absolute;
+  z-index:4;
+
+  top:154px;
+  left:50%;
+
+  width:70px;
+  height:70px;
+
+  transform:
+    translateX(-50%);
+
+  filter:
+    drop-shadow(
+      0 4px 4px
+      rgba(48,112,159,.14)
+    );
+}
+
+.dpad-v,
+.dpad-h{
+  position:absolute;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e8f8ff,
+      #91cff0
+    );
+
+  border:
+    2px solid rgba(255,255,255,.95);
+
+  box-shadow:
+    0 0 0 1px rgba(59,153,208,.34),
+    inset 0 3px 5px rgba(255,255,255,.72);
+}
+
+.dpad-v{
+  width:27px;
+  height:70px;
+
+  left:21.5px;
+  top:0;
+
+  border-radius:8px;
+}
+
+.dpad-h{
+  width:70px;
+  height:27px;
+
+  left:0;
+  top:21.5px;
+
+  border-radius:8px;
+}
+
+.dpad-center{
+  position:absolute;
+  z-index:2;
+
+  left:50%;
+  top:50%;
+
+  width:25px;
+  height:25px;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:5px;
+
+  background:#91cff0;
+}
+
+.dpad-arrow{
+  position:absolute;
+  z-index:3;
+
+  color:#5ba8d5;
+
+  font-size:8px;
+  line-height:1;
+}
+
+.dpad-arrow.up{
+  left:50%;
+  top:8px;
+
+  transform:translateX(-50%);
+}
+
+.dpad-arrow.down{
+  left:50%;
+  bottom:8px;
+
+  transform:translateX(-50%);
+}
+
+.dpad-arrow.left-arrow{
+  left:8px;
+  top:50%;
+
+  transform:translateY(-50%);
+}
+
+.dpad-arrow.right-arrow{
+  right:8px;
+  top:50%;
+
+  transform:translateY(-50%);
+}
+
+
+/* =========================
+   ABXY
+========================= */
+
+.abxy{
+  position:absolute;
+  z-index:4;
+
+  top:62px;
+  left:50%;
+
+  width:72px;
+  height:72px;
+
+  transform:translateX(-50%);
+}
+
+.game-button{
+  position:absolute;
+
+  width:30px;
+  height:30px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #bde7f9
+    );
+
+  border:
+    2px solid rgba(255,255,255,.96);
+
+  box-shadow:
+    0 0 0 1px rgba(67,156,210,.34),
+    inset 0 3px 4px rgba(255,255,255,.78),
+    0 3px 5px rgba(53,117,159,.12);
+
+  color:#4d94c2;
+
+  font:
+    900 10px/1
+    "Nunito",
+    sans-serif;
+}
+
+.game-button.x{
+  top:0;
+  left:21px;
+}
+
+.game-button.a{
+  right:0;
+  top:21px;
+}
+
+.game-button.b{
+  bottom:0;
+  left:21px;
+}
+
+.game-button.y{
+  left:0;
+  top:21px;
+}
+
+
+/* =========================
+   CAPTURE / HOME
+========================= */
+
+.capture{
+  position:absolute;
+  z-index:4;
+
+  left:50%;
+  bottom:67px;
+
+  width:30px;
+  height:30px;
+
+  transform:translateX(-50%);
+
+  border-radius:7px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #c8ecfb
+    );
+
+  border:
+    2px solid rgba(255,255,255,.94);
+
+  box-shadow:
+    0 0 0 1px rgba(75,164,211,.35);
+}
+
+.capture::after{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:12px;
+  height:12px;
+
+  transform:
+    translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:#83c8e9;
+}
+
+.home-button{
+  position:absolute;
+  z-index:4;
+
+  left:50%;
+  bottom:65px;
+
+  width:32px;
+  height:32px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff,
+      #d3effb
+    );
+
+  border:
+    2px solid rgba(255,255,255,.95);
+
+  box-shadow:
+    0 0 0 1px rgba(75,164,211,.32);
+}
+
+.home-button::before{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:11px;
+  height:9px;
+
+  transform:
+    translate(-50%,-35%);
+
+  border:
+    2px solid #72b6d9;
+
+  border-top:0;
+
+  border-radius:2px;
+}
+
+.home-button::after{
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:8px;
+
+  width:8px;
+  height:8px;
+
+  border-left:
+    2px solid #72b6d9;
+
+  border-top:
+    2px solid #72b6d9;
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+}
+
+
+/* =========================
+   SPEAKER
+========================= */
+
+.controller-dots{
+  position:absolute;
+  z-index:4;
+
+  bottom:20px;
+  left:50%;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,4px);
+
+  gap:5px;
+
+  transform:
+    translateX(-50%);
+}
+
+.controller-dots i{
+  display:block;
+
+  width:4px;
+  height:4px;
+
+  border-radius:50%;
+
+  background:
+    rgba(69,148,190,.38);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:560px){
+
   .page{
-    padding:30px 0;
+    width:calc(100% - 10px);
+    padding:28px 0 42px;
   }
 
   .hero{
     min-height:115px;
-    margin-bottom:10px;
+    margin-bottom:8px;
   }
 
   .sunfish-logo{
@@ -321,23 +1459,266 @@ a:hover{
     height:58px;
   }
 
-  .main-card{
-    padding:25px 22px;
-    border-radius:31px;
+  .handheld{
+    grid-template-columns:
+      72px
+      minmax(0,1fr)
+      72px;
+
+    min-height:510px;
+
+    border-radius:36px;
   }
 
-  .go{
-    width:45px;
-    height:45px;
+  .handheld::after{
+    border-radius:36px;
+  }
+
+  .controller.left{
+    border-radius:
+      34px 0 0 34px;
+  }
+
+  .controller.right{
+    border-radius:
+      0 34px 34px 0;
+  }
+
+  .center-unit{
+    padding:6px;
+  }
+
+  .screen{
+    min-height:496px;
+    border-radius:12px;
+  }
+
+  .status{
+    height:35px;
+    padding:0 8px;
+    font-size:8px;
+  }
+
+  .screen-page{
+    padding:
+      14px 10px 12px;
+  }
+
+  .menu-header{
+    font-size:8px;
+  }
+
+  .cave-feature{
+    min-height:170px;
+  }
+
+  .duck-area{
+    height:92px;
+  }
+
+  .duck{
+    height:87px;
+    max-width:135px;
+  }
+
+  .caveduck-title{
+    font-size:
+      clamp(23px,7vw,30px);
+  }
+
+  .game-row{
+    min-height:54px;
+
+    grid-template-columns:
+      32px 1fr;
+  }
+
+  .menu-ko{
+    font-size:13px;
+  }
+
+  .menu-en{
+    font-size:6px;
+  }
+
+  .small-menu .game-row{
+    grid-template-columns:
+      29px 1fr;
+  }
+
+  .joy-stick{
+    width:39px;
+    height:39px;
+  }
+
+  .joy-stick::after{
+    inset:8px;
+  }
+
+  .left .joy-stick{
+    top:61px;
+  }
+
+  .right .joy-stick{
+    top:172px;
+  }
+
+  .dpad{
+    top:146px;
+
+    width:61px;
+    height:61px;
+  }
+
+  .dpad-v{
+    width:24px;
+    height:61px;
+    left:18.5px;
+  }
+
+  .dpad-h{
+    width:61px;
+    height:24px;
+    top:18.5px;
+  }
+
+  .dpad-center{
+    width:22px;
+    height:22px;
+  }
+
+  .dpad-arrow{
+    font-size:7px;
+  }
+
+  .dpad-arrow.up{
+    top:7px;
+  }
+
+  .dpad-arrow.down{
+    bottom:7px;
+  }
+
+  .dpad-arrow.left-arrow{
+    left:7px;
+  }
+
+  .dpad-arrow.right-arrow{
+    right:7px;
+  }
+
+  .abxy{
+    top:59px;
+
+    width:62px;
+    height:62px;
+  }
+
+  .game-button{
+    width:27px;
+    height:27px;
+
+    font-size:9px;
+  }
+
+  .game-button.x{
+    left:17.5px;
+  }
+
+  .game-button.b{
+    left:17.5px;
+  }
+
+  .game-button.a{
+    top:17.5px;
+  }
+
+  .game-button.y{
+    top:17.5px;
+  }
+
+  .minus{
+    top:22px;
+    right:9px;
+
+    width:17px;
+  }
+
+  .plus{
+    top:17px;
+    left:9px;
+
+    transform:scale(.82);
+  }
+
+  .capture{
+    width:26px;
+    height:26px;
+
+    bottom:60px;
+  }
+
+  .home-button{
+    width:28px;
+    height:28px;
+
+    bottom:59px;
+
+    transform:
+      translateX(-50%)
+      scale(.92);
   }
 }
+
+
+@media(max-width:380px){
+
+  .handheld{
+    grid-template-columns:
+      66px
+      minmax(0,1fr)
+      66px;
+  }
+
+  .screen-page{
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .dpad{
+    transform:
+      translateX(-50%)
+      scale(.92);
+  }
+
+  .abxy{
+    transform:
+      translateX(-50%)
+      scale(.92);
+  }
+
+  .menu-ko{
+    font-size:12px;
+  }
+
+  .duck{
+    height:80px;
+    max-width:120px;
+  }
+}
+
 </style>
 </head>
 
 <body>
+
 <main class="page">
 
+
+  <!-- SUNFISH LOGO -->
+
   <header class="hero">
+
     <div class="orbit orbit-one"></div>
     <div class="orbit orbit-two"></div>
 
@@ -350,63 +1731,377 @@ a:hover{
       src="https://cdn.caveduck.io/cdn-cgi/image/dpr=1.5,f=auto,fit=crop,w=400/charim/3d76a567-fa86-40ec-b5b1-c24667e4cf01?v=8d931a"
       alt="SUNFISH"
     >
+
   </header>
 
-  <a
-    class="main-card"
-    href="https://caveduck.io/ko/user/sunfish"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span class="badge">MAIN</span>
 
-    <div class="caveduck">
-      <div class="cave-title">CAVEDUCK</div>
-      <span class="go">›</span>
+  <!-- GAME DEVICE -->
+
+  <section class="handheld">
+
+
+    <!-- LEFT CONTROLLER -->
+
+    <aside class="controller left" aria-hidden="true">
+
+      <div class="minus"></div>
+
+      <div class="joy-stick"></div>
+
+
+      <div class="dpad">
+
+        <div class="dpad-v"></div>
+        <div class="dpad-h"></div>
+
+        <div class="dpad-center"></div>
+
+        <span class="dpad-arrow up">▲</span>
+        <span class="dpad-arrow down">▼</span>
+        <span class="dpad-arrow left-arrow">◀</span>
+        <span class="dpad-arrow right-arrow">▶</span>
+
+      </div>
+
+
+      <div class="capture"></div>
+
+
+      <div class="controller-dots">
+
+        <i></i><i></i><i></i>
+        <i></i><i></i><i></i>
+
+      </div>
+
+    </aside>
+
+
+
+    <!-- CENTER -->
+
+    <div class="center-unit">
+
+      <div class="screen" id="screen">
+
+
+        <!-- STATUS -->
+
+        <div class="status">
+
+          <span class="system-name">
+
+            <span class="system-dot"></span>
+
+            SUNFISH
+
+          </span>
+
+
+          <span class="battery">
+
+            100%
+
+            <span class="battery-icon"></span>
+
+          </span>
+
+        </div>
+
+
+
+        <!-- HOME SCREEN -->
+
+        <div class="screen-page home-screen">
+
+
+          <div class="menu-header">
+
+            <span>MAIN MENU</span>
+
+            <span class="menu-header-line"></span>
+
+            <span class="menu-header-page">
+              01
+            </span>
+
+          </div>
+
+
+
+          <!-- CAVEDUCK -->
+
+          <a
+            class="cave-feature"
+            href="https://caveduck.io/ko/user/sunfish"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <div class="duck-area">
+
+              <img
+                class="duck"
+                src="https://cdn.caveduck.io/cdn-cgi/image/anim=true,f=auto,fit=crop,g=top,w=400/charim/70b20bf0-a8cc-48d0-acd1-2709169f43a6?v=ac06f0"
+                alt="CAVEDUCK"
+              >
+
+            </div>
+
+
+            <div class="caveduck-title">
+              CAVEDUCK
+            </div>
+
+
+            <div class="caveduck-sub">
+              MAIN LINK
+            </div>
+
+          </a>
+
+
+
+          <!-- MENU -->
+
+          <nav class="game-menu">
+
+
+            <button
+              class="game-row"
+              type="button"
+              onclick="openInfo()"
+            >
+
+              <span class="menu-number">
+                01
+              </span>
+
+              <span class="menu-copy">
+
+                <span class="menu-ko">
+                  캐릭터 이식 안내
+                </span>
+
+                <span class="menu-en">
+                  CHARACTER TRANSFER
+                </span>
+
+              </span>
+
+            </button>
+
+
+
+            <a
+              class="game-row"
+              href="mailto:sunfish.molamola.ocean@gmail.com"
+            >
+
+              <span class="menu-number">
+                02
+              </span>
+
+              <span class="menu-copy">
+
+                <span class="menu-ko">
+                  EMAIL
+                </span>
+
+                <span class="menu-en">
+                  CONTACT
+                </span>
+
+              </span>
+
+            </a>
+
+
+
+            <div class="small-menu">
+
+
+              <a
+                class="game-row"
+                href="https://rofan.ai/user/90a80efa-baf1-4bd6-a09d-7d90a6e4a3d1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <span class="menu-number">
+                  03
+                </span>
+
+                <span class="menu-copy">
+
+                  <span class="menu-ko">
+                    로판AI
+                  </span>
+
+                </span>
+
+              </a>
+
+
+
+              <div class="game-row disabled">
+
+                <span class="menu-number">
+                  04
+                </span>
+
+                <span class="menu-copy">
+
+                  <span class="menu-ko">
+                    —
+                  </span>
+
+                </span>
+
+              </div>
+
+
+            </div>
+
+
+          </nav>
+
+
+          <div class="screen-bottom">
+            SUNFISH / PAGE 01
+          </div>
+
+
+        </div>
+
+
+
+        <!-- CHARACTER TRANSFER -->
+
+        <div class="screen-page info-screen">
+
+
+          <div class="info-top">
+
+            <button
+              class="back"
+              type="button"
+              onclick="closeInfo()"
+            >
+              ‹ BACK
+            </button>
+
+            <span class="info-top-line"></span>
+
+          </div>
+
+
+
+          <h2 class="info-title">
+            캐릭터 이식 안내
+          </h2>
+
+
+          <div class="info-subtitle">
+            CHARACTER TRANSFER
+          </div>
+
+
+
+          <div class="info-copy">
+
+            <p>
+              일라이 이전에 제작한 캐릭터는 오리지널 표시가 붙어 있더라도
+              케이브덕 공식 크리에이터 신청 전에 제작한 캐릭터이기 때문에
+              이식이 가능합니다. 원하시는 경우 편하게 문의해 주세요.
+            </p>
+
+            <p>
+              다만 제가 이용해 보지 않은 사이트의 이식은 제작 방식을
+              따로 알아보고 테스트하는 과정이 필요해
+              시간이 다소 오래 소요될 수 있습니다.
+            </p>
+
+          </div>
+
+
+          <button
+            class="info-close"
+            type="button"
+            onclick="closeInfo()"
+          >
+            ◀ RETURN
+          </button>
+
+
+        </div>
+
+
+      </div>
+
     </div>
-  </a>
 
-  <section class="tile info">
-    <div class="info-title">✦ &nbsp; 캐릭터 이식 안내</div>
 
-    <p>
-      일라이 이전에 제작한 캐릭터는 오리지널 표시가 붙어 있더라도
-      공식 크리에이터 신청 전에 제작한 캐릭터이기 때문에 이식이 가능합니다.
-      원하시는 경우 편하게 문의해 주세요.
-    </p>
 
-    <p>
-      다만 제가 이용해 보지 않은 사이트의 이식은 제작 방식을 따로 알아보고
-      테스트하는 과정이 필요해 시간이 다소 오래 소요될 수 있습니다.
-    </p>
+    <!-- RIGHT CONTROLLER -->
+
+    <aside class="controller right" aria-hidden="true">
+
+
+      <div class="plus"></div>
+
+
+      <div class="abxy">
+
+        <div class="game-button x">X</div>
+        <div class="game-button a">A</div>
+        <div class="game-button b">B</div>
+        <div class="game-button y">Y</div>
+
+      </div>
+
+
+      <div class="joy-stick"></div>
+
+
+      <div class="home-button"></div>
+
+
+      <div class="controller-dots">
+
+        <i></i><i></i><i></i>
+        <i></i><i></i><i></i>
+
+      </div>
+
+
+    </aside>
+
+
   </section>
 
-  <a
-    class="tile email"
-    href="mailto:sunfish.molamola.ocean@gmail.com"
-  >
-    ✉ &nbsp; EMAIL
-  </a>
-
-  <div class="bottom">
-
-    <a
-      class="tile site"
-      href="https://rofan.ai/user/90a80efa-baf1-4bd6-a09d-7d90a6e4a3d1"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      로판AI
-    </a>
-
-    <div class="tile site testing">
-      테스트중
-    </div>
-
-  </div>
-
-  <div class="sparkline">✦ · ✧ · ✦</div>
 
 </main>
+
+
+<script>
+
+function openInfo(){
+  document
+    .getElementById("screen")
+    .classList
+    .add("show-info");
+}
+
+
+function closeInfo(){
+  document
+    .getElementById("screen")
+    .classList
+    .remove("show-info");
+}
+
+</script>
+
 </body>
 </html>
