@@ -43,10 +43,7 @@ body{
   padding:38px 0 55px;
 }
 
-/* =========================================================
-   BACKGROUND
-========================================================= */
-
+/* BACKGROUND */
 .bg-deco{
   position:fixed;
   inset:0;
@@ -120,12 +117,7 @@ body{
   display:block;
   border:2px solid rgba(255,255,255,.58);
   border-radius:50%;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.20),
-      rgba(170,224,255,.04)
-    );
+  background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(170,224,255,.04));
   box-shadow:
     inset 3px 3px 5px rgba(255,255,255,.28),
     0 4px 12px rgba(74,159,211,.06);
@@ -143,63 +135,16 @@ body{
   background:rgba(255,255,255,.72);
 }
 
-.bubble-1{
-  width:38px;
-  height:38px;
-  left:7%;
-  top:38%;
-  animation-delay:-1s;
-}
-
-.bubble-2{
-  width:17px;
-  height:17px;
-  left:15%;
-  top:70%;
-  animation-delay:-4s;
-}
-
-.bubble-3{
-  width:57px;
-  height:57px;
-  right:5%;
-  top:53%;
-  opacity:.72;
-  animation-delay:-2.5s;
-}
-
-.bubble-4{
-  width:25px;
-  height:25px;
-  right:15%;
-  top:78%;
-  animation-delay:-5s;
-}
-
-.bubble-5{
-  width:13px;
-  height:13px;
-  left:26%;
-  top:17%;
-  animation-delay:-3s;
-}
-
-.bubble-6{
-  width:30px;
-  height:30px;
-  right:24%;
-  top:15%;
-  opacity:.65;
-  animation-delay:-.5s;
-}
+.bubble-1{width:38px;height:38px;left:7%;top:38%;animation-delay:-1s;}
+.bubble-2{width:17px;height:17px;left:15%;top:70%;animation-delay:-4s;}
+.bubble-3{width:57px;height:57px;right:5%;top:53%;opacity:.72;animation-delay:-2.5s;}
+.bubble-4{width:25px;height:25px;right:15%;top:78%;animation-delay:-5s;}
+.bubble-5{width:13px;height:13px;left:26%;top:17%;animation-delay:-3s;}
+.bubble-6{width:30px;height:30px;right:24%;top:15%;opacity:.65;animation-delay:-.5s;}
 
 @keyframes bubbleFloat{
-  0%,100%{
-    transform:translateY(0) rotate(0deg);
-  }
-  50%{
-    transform:translateY(-12px) rotate(5deg);
-  }
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-12px) rotate(5deg);}
 }
 
 .sky-sparkle{
@@ -210,63 +155,17 @@ body{
   animation:skyTwinkle 3s ease-in-out infinite;
 }
 
-.sp-1{
-  left:7%;
-  top:23%;
-  font-size:18px;
-}
-
-.sp-2{
-  right:9%;
-  top:19%;
-  font-size:13px;
-  animation-delay:-1.2s;
-}
-
-.sp-3{
-  left:11%;
-  top:57%;
-  font-size:14px;
-  animation-delay:-2.1s;
-}
-
-.sp-4{
-  right:8%;
-  top:67%;
-  font-size:20px;
-  animation-delay:-.7s;
-}
-
-.sp-5{
-  left:20%;
-  bottom:8%;
-  font-size:11px;
-  animation-delay:-1.8s;
-}
-
-.sp-6{
-  right:22%;
-  bottom:13%;
-  font-size:13px;
-  animation-delay:-2.7s;
-}
-
-.sp-7{
-  right:4%;
-  top:39%;
-  font-size:9px;
-  animation-delay:-1.4s;
-}
+.sp-1{left:7%;top:23%;font-size:18px;}
+.sp-2{right:9%;top:19%;font-size:13px;animation-delay:-1.2s;}
+.sp-3{left:11%;top:57%;font-size:14px;animation-delay:-2.1s;}
+.sp-4{right:8%;top:67%;font-size:20px;animation-delay:-.7s;}
+.sp-5{left:20%;bottom:8%;font-size:11px;animation-delay:-1.8s;}
+.sp-6{right:22%;bottom:13%;font-size:13px;animation-delay:-2.7s;}
+.sp-7{right:4%;top:39%;font-size:9px;animation-delay:-1.4s;}
 
 @keyframes skyTwinkle{
-  0%,100%{
-    opacity:.35;
-    transform:scale(.8) rotate(0deg);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1.18) rotate(8deg);
-  }
+  0%,100%{opacity:.35;transform:scale(.8) rotate(0deg);}
+  50%{opacity:1;transform:scale(1.18) rotate(8deg);}
 }
 
 .bg-ring{
@@ -295,10 +194,7 @@ body{
   opacity:.40;
 }
 
-/* =========================================================
-   LOGO
-========================================================= */
-
+/* LOGO */
 .hero{
   position:relative;
   min-height:145px;
@@ -355,39 +251,16 @@ body{
   animation:twinkle 2.4s ease-in-out infinite;
 }
 
-.star.a{
-  left:8%;
-  top:20px;
-  font-size:24px;
-}
-
-.star.b{
-  right:8%;
-  top:70px;
-  font-size:18px;
-}
-
-.star.c{
-  left:20%;
-  bottom:7px;
-  font-size:13px;
-}
+.star.a{left:8%;top:20px;font-size:24px;}
+.star.b{right:8%;top:70px;font-size:18px;}
+.star.c{left:20%;bottom:7px;font-size:13px;}
 
 @keyframes twinkle{
-  0%,100%{
-    opacity:.45;
-    transform:scale(.8);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1.18);
-  }
+  0%,100%{opacity:.45;transform:scale(.8);}
+  50%{opacity:1;transform:scale(1.18);}
 }
 
-/* =========================================================
-   HANDHELD
-========================================================= */
-
+/* HANDHELD */
 .handheld{
   position:relative;
   display:grid;
@@ -408,27 +281,14 @@ body{
   pointer-events:none;
 }
 
-/* =========================================================
-   CONTROLLERS
-========================================================= */
-
+/* CONTROLLERS */
 .controller{
   position:relative;
   z-index:2;
   overflow:hidden;
   background:
-    linear-gradient(
-      130deg,
-      rgba(255,255,255,.94),
-      rgba(255,255,255,.24) 30%,
-      transparent 44%
-    ),
-    linear-gradient(
-      160deg,
-      #edfaff 0%,
-      #d3f2ff 46%,
-      #bce8fb 100%
-    );
+    linear-gradient(130deg,rgba(255,255,255,.94),rgba(255,255,255,.24) 30%,transparent 44%),
+    linear-gradient(160deg,#edfaff 0%,#d3f2ff 46%,#bce8fb 100%);
   box-shadow:
     inset 0 0 18px rgba(255,255,255,.95),
     inset 0 -20px 28px rgba(68,165,222,.09);
@@ -440,18 +300,8 @@ body{
   inset:0;
   opacity:.10;
   background:
-    linear-gradient(
-      90deg,
-      transparent 49%,
-      var(--blue) 50%,
-      transparent 51%
-    ),
-    linear-gradient(
-      0deg,
-      transparent 49%,
-      var(--blue) 50%,
-      transparent 51%
-    );
+    linear-gradient(90deg,transparent 49%,var(--blue) 50%,transparent 51%),
+    linear-gradient(0deg,transparent 49%,var(--blue) 50%,transparent 51%);
   background-size:28px 28px;
 }
 
@@ -463,12 +313,7 @@ body{
   top:5px;
   height:43%;
   border-radius:999px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.54),
-      transparent
-    );
+  background:linear-gradient(180deg,rgba(255,255,255,.54),transparent);
 }
 
 .controller.left{
@@ -481,10 +326,7 @@ body{
   border-left:2px solid rgba(76,168,238,.28);
 }
 
-/* =========================================================
-   CENTER
-========================================================= */
-
+/* CENTER */
 .center-unit{
   position:relative;
   z-index:3;
@@ -504,26 +346,15 @@ body{
   border-radius:15px;
   border:2px solid rgba(86,180,226,.55);
   background:
-    radial-gradient(
-      circle,
-      rgba(68,150,190,.045) 0 1px,
-      transparent 1.1px
-    ),
-    linear-gradient(
-      180deg,
-      #f5fdff 0%,
-      #ebfaff 100%
-    );
+    radial-gradient(circle,rgba(68,150,190,.045) 0 1px,transparent 1.1px),
+    linear-gradient(180deg,#f5fdff 0%,#ebfaff 100%);
   background-size:6px 6px,100% 100%;
   box-shadow:
     inset 0 0 22px rgba(87,177,199,.08),
     inset 0 0 0 2px rgba(255,255,255,.78);
 }
 
-/* =========================================================
-   STATUS
-========================================================= */
-
+/* STATUS */
 .status{
   height:38px;
   padding:0 12px;
@@ -584,10 +415,7 @@ body{
   background:#68a4c9;
 }
 
-/* =========================================================
-   SLIDER
-========================================================= */
-
+/* SLIDER */
 .slider-wrap{
   position:relative;
   height:calc(100% - 38px);
@@ -606,9 +434,7 @@ body{
   -webkit-overflow-scrolling:touch;
 }
 
-.slides::-webkit-scrollbar{
-  display:none;
-}
+.slides::-webkit-scrollbar{display:none;}
 
 .slide{
   flex:0 0 100%;
@@ -617,7 +443,7 @@ body{
   height:100%;
   scroll-snap-align:start;
   scroll-snap-stop:always;
-  padding:14px 17px 64px;
+  padding:14px 17px 48px;
   overflow:hidden;
 }
 
@@ -633,22 +459,12 @@ body{
 .slide-line{
   flex:1;
   height:2px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #a1d1e8 0 4px,
-      transparent 4px 9px
-    );
+  background:repeating-linear-gradient(90deg,#a1d1e8 0 4px,transparent 4px 9px);
 }
 
-.slide-no{
-  color:#8ab0c6;
-}
+.slide-no{color:#8ab0c6;}
 
-/* =========================================================
-   CAVEDUCK
-========================================================= */
-
+/* CAVEDUCK */
 .cave-feature{
   height:calc(100% - 20px);
   display:flex;
@@ -700,10 +516,7 @@ body{
   letter-spacing:.17em;
 }
 
-/* =========================================================
-   MENU
-========================================================= */
-
+/* MENU */
 .menu-page{
   display:flex;
   flex-direction:column;
@@ -767,15 +580,12 @@ body{
   letter-spacing:.14em;
 }
 
-/* =========================================================
-   SLIDER NAV
-========================================================= */
-
+/* SLIDER NAV */
 .slider-nav{
   position:absolute;
   z-index:8;
   left:50%;
-  bottom:33px;
+  bottom:10px;
   transform:translateX(-50%);
   display:flex;
   align-items:center;
@@ -819,95 +629,7 @@ body{
   box-shadow:0 0 0 2px rgba(130,200,236,.15);
 }
 
-/* =========================================================
-   MUSIC VISUALIZER
-========================================================= */
-
-.music-control{
-  position:absolute;
-  z-index:10;
-  left:50%;
-  bottom:7px;
-  transform:translateX(-50%);
-  width:126px;
-  height:22px;
-  padding:0;
-  border:0;
-  background:transparent;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  gap:4px;
-  cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-}
-
-.music-control:focus-visible{
-  outline:1px dashed rgba(84,158,199,.6);
-  outline-offset:4px;
-  border-radius:4px;
-}
-
-.eq-bar{
-  display:block;
-  width:4px;
-  height:var(--idle);
-  min-height:4px;
-  border-radius:3px 3px 1px 1px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(102,185,226,.94),
-      rgba(113,171,205,.70)
-    );
-  box-shadow:
-    inset 1px 0 rgba(255,255,255,.4),
-    0 1px 2px rgba(69,136,176,.10);
-  transform-origin:center bottom;
-  opacity:.76;
-}
-
-/* 재생 중일 때만 움직임 */
-.music-control.playing .eq-bar{
-  animation:eqMove var(--speed) ease-in-out infinite alternate;
-  animation-delay:var(--delay);
-  opacity:.95;
-}
-
-@keyframes eqMove{
-  from{
-    height:var(--low);
-  }
-  to{
-    height:var(--high);
-  }
-}
-
-.music-control:not(.playing) .eq-bar{
-  animation:none;
-}
-
-/* YouTube 플레이어는 화면 밖에 작게 둠 */
-.youtube-player-wrap{
-  position:fixed;
-  left:-200px;
-  bottom:-200px;
-  width:100px;
-  height:100px;
-  overflow:hidden;
-  pointer-events:none;
-  opacity:.01;
-}
-
-#youtubePlayer{
-  width:100px;
-  height:100px;
-}
-
-/* =========================================================
-   INFO
-========================================================= */
-
+/* INFO */
 .info-screen{
   display:none;
   height:calc(100% - 38px);
@@ -916,17 +638,10 @@ body{
   scrollbar-width:none;
 }
 
-.info-screen::-webkit-scrollbar{
-  display:none;
-}
+.info-screen::-webkit-scrollbar{display:none;}
 
-.screen.show-info .slider-wrap{
-  display:none;
-}
-
-.screen.show-info .info-screen{
-  display:block;
-}
+.screen.show-info .slider-wrap{display:none;}
+.screen.show-info .info-screen{display:block;}
 
 .info-top{
   display:flex;
@@ -950,12 +665,7 @@ body{
 .info-top-line{
   flex:1;
   height:2px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #a1d1e8 0 4px,
-      transparent 4px 9px
-    );
+  background:repeating-linear-gradient(90deg,#a1d1e8 0 4px,transparent 4px 9px);
 }
 
 .info-title{
@@ -982,9 +692,7 @@ body{
   line-height:1.85;
 }
 
-.info-copy p{
-  margin:0 0 15px;
-}
+.info-copy p{margin:0 0 15px;}
 
 .info-close{
   display:block;
@@ -998,10 +706,7 @@ body{
   cursor:pointer;
 }
 
-/* =========================================================
-   CONTROLS
-========================================================= */
-
+/* CONTROLS */
 .joy-stick{
   position:absolute;
   z-index:4;
@@ -1009,14 +714,7 @@ body{
   height:46px;
   border-radius:50%;
   background:
-    radial-gradient(
-      circle at 38% 30%,
-      #ffffff 0 5%,
-      #e9f9ff 8%,
-      #b6e5f8 47%,
-      #76bee5 75%,
-      #5aa8d5 100%
-    );
+    radial-gradient(circle at 38% 30%,#ffffff 0 5%,#e9f9ff 8%,#b6e5f8 47%,#76bee5 75%,#5aa8d5 100%);
   border:3px solid rgba(255,255,255,.95);
   box-shadow:
     0 0 0 2px rgba(61,151,207,.35),
@@ -1075,15 +773,8 @@ body{
   background:#6fb4da;
 }
 
-.plus::before{
-  width:22px;
-  height:6px;
-}
-
-.plus::after{
-  width:6px;
-  height:22px;
-}
+.plus::before{width:22px;height:6px;}
+.plus::after{width:6px;height:22px;}
 
 .dpad{
   position:absolute;
@@ -1138,29 +829,10 @@ body{
   font-size:8px;
 }
 
-.dpad-arrow.up{
-  left:50%;
-  top:8px;
-  transform:translateX(-50%);
-}
-
-.dpad-arrow.down{
-  left:50%;
-  bottom:8px;
-  transform:translateX(-50%);
-}
-
-.dpad-arrow.left-arrow{
-  left:8px;
-  top:50%;
-  transform:translateY(-50%);
-}
-
-.dpad-arrow.right-arrow{
-  right:8px;
-  top:50%;
-  transform:translateY(-50%);
-}
+.dpad-arrow.up{left:50%;top:8px;transform:translateX(-50%);}
+.dpad-arrow.down{left:50%;bottom:8px;transform:translateX(-50%);}
+.dpad-arrow.left-arrow{left:8px;top:50%;transform:translateY(-50%);}
+.dpad-arrow.right-arrow{right:8px;top:50%;transform:translateY(-50%);}
 
 .abxy{
   position:absolute;
@@ -1188,25 +860,10 @@ body{
   font:900 10px/1 "Nunito",sans-serif;
 }
 
-.game-button.x{
-  top:0;
-  left:21px;
-}
-
-.game-button.a{
-  right:0;
-  top:21px;
-}
-
-.game-button.b{
-  bottom:0;
-  left:21px;
-}
-
-.game-button.y{
-  left:0;
-  top:21px;
-}
+.game-button.x{top:0;left:21px;}
+.game-button.a{right:0;top:21px;}
+.game-button.b{bottom:0;left:21px;}
+.game-button.y{left:0;top:21px;}
 
 .capture{
   position:absolute;
@@ -1293,9 +950,107 @@ body{
 }
 
 /* =========================================================
-   MOBILE
+   MUSIC - 게임기 바깥 아래
 ========================================================= */
 
+.music-area{
+  position:relative;
+  z-index:5;
+  display:flex;
+  justify-content:center;
+  margin-top:24px;
+}
+
+.music-control{
+  position:relative;
+  width:150px;
+  height:34px;
+  padding:4px 10px;
+  border:0;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.music-control::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:50%;
+  height:1px;
+  transform:translateY(-50%);
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(112,183,222,.18) 15%,
+    rgba(112,183,222,.18) 85%,
+    transparent
+  );
+}
+
+.music-control:focus-visible{
+  outline:1px dashed rgba(84,158,199,.55);
+  outline-offset:3px;
+  border-radius:8px;
+}
+
+.eq-bar{
+  position:relative;
+  z-index:2;
+  display:block;
+  width:4px;
+  height:var(--idle);
+  min-height:5px;
+  border-radius:2px;
+  background:linear-gradient(
+    180deg,
+    rgba(100,184,226,.88),
+    rgba(92,157,198,.72)
+  );
+  box-shadow:
+    inset 1px 0 rgba(255,255,255,.32),
+    0 1px 3px rgba(65,130,170,.08);
+  transform-origin:center center;
+  opacity:.72;
+}
+
+.music-control.playing .eq-bar{
+  animation:eqMove var(--speed) ease-in-out infinite alternate;
+  animation-delay:var(--delay);
+  opacity:.96;
+}
+
+@keyframes eqMove{
+  from{height:var(--low);}
+  to{height:var(--high);}
+}
+
+.music-control:not(.playing) .eq-bar{
+  animation:none;
+}
+
+.youtube-player-wrap{
+  position:fixed;
+  left:-300px;
+  top:-300px;
+  width:120px;
+  height:120px;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:.01;
+}
+
+#youtubePlayer{
+  width:120px;
+  height:120px;
+}
+
+/* MOBILE */
 @media(max-width:560px){
 
   .page{
@@ -1323,15 +1078,10 @@ body{
     height:54px;
   }
 
-  .star.a{
-    left:2%;
-  }
+  .star.a{left:2%;}
+  .star.b{right:2%;}
 
-  .star.b{
-    right:2%;
-  }
-
-  /* 게임기 크기는 기존 그대로 */
+  /* 게임기 사이즈 그대로 */
   .handheld{
     grid-template-columns:58px minmax(0,1fr) 58px;
     height:345px;
@@ -1351,9 +1101,7 @@ body{
     border-radius:0 33px 33px 0;
   }
 
-  .center-unit{
-    padding:5px;
-  }
+  .center-unit{padding:5px;}
 
   .screen{
     border-radius:10px;
@@ -1371,9 +1119,7 @@ body{
     height:5px;
   }
 
-  .battery{
-    gap:3px;
-  }
+  .battery{gap:3px;}
 
   .battery-icon{
     width:16px;
@@ -1399,12 +1145,10 @@ body{
   }
 
   .slide{
-    padding:10px 10px 52px;
+    padding:10px 10px 40px;
   }
 
-  .slide-top{
-    font-size:7px;
-  }
+  .slide-top{font-size:7px;}
 
   .duck-area{
     height:105px;
@@ -1425,9 +1169,7 @@ body{
     font-size:6px;
   }
 
-  .game-menu{
-    padding-top:2px;
-  }
+  .game-menu{padding-top:2px;}
 
   .game-row{
     min-height:48px;
@@ -1435,20 +1177,12 @@ body{
     padding:5px 4px;
   }
 
-  .menu-number{
-    font-size:8px;
-  }
-
-  .menu-ko{
-    font-size:12px;
-  }
-
-  .menu-en{
-    font-size:5.5px;
-  }
+  .menu-number{font-size:8px;}
+  .menu-ko{font-size:12px;}
+  .menu-en{font-size:5.5px;}
 
   .slider-nav{
-    bottom:27px;
+    bottom:6px;
     gap:6px;
     padding:3px 7px;
   }
@@ -1464,19 +1198,6 @@ body{
     height:5px;
   }
 
-  /* 모바일 이퀄라이저 */
-  .music-control{
-    bottom:5px;
-    width:104px;
-    height:18px;
-    gap:3px;
-  }
-
-  .eq-bar{
-    width:3px;
-    border-radius:2px 2px 1px 1px;
-  }
-
   .info-screen{
     height:calc(100% - 31px);
     padding:12px 12px 10px;
@@ -1487,9 +1208,7 @@ body{
     font-size:7px;
   }
 
-  .back{
-    font-size:7px;
-  }
+  .back{font-size:7px;}
 
   .info-title{
     margin-bottom:6px;
@@ -1507,9 +1226,7 @@ body{
     line-height:1.65;
   }
 
-  .info-copy p{
-    margin-bottom:9px;
-  }
+  .info-copy p{margin-bottom:9px;}
 
   .info-close{
     margin-top:1px;
@@ -1537,13 +1254,8 @@ body{
     border-width:1px;
   }
 
-  .left .joy-stick{
-    top:52px;
-  }
-
-  .right .joy-stick{
-    top:137px;
-  }
+  .left .joy-stick{top:52px;}
+  .right .joy-stick{top:137px;}
 
   .minus{
     top:19px;
@@ -1585,25 +1297,11 @@ body{
     height:17px;
   }
 
-  .dpad-arrow{
-    font-size:5px;
-  }
-
-  .dpad-arrow.up{
-    top:5px;
-  }
-
-  .dpad-arrow.down{
-    bottom:5px;
-  }
-
-  .dpad-arrow.left-arrow{
-    left:5px;
-  }
-
-  .dpad-arrow.right-arrow{
-    right:5px;
-  }
+  .dpad-arrow{font-size:5px;}
+  .dpad-arrow.up{top:5px;}
+  .dpad-arrow.down{bottom:5px;}
+  .dpad-arrow.left-arrow{left:5px;}
+  .dpad-arrow.right-arrow{right:5px;}
 
   .abxy{
     top:49px;
@@ -1618,21 +1316,10 @@ body{
     font-size:6px;
   }
 
-  .game-button.x{
-    left:14px;
-  }
-
-  .game-button.a{
-    top:14px;
-  }
-
-  .game-button.b{
-    left:14px;
-  }
-
-  .game-button.y{
-    top:14px;
-  }
+  .game-button.x{left:14px;}
+  .game-button.a{top:14px;}
+  .game-button.b{left:14px;}
+  .game-button.y{top:14px;}
 
   .capture{
     width:22px;
@@ -1678,11 +1365,23 @@ body{
     height:3px;
   }
 
-  /* =====================================================
-     MOBILE BACKGROUND
-     게임기 뒤가 아니라 위/아래에 보이도록 재배치
-  ===================================================== */
+  /* 음악 표시: 게임기 바깥 바로 아래 */
+  .music-area{
+    margin-top:18px;
+  }
 
+  .music-control{
+    width:125px;
+    height:30px;
+    gap:3.5px;
+  }
+
+  .eq-bar{
+    width:4px;
+    border-radius:2px;
+  }
+
+  /* 모바일 배경 장식 */
   .cloud{
     width:145px;
     height:40px;
@@ -1732,7 +1431,6 @@ body{
     opacity:.58;
   }
 
-  /* 큰 링도 게임기 중앙에서 빼냄 */
   .ring-1{
     width:390px;
     height:100px;
@@ -1752,7 +1450,6 @@ body{
     opacity:.30;
   }
 
-  /* 로고 주변 버블 */
   .bubble-1{
     width:23px;
     height:23px;
@@ -1774,7 +1471,6 @@ body{
     top:88px;
   }
 
-  /* 게임기 아래쪽 버블 */
   .bubble-2{
     width:13px;
     height:13px;
@@ -1799,7 +1495,6 @@ body{
     bottom:93px;
   }
 
-  /* 위쪽 반짝이 */
   .sp-1{
     left:5%;
     top:31px;
@@ -1824,7 +1519,6 @@ body{
     font-size:9px;
   }
 
-  /* 아래쪽 반짝이 */
   .sp-4{
     right:6%;
     top:auto;
@@ -1848,50 +1542,36 @@ body{
 }
 
 @media(max-width:380px){
-
-  .page{
-    width:86%;
-  }
+  .page{width:86%;}
 
   .handheld{
     grid-template-columns:52px minmax(0,1fr) 52px;
     height:325px;
   }
 
-  .hero{
-    margin-bottom:17px;
-  }
+  .hero{margin-bottom:17px;}
 
   .slide{
     padding-left:8px;
     padding-right:8px;
   }
 
-  .duck-area{
-    height:96px;
-  }
+  .duck-area{height:96px;}
 
   .duck{
     height:91px;
     max-width:130px;
   }
 
-  .caveduck-title{
-    font-size:23px;
-  }
+  .caveduck-title{font-size:23px;}
 
   .game-row{
     min-height:44px;
     grid-template-columns:27px 1fr;
   }
 
-  .menu-ko{
-    font-size:11px;
-  }
-
-  .info-copy{
-    font-size:10px;
-  }
+  .menu-ko{font-size:11px;}
+  .info-copy{font-size:10px;}
 
   .dpad{
     transform:translateX(-50%) scale(.9);
@@ -1901,17 +1581,20 @@ body{
     transform:translateX(-50%) scale(.9);
   }
 
+  .music-area{
+    margin-top:15px;
+  }
+
   .music-control{
-    width:94px;
-    gap:2.7px;
+    width:116px;
+    gap:3px;
   }
 
   .eq-bar{
-    width:3px;
+    width:4px;
   }
 }
 
-/* 움직임 줄이기 설정 사용자는 애니메이션 최소화 */
 @media(prefers-reduced-motion:reduce){
   .bubble,
   .sky-sparkle,
@@ -1926,7 +1609,6 @@ body{
 <body>
 
 <div class="bg-deco" aria-hidden="true">
-
   <div class="cloud cloud-1"></div>
   <div class="cloud cloud-2"></div>
   <div class="cloud cloud-3"></div>
@@ -1949,13 +1631,11 @@ body{
 
   <div class="bg-ring ring-1"></div>
   <div class="bg-ring ring-2"></div>
-
 </div>
 
 <main class="page">
 
   <header class="hero">
-
     <div class="orbit orbit-one"></div>
     <div class="orbit orbit-two"></div>
 
@@ -1967,14 +1647,11 @@ body{
       class="sunfish-logo"
       src="https://cdn.caveduck.io/cdn-cgi/image/dpr=1.5,f=auto,fit=crop,w=400/charim/3d76a567-fa86-40ec-b5b1-c24667e4cf01?v=8d931a"
       alt="SUNFISH">
-
   </header>
 
   <section class="handheld">
 
-    <!-- LEFT CONTROLLER -->
     <aside class="controller left" aria-hidden="true">
-
       <div class="minus"></div>
       <div class="joy-stick"></div>
 
@@ -1995,16 +1672,13 @@ body{
         <i></i><i></i><i></i>
         <i></i><i></i><i></i>
       </div>
-
     </aside>
 
-    <!-- CENTER -->
     <div class="center-unit">
 
       <div class="screen" id="screen">
 
         <div class="status">
-
           <span class="system-name">
             <span class="system-dot"></span>
             SUNFISH
@@ -2014,14 +1688,12 @@ body{
             100%
             <span class="battery-icon"></span>
           </span>
-
         </div>
 
         <div class="slider-wrap">
 
           <div class="slides" id="slides">
 
-            <!-- PAGE 1 -->
             <section class="slide">
 
               <div class="slide-top">
@@ -2037,12 +1709,10 @@ body{
                 rel="noopener noreferrer">
 
                 <div class="duck-area">
-
                   <img
                     class="duck"
                     src="https://cdn.caveduck.io/cdn-cgi/image/anim=true,f=auto,fit=crop,g=top,w=400/charim/70b20bf0-a8cc-48d0-acd1-2709169f43a6?v=ac06f0"
                     alt="CAVEDUCK">
-
                 </div>
 
                 <div class="caveduck-title">
@@ -2057,7 +1727,6 @@ body{
 
             </section>
 
-            <!-- PAGE 2 -->
             <section class="slide menu-page">
 
               <div class="slide-top">
@@ -2073,20 +1742,11 @@ body{
                   type="button"
                   onclick="openInfo()">
 
-                  <span class="menu-number">
-                    01
-                  </span>
+                  <span class="menu-number">01</span>
 
                   <span class="menu-copy">
-
-                    <span class="menu-ko">
-                      캐릭터 이식 안내
-                    </span>
-
-                    <span class="menu-en">
-                      CHARACTER TRANSFER
-                    </span>
-
+                    <span class="menu-ko">캐릭터 이식 안내</span>
+                    <span class="menu-en">CHARACTER TRANSFER</span>
                   </span>
 
                 </button>
@@ -2095,20 +1755,11 @@ body{
                   class="game-row"
                   href="mailto:sunfish.molamola.ocean@gmail.com">
 
-                  <span class="menu-number">
-                    02
-                  </span>
+                  <span class="menu-number">02</span>
 
                   <span class="menu-copy">
-
-                    <span class="menu-ko">
-                      EMAIL
-                    </span>
-
-                    <span class="menu-en">
-                      CONTACT
-                    </span>
-
+                    <span class="menu-ko">EMAIL</span>
+                    <span class="menu-en">CONTACT</span>
                   </span>
 
                 </a>
@@ -2119,14 +1770,10 @@ body{
                   target="_blank"
                   rel="noopener noreferrer">
 
-                  <span class="menu-number">
-                    03
-                  </span>
+                  <span class="menu-number">03</span>
 
                   <span class="menu-copy">
-                    <span class="menu-ko">
-                      로판AI
-                    </span>
+                    <span class="menu-ko">로판AI</span>
                   </span>
 
                 </a>
@@ -2137,7 +1784,6 @@ body{
 
           </div>
 
-          <!-- PAGE BUTTONS -->
           <div class="slider-nav">
 
             <button
@@ -2149,7 +1795,6 @@ body{
             </button>
 
             <div class="dots">
-
               <button
                 class="dot active"
                 id="dot0"
@@ -2165,7 +1810,6 @@ body{
                 onclick="goPage(1)"
                 aria-label="2페이지">
               </button>
-
             </div>
 
             <button
@@ -2178,65 +1822,11 @@ body{
 
           </div>
 
-          <!-- MUSIC EQUALIZER -->
-          <button
-            class="music-control"
-            id="musicControl"
-            type="button"
-            aria-label="음악 재생"
-            aria-pressed="false">
-
-            <span class="eq-bar"
-              style="--idle:7px;--low:5px;--high:17px;--speed:.72s;--delay:-.10s"></span>
-
-            <span class="eq-bar"
-              style="--idle:12px;--low:7px;--high:20px;--speed:.91s;--delay:-.42s"></span>
-
-            <span class="eq-bar"
-              style="--idle:8px;--low:4px;--high:14px;--speed:.63s;--delay:-.25s"></span>
-
-            <span class="eq-bar"
-              style="--idle:15px;--low:8px;--high:21px;--speed:.83s;--delay:-.58s"></span>
-
-            <span class="eq-bar"
-              style="--idle:10px;--low:5px;--high:18px;--speed:.68s;--delay:-.31s"></span>
-
-            <span class="eq-bar"
-              style="--idle:6px;--low:4px;--high:13px;--speed:.77s;--delay:-.66s"></span>
-
-            <span class="eq-bar"
-              style="--idle:13px;--low:7px;--high:20px;--speed:.58s;--delay:-.18s"></span>
-
-            <span class="eq-bar"
-              style="--idle:9px;--low:5px;--high:16px;--speed:.88s;--delay:-.49s"></span>
-
-            <span class="eq-bar"
-              style="--idle:16px;--low:8px;--high:21px;--speed:.70s;--delay:-.37s"></span>
-
-            <span class="eq-bar"
-              style="--idle:8px;--low:4px;--high:15px;--speed:.94s;--delay:-.12s"></span>
-
-            <span class="eq-bar"
-              style="--idle:12px;--low:6px;--high:19px;--speed:.61s;--delay:-.55s"></span>
-
-            <span class="eq-bar"
-              style="--idle:7px;--low:4px;--high:13px;--speed:.79s;--delay:-.28s"></span>
-
-            <span class="eq-bar"
-              style="--idle:14px;--low:7px;--high:21px;--speed:.67s;--delay:-.72s"></span>
-
-            <span class="eq-bar"
-              style="--idle:9px;--low:5px;--high:16px;--speed:.86s;--delay:-.21s"></span>
-
-          </button>
-
         </div>
 
-        <!-- INFO SCREEN -->
         <div class="info-screen">
 
           <div class="info-top">
-
             <button
               class="back"
               type="button"
@@ -2245,7 +1835,6 @@ body{
             </button>
 
             <span class="info-top-line"></span>
-
           </div>
 
           <h2 class="info-title">
@@ -2257,7 +1846,6 @@ body{
           </div>
 
           <div class="info-copy">
-
             <p>
               일라이 이전에 제작한 캐릭터는 오리지널 표시가 붙어 있더라도 케이브덕 공식 크리에이터 신청 전에 제작한 캐릭터이기 때문에 이식이 가능합니다. 원하시는 경우 편하게 문의해 주세요.
             </p>
@@ -2265,7 +1853,6 @@ body{
             <p>
               다만 제가 이용해 보지 않은 사이트의 이식은 제작 방식을 따로 알아보고 테스트하는 과정이 필요해 시간이 다소 오래 소요될 수 있습니다.
             </p>
-
           </div>
 
           <button
@@ -2278,10 +1865,8 @@ body{
         </div>
 
       </div>
-
     </div>
 
-    <!-- RIGHT CONTROLLER -->
     <aside class="controller right" aria-hidden="true">
 
       <div class="plus"></div>
@@ -2306,18 +1891,76 @@ body{
 
   </section>
 
+  <!-- =====================================================
+       음악 버튼
+       게임기 section이 끝난 뒤 = 게임기 완전히 바깥
+  ====================================================== -->
+
+  <div class="music-area">
+
+    <button
+      class="music-control"
+      id="musicControl"
+      type="button"
+      aria-label="음악 재생"
+      aria-pressed="false">
+
+      <span class="eq-bar"
+        style="--idle:8px;--low:5px;--high:20px;--speed:.72s;--delay:-.10s"></span>
+
+      <span class="eq-bar"
+        style="--idle:13px;--low:7px;--high:25px;--speed:.91s;--delay:-.42s"></span>
+
+      <span class="eq-bar"
+        style="--idle:9px;--low:5px;--high:17px;--speed:.63s;--delay:-.25s"></span>
+
+      <span class="eq-bar"
+        style="--idle:17px;--low:8px;--high:26px;--speed:.83s;--delay:-.58s"></span>
+
+      <span class="eq-bar"
+        style="--idle:11px;--low:6px;--high:21px;--speed:.68s;--delay:-.31s"></span>
+
+      <span class="eq-bar"
+        style="--idle:7px;--low:5px;--high:16px;--speed:.77s;--delay:-.66s"></span>
+
+      <span class="eq-bar"
+        style="--idle:15px;--low:7px;--high:25px;--speed:.58s;--delay:-.18s"></span>
+
+      <span class="eq-bar"
+        style="--idle:10px;--low:5px;--high:19px;--speed:.88s;--delay:-.49s"></span>
+
+      <span class="eq-bar"
+        style="--idle:18px;--low:8px;--high:27px;--speed:.70s;--delay:-.37s"></span>
+
+      <span class="eq-bar"
+        style="--idle:9px;--low:5px;--high:18px;--speed:.94s;--delay:-.12s"></span>
+
+      <span class="eq-bar"
+        style="--idle:14px;--low:6px;--high:23px;--speed:.61s;--delay:-.55s"></span>
+
+      <span class="eq-bar"
+        style="--idle:8px;--low:5px;--high:16px;--speed:.79s;--delay:-.28s"></span>
+
+      <span class="eq-bar"
+        style="--idle:16px;--low:7px;--high:26px;--speed:.67s;--delay:-.72s"></span>
+
+      <span class="eq-bar"
+        style="--idle:10px;--low:5px;--high:19px;--speed:.86s;--delay:-.21s"></span>
+
+    </button>
+
+  </div>
+
 </main>
 
-<!-- 실제 YouTube 플레이어 -->
+<!-- YouTube 플레이어 -->
 <div class="youtube-player-wrap" aria-hidden="true">
   <div id="youtubePlayer"></div>
 </div>
 
 <script>
 
-/* =========================================================
-   PAGE SLIDER
-========================================================= */
+/* PAGE SLIDER */
 
 const slides = document.getElementById("slides");
 const dot0 = document.getElementById("dot0");
@@ -2331,20 +1974,12 @@ function goPage(page){
 }
 
 function updateDots(){
-
   const page = Math.round(
     slides.scrollLeft / slides.clientWidth
   );
 
-  dot0.classList.toggle(
-    "active",
-    page === 0
-  );
-
-  dot1.classList.toggle(
-    "active",
-    page === 1
-  );
+  dot0.classList.toggle("active",page === 0);
+  dot1.classList.toggle("active",page === 1);
 }
 
 slides.addEventListener(
@@ -2359,9 +1994,7 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   INFO
-========================================================= */
+/* INFO */
 
 function openInfo(){
   document
@@ -2378,9 +2011,7 @@ function closeInfo(){
 }
 
 
-/* =========================================================
-   YOUTUBE MUSIC
-========================================================= */
+/* MUSIC */
 
 const musicControl =
   document.getElementById("musicControl");
@@ -2391,7 +2022,7 @@ let musicPlaying = false;
 let requestedPlay = false;
 
 
-/* YouTube iframe API 불러오기 */
+/* YouTube API */
 const youtubeScript =
   document.createElement("script");
 
@@ -2409,8 +2040,8 @@ function onYouTubeIframeAPIReady(){
   youtubePlayer = new YT.Player(
     "youtubePlayer",
     {
-      width:"100",
-      height:"100",
+      width:"120",
+      height:"120",
 
       videoId:"zwA13CahRkc",
 
@@ -2444,16 +2075,14 @@ function onPlayerReady(){
 }
 
 
-/* YouTube 실제 상태에 맞춰 이퀄라이저 상태 변경 */
+/* 실제 재생 상태 */
 function onPlayerStateChange(event){
 
   if(event.data === YT.PlayerState.PLAYING){
 
     musicPlaying = true;
 
-    musicControl
-      .classList
-      .add("playing");
+    musicControl.classList.add("playing");
 
     musicControl.setAttribute(
       "aria-label",
@@ -2464,7 +2093,6 @@ function onPlayerStateChange(event){
       "aria-pressed",
       "true"
     );
-
   }
 
   if(
@@ -2474,9 +2102,7 @@ function onPlayerStateChange(event){
 
     musicPlaying = false;
 
-    musicControl
-      .classList
-      .remove("playing");
+    musicControl.classList.remove("playing");
 
     musicControl.setAttribute(
       "aria-label",
@@ -2491,25 +2117,23 @@ function onPlayerStateChange(event){
 }
 
 
-/* 음악 재생 */
+/* 재생 */
 function playMusic(){
 
   if(!youtubeReady || !youtubePlayer){
-
     requestedPlay = true;
     return;
   }
 
   try{
     youtubePlayer.playVideo();
-  }
-  catch(error){
+  }catch(error){
     console.log(error);
   }
 }
 
 
-/* 음악 정지 */
+/* 일시정지 */
 function pauseMusic(){
 
   if(!youtubeReady || !youtubePlayer){
@@ -2518,8 +2142,7 @@ function pauseMusic(){
 
   try{
     youtubePlayer.pauseVideo();
-  }
-  catch(error){
+  }catch(error){
     console.log(error);
   }
 }
@@ -2531,13 +2154,9 @@ musicControl.addEventListener(
   function(){
 
     if(musicPlaying){
-
       pauseMusic();
-
     }else{
-
       playMusic();
-
     }
 
   }
