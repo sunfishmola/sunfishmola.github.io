@@ -52,37 +52,381 @@ body{
     );
 }
 
-body::before,
-body::after{
-  content:"";
-  position:fixed;
-  z-index:-1;
-
-  width:430px;
-  height:150px;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.38);
-  filter:blur(5px);
-}
-
-body::before{
-  left:-120px;
-  bottom:5%;
-}
-
-body::after{
-  right:-150px;
-  top:20%;
-}
-
 .page{
+  position:relative;
+  z-index:2;
+
   width:min(720px,calc(100% - 36px));
   min-height:100vh;
 
   margin:auto;
   padding:38px 0 55px;
+}
+
+
+/* =====================================================
+   BACKGROUND DECORATION
+===================================================== */
+
+.bg-deco{
+  position:fixed;
+  inset:0;
+  z-index:0;
+
+  overflow:hidden;
+  pointer-events:none;
+}
+
+
+/* CLOUDS */
+
+.cloud{
+  position:absolute;
+
+  width:220px;
+  height:60px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.38);
+
+  filter:blur(.3px);
+
+  box-shadow:
+    0 8px 25px rgba(255,255,255,.18);
+}
+
+.cloud::before,
+.cloud::after{
+  content:"";
+
+  position:absolute;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.38);
+}
+
+.cloud::before{
+  width:95px;
+  height:95px;
+
+  left:35px;
+  bottom:10px;
+}
+
+.cloud::after{
+  width:125px;
+  height:125px;
+
+  right:25px;
+  bottom:5px;
+}
+
+.cloud-1{
+  top:10%;
+  left:-80px;
+
+  transform:scale(.85);
+
+  opacity:.68;
+}
+
+.cloud-2{
+  top:29%;
+  right:-100px;
+
+  transform:scale(1.15);
+
+  opacity:.48;
+}
+
+.cloud-3{
+  bottom:13%;
+  left:-65px;
+
+  transform:scale(1.05);
+
+  opacity:.44;
+}
+
+.cloud-4{
+  bottom:-5px;
+  right:-55px;
+
+  transform:scale(.75);
+
+  opacity:.55;
+}
+
+
+/* BUBBLES */
+
+.bubble{
+  position:absolute;
+
+  display:block;
+
+  border:
+    2px solid rgba(255,255,255,.58);
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.20),
+      rgba(170,224,255,.04)
+    );
+
+  box-shadow:
+    inset 3px 3px 5px rgba(255,255,255,.28),
+    0 4px 12px rgba(74,159,211,.06);
+
+  animation:
+    bubbleFloat 6s ease-in-out infinite;
+}
+
+.bubble::after{
+  content:"";
+
+  position:absolute;
+
+  width:22%;
+  height:22%;
+
+  top:19%;
+  left:22%;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.72);
+}
+
+.bubble-1{
+  width:38px;
+  height:38px;
+
+  left:7%;
+  top:38%;
+
+  animation-delay:-1s;
+}
+
+.bubble-2{
+  width:17px;
+  height:17px;
+
+  left:15%;
+  top:70%;
+
+  animation-delay:-4s;
+}
+
+.bubble-3{
+  width:57px;
+  height:57px;
+
+  right:5%;
+  top:53%;
+
+  opacity:.72;
+
+  animation-delay:-2.5s;
+}
+
+.bubble-4{
+  width:25px;
+  height:25px;
+
+  right:15%;
+  top:78%;
+
+  animation-delay:-5s;
+}
+
+.bubble-5{
+  width:13px;
+  height:13px;
+
+  left:26%;
+  top:17%;
+
+  animation-delay:-3s;
+}
+
+.bubble-6{
+  width:30px;
+  height:30px;
+
+  right:24%;
+  top:15%;
+
+  opacity:.65;
+
+  animation-delay:-.5s;
+}
+
+@keyframes bubbleFloat{
+  0%,100%{
+    transform:
+      translateY(0)
+      rotate(0deg);
+  }
+
+  50%{
+    transform:
+      translateY(-12px)
+      rotate(5deg);
+  }
+}
+
+
+/* LITTLE STARS */
+
+.sky-sparkle{
+  position:absolute;
+
+  color:
+    rgba(255,255,255,.88);
+
+  font-family:
+    "Nunito",
+    sans-serif;
+
+  text-shadow:
+    0 2px 10px rgba(78,153,211,.25);
+
+  animation:
+    skyTwinkle 3s ease-in-out infinite;
+}
+
+.sp-1{
+  left:7%;
+  top:23%;
+
+  font-size:18px;
+}
+
+.sp-2{
+  right:9%;
+  top:19%;
+
+  font-size:13px;
+
+  animation-delay:-1.2s;
+}
+
+.sp-3{
+  left:11%;
+  top:57%;
+
+  font-size:14px;
+
+  animation-delay:-2.1s;
+}
+
+.sp-4{
+  right:8%;
+  top:67%;
+
+  font-size:20px;
+
+  animation-delay:-.7s;
+}
+
+.sp-5{
+  left:20%;
+  bottom:8%;
+
+  font-size:11px;
+
+  animation-delay:-1.8s;
+}
+
+.sp-6{
+  right:22%;
+  bottom:13%;
+
+  font-size:13px;
+
+  animation-delay:-2.7s;
+}
+
+.sp-7{
+  right:4%;
+  top:39%;
+
+  font-size:9px;
+
+  animation-delay:-1.4s;
+}
+
+@keyframes skyTwinkle{
+  0%,100%{
+    opacity:.35;
+
+    transform:
+      scale(.8)
+      rotate(0deg);
+  }
+
+  50%{
+    opacity:1;
+
+    transform:
+      scale(1.18)
+      rotate(8deg);
+  }
+}
+
+
+/* BIG BACKGROUND RINGS */
+
+.bg-ring{
+  position:absolute;
+
+  border:
+    2px solid rgba(255,255,255,.18);
+
+  border-left-color:
+    rgba(255,255,255,.5);
+
+  border-right-color:
+    rgba(123,195,239,.15);
+
+  border-radius:50%;
+}
+
+.ring-1{
+  width:620px;
+  height:180px;
+
+  left:50%;
+  top:39%;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-12deg);
+
+  opacity:.72;
+}
+
+.ring-2{
+  width:470px;
+  height:135px;
+
+  left:50%;
+  top:42%;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(14deg);
+
+  opacity:.40;
 }
 
 
@@ -1477,7 +1821,6 @@ body::after{
 
 /* =====================================================
    MOBILE
-   전체 게임기 자체를 작게 + 좌우 여백
 ===================================================== */
 
 @media(max-width:560px){
@@ -1519,7 +1862,7 @@ body::after{
   }
 
 
-  /* 게임기 전체 비율 */
+  /* GAME */
 
   .handheld{
     grid-template-columns:
@@ -1953,6 +2296,142 @@ body::after{
     height:3px;
   }
 
+
+  /* MOBILE BACKGROUND */
+
+  .cloud{
+    width:145px;
+    height:40px;
+  }
+
+  .cloud::before{
+    width:62px;
+    height:62px;
+
+    left:23px;
+    bottom:7px;
+  }
+
+  .cloud::after{
+    width:82px;
+    height:82px;
+
+    right:17px;
+    bottom:4px;
+  }
+
+  .cloud-1{
+    top:8%;
+    left:-72px;
+  }
+
+  .cloud-2{
+    top:31%;
+    right:-78px;
+  }
+
+  .cloud-3{
+    bottom:16%;
+    left:-65px;
+  }
+
+  .cloud-4{
+    bottom:0;
+    right:-70px;
+  }
+
+  .ring-1{
+    width:430px;
+    height:125px;
+
+    top:43%;
+  }
+
+  .ring-2{
+    width:340px;
+    height:100px;
+
+    top:46%;
+  }
+
+  .bubble-1{
+    width:25px;
+    height:25px;
+
+    left:3%;
+    top:37%;
+  }
+
+  .bubble-2{
+    width:13px;
+    height:13px;
+
+    left:8%;
+    top:73%;
+  }
+
+  .bubble-3{
+    width:34px;
+    height:34px;
+
+    right:2%;
+    top:55%;
+  }
+
+  .bubble-4{
+    width:18px;
+    height:18px;
+
+    right:8%;
+    top:82%;
+  }
+
+  .bubble-5{
+    width:10px;
+    height:10px;
+
+    left:13%;
+    top:18%;
+  }
+
+  .bubble-6{
+    width:20px;
+    height:20px;
+
+    right:12%;
+    top:21%;
+  }
+
+  .sp-1{
+    left:4%;
+    top:24%;
+  }
+
+  .sp-2{
+    right:4%;
+    top:17%;
+  }
+
+  .sp-3{
+    left:4%;
+    top:58%;
+  }
+
+  .sp-4{
+    right:3%;
+    top:68%;
+  }
+
+  .sp-5{
+    left:8%;
+    bottom:7%;
+  }
+
+  .sp-6{
+    right:10%;
+    bottom:15%;
+  }
+
 }
 
 
@@ -2039,8 +2518,43 @@ body::after{
 
 <body>
 
+
+<!-- =========================
+     BACKGROUND
+========================= -->
+
+<div class="bg-deco" aria-hidden="true">
+
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+  <div class="cloud cloud-3"></div>
+  <div class="cloud cloud-4"></div>
+
+  <span class="bubble bubble-1"></span>
+  <span class="bubble bubble-2"></span>
+  <span class="bubble bubble-3"></span>
+  <span class="bubble bubble-4"></span>
+  <span class="bubble bubble-5"></span>
+  <span class="bubble bubble-6"></span>
+
+  <span class="sky-sparkle sp-1">✦</span>
+  <span class="sky-sparkle sp-2">✧</span>
+  <span class="sky-sparkle sp-3">◇</span>
+  <span class="sky-sparkle sp-4">✦</span>
+  <span class="sky-sparkle sp-5">✧</span>
+  <span class="sky-sparkle sp-6">◇</span>
+  <span class="sky-sparkle sp-7">✦</span>
+
+  <div class="bg-ring ring-1"></div>
+  <div class="bg-ring ring-2"></div>
+
+</div>
+
+
 <main class="page">
 
+
+  <!-- LOGO -->
 
   <header class="hero">
 
@@ -2059,6 +2573,8 @@ body::after{
 
   </header>
 
+
+  <!-- HANDHELD -->
 
   <section class="handheld">
 
