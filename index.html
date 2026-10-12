@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#dff3ff">
+
+<!-- 캐시 방지 -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <title>SUNFISH</title>
 
 <style>
@@ -218,8 +224,6 @@ body::after{
   filter:
     drop-shadow(0 18px 18px rgba(60,128,174,.16));
 }
-
-/* 게임기 전체 외곽선 */
 
 .handheld::after{
   content:"";
@@ -489,7 +493,7 @@ body::after{
 
 
 /* =========================
-   SCREEN PAGE
+   SCREEN
 ========================= */
 
 .screen-page{
@@ -1395,7 +1399,7 @@ body::after{
 
 
 /* =========================
-   SPEAKER
+   SPEAKER DOTS
 ========================= */
 
 .controller-dots{
@@ -1714,7 +1718,6 @@ body::after{
 
 <main class="page">
 
-
   <!-- SUNFISH LOGO -->
 
   <header class="hero">
@@ -1748,7 +1751,6 @@ body::after{
 
       <div class="joy-stick"></div>
 
-
       <div class="dpad">
 
         <div class="dpad-v"></div>
@@ -1763,19 +1765,14 @@ body::after{
 
       </div>
 
-
       <div class="capture"></div>
 
-
       <div class="controller-dots">
-
         <i></i><i></i><i></i>
         <i></i><i></i><i></i>
-
       </div>
 
     </aside>
-
 
 
     <!-- CENTER -->
@@ -1790,34 +1787,28 @@ body::after{
         <div class="status">
 
           <span class="system-name">
-
             <span class="system-dot"></span>
-
             SUNFISH
-
           </span>
 
-
           <span class="battery">
-
             100%
-
             <span class="battery-icon"></span>
-
           </span>
 
         </div>
 
 
-
-        <!-- HOME SCREEN -->
+        <!-- HOME -->
 
         <div class="screen-page home-screen">
 
 
           <div class="menu-header">
 
-            <span>MAIN MENU</span>
+            <span>
+              MAIN MENU
+            </span>
 
             <span class="menu-header-line"></span>
 
@@ -1826,7 +1817,6 @@ body::after{
             </span>
 
           </div>
-
 
 
           <!-- CAVEDUCK -->
@@ -1848,18 +1838,15 @@ body::after{
 
             </div>
 
-
             <div class="caveduck-title">
               CAVEDUCK
             </div>
-
 
             <div class="caveduck-sub">
               MAIN LINK
             </div>
 
           </a>
-
 
 
           <!-- MENU -->
@@ -1892,7 +1879,6 @@ body::after{
             </button>
 
 
-
             <a
               class="game-row"
               href="mailto:sunfish.molamola.ocean@gmail.com"
@@ -1917,7 +1903,6 @@ body::after{
             </a>
 
 
-
             <div class="small-menu">
 
 
@@ -1933,15 +1918,12 @@ body::after{
                 </span>
 
                 <span class="menu-copy">
-
                   <span class="menu-ko">
                     로판AI
                   </span>
-
                 </span>
 
               </a>
-
 
 
               <div class="game-row disabled">
@@ -1951,18 +1933,15 @@ body::after{
                 </span>
 
                 <span class="menu-copy">
-
                   <span class="menu-ko">
                     —
                   </span>
-
                 </span>
 
               </div>
 
 
             </div>
-
 
           </nav>
 
@@ -1975,8 +1954,7 @@ body::after{
         </div>
 
 
-
-        <!-- CHARACTER TRANSFER -->
+        <!-- CHARACTER TRANSFER INFO -->
 
         <div class="screen-page info-screen">
 
@@ -1996,7 +1974,6 @@ body::after{
           </div>
 
 
-
           <h2 class="info-title">
             캐릭터 이식 안내
           </h2>
@@ -2005,7 +1982,6 @@ body::after{
           <div class="info-subtitle">
             CHARACTER TRANSFER
           </div>
-
 
 
           <div class="info-copy">
@@ -2042,14 +2018,11 @@ body::after{
     </div>
 
 
-
     <!-- RIGHT CONTROLLER -->
 
     <aside class="controller right" aria-hidden="true">
 
-
       <div class="plus"></div>
-
 
       <div class="abxy">
 
@@ -2060,26 +2033,19 @@ body::after{
 
       </div>
 
-
       <div class="joy-stick"></div>
-
 
       <div class="home-button"></div>
 
-
       <div class="controller-dots">
-
         <i></i><i></i><i></i>
         <i></i><i></i><i></i>
-
       </div>
-
 
     </aside>
 
 
   </section>
-
 
 </main>
 
@@ -2092,7 +2058,6 @@ function openInfo(){
     .classList
     .add("show-info");
 }
-
 
 function closeInfo(){
   document
