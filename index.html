@@ -17,7 +17,6 @@
 :root{
   --ink:#4f83ad;
   --blue:#4ca8ee;
-  --line:#91c9e5;
 }
 
 *{
@@ -79,13 +78,11 @@ body::after{
 }
 
 .page{
-  width:min(720px,calc(100% - 18px));
-
+  width:min(720px,calc(100% - 36px));
   min-height:100vh;
 
   margin:auto;
-
-  padding:38px 0 50px;
+  padding:38px 0 55px;
 }
 
 
@@ -102,7 +99,7 @@ body::after{
   align-items:center;
   justify-content:center;
 
-  margin-bottom:10px;
+  margin-bottom:15px;
 }
 
 .sunfish-logo{
@@ -250,7 +247,7 @@ body::after{
 
 
 /* =========================
-   CONTROLLER
+   CONTROLLERS
 ========================= */
 
 .controller{
@@ -300,8 +297,7 @@ body::after{
       transparent 51%
     );
 
-  background-size:
-    28px 28px;
+  background-size:28px 28px;
 }
 
 .controller::after{
@@ -431,7 +427,6 @@ body::after{
 .system-name{
   display:flex;
   align-items:center;
-
   gap:6px;
 }
 
@@ -449,7 +444,6 @@ body::after{
 .battery{
   display:flex;
   align-items:center;
-
   gap:5px;
 }
 
@@ -501,7 +495,8 @@ body::after{
 .slider-wrap{
   position:relative;
 
-  height:calc(100% - 38px);
+  height:
+    calc(100% - 38px);
 }
 
 .slides{
@@ -579,7 +574,7 @@ body::after{
 
 
 /* =========================
-   CAVEDUCK PAGE
+   CAVEDUCK
 ========================= */
 
 .cave-feature{
@@ -665,7 +660,7 @@ body::after{
 
 
 /* =========================
-   MENU PAGE
+   MENU
 ========================= */
 
 .menu-page{
@@ -678,11 +673,9 @@ body::after{
 
   display:flex;
   flex-direction:column;
-
   justify-content:center;
 
-  padding:
-    5px 0 0;
+  padding-top:5px;
 }
 
 .game-row{
@@ -698,8 +691,7 @@ body::after{
 
   align-items:center;
 
-  padding:
-    8px 8px;
+  padding:8px;
 
   border:0;
 
@@ -716,10 +708,6 @@ body::after{
   font:inherit;
 
   cursor:pointer;
-
-  transition:
-    background .15s ease,
-    padding-left .15s ease;
 }
 
 .game-row:first-child{
@@ -732,8 +720,6 @@ body::after{
   background:
     rgba(255,255,255,.48);
 
-  padding-left:12px;
-
   outline:none;
 }
 
@@ -744,8 +730,6 @@ body::after{
     900 11px/1
     "Nunito",
     sans-serif;
-
-  letter-spacing:.06em;
 }
 
 .menu-copy{
@@ -770,35 +754,6 @@ body::after{
     sans-serif;
 
   letter-spacing:.14em;
-}
-
-.game-row::after{
-  content:"";
-
-  position:absolute;
-
-  right:9px;
-
-  width:6px;
-  height:6px;
-
-  border-right:
-    2px solid #7ab9dc;
-
-  border-bottom:
-    2px solid #7ab9dc;
-
-  transform:
-    rotate(-45deg);
-
-  opacity:0;
-
-  transition:.15s;
-}
-
-.game-row:hover::after,
-.game-row:focus-visible::after{
-  opacity:1;
 }
 
 .small-menu{
@@ -830,19 +785,9 @@ body::after{
   cursor:default;
 }
 
-.game-row.disabled:hover{
-  padding-left:8px;
-
-  background:transparent;
-}
-
-.game-row.disabled::after{
-  display:none;
-}
-
 
 /* =========================
-   SLIDER NAVIGATION
+   SLIDER NAV
 ========================= */
 
 .slider-nav{
@@ -874,9 +819,6 @@ body::after{
 
   box-shadow:
     0 3px 8px rgba(75,143,180,.08);
-
-  backdrop-filter:
-    blur(4px);
 }
 
 .nav-arrow{
@@ -920,8 +862,6 @@ body::after{
   background:transparent;
 
   cursor:pointer;
-
-  transition:.15s;
 }
 
 .dot.active{
@@ -933,7 +873,7 @@ body::after{
 
 
 /* =========================
-   INFO SCREEN
+   INFO
 ========================= */
 
 .info-screen{
@@ -1011,8 +951,7 @@ body::after{
 }
 
 .info-title{
-  margin:
-    0 0 9px;
+  margin:0 0 9px;
 
   color:#4f82a3;
 
@@ -1056,8 +995,7 @@ body::after{
 }
 
 .info-copy p{
-  margin:
-    0 0 15px;
+  margin:0 0 15px;
 }
 
 .info-close{
@@ -1087,7 +1025,7 @@ body::after{
 
 
 /* =========================
-   JOYSTICK
+   CONTROLS
 ========================= */
 
 .joy-stick{
@@ -1122,7 +1060,6 @@ body::after{
   content:"";
 
   position:absolute;
-
   inset:9px;
 
   border-radius:50%;
@@ -1146,11 +1083,6 @@ body::after{
   transform:
     translateX(-50%);
 }
-
-
-/* =========================
-   PLUS / MINUS
-========================= */
 
 .minus{
   position:absolute;
@@ -1206,9 +1138,7 @@ body::after{
 }
 
 
-/* =========================
-   D-PAD
-========================= */
+/* D-PAD */
 
 .dpad{
   position:absolute;
@@ -1222,12 +1152,6 @@ body::after{
 
   transform:
     translateX(-50%);
-
-  filter:
-    drop-shadow(
-      0 4px 4px
-      rgba(48,112,159,.14)
-    );
 }
 
 .dpad-v,
@@ -1254,7 +1178,6 @@ body::after{
   height:70px;
 
   left:21.5px;
-  top:0;
 
   border-radius:8px;
 }
@@ -1263,7 +1186,6 @@ body::after{
   width:70px;
   height:27px;
 
-  left:0;
   top:21.5px;
 
   border-radius:8px;
@@ -1294,7 +1216,6 @@ body::after{
   color:#5ba8d5;
 
   font-size:8px;
-  line-height:1;
 }
 
 .dpad-arrow.up{
@@ -1330,9 +1251,7 @@ body::after{
 }
 
 
-/* =========================
-   ABXY
-========================= */
+/* ABXY */
 
 .abxy{
   position:absolute;
@@ -1371,8 +1290,7 @@ body::after{
 
   box-shadow:
     0 0 0 1px rgba(67,156,210,.34),
-    inset 0 3px 4px rgba(255,255,255,.78),
-    0 3px 5px rgba(53,117,159,.12);
+    inset 0 3px 4px rgba(255,255,255,.78);
 
   color:#4d94c2;
 
@@ -1403,9 +1321,7 @@ body::after{
 }
 
 
-/* =========================
-   CAPTURE / HOME
-========================= */
+/* LOWER BUTTONS */
 
 .capture{
   position:absolute;
@@ -1528,11 +1444,6 @@ body::after{
     rotate(45deg);
 }
 
-
-/* =========================
-   SPEAKER
-========================= */
-
 .controller-dots{
   position:absolute;
   z-index:4;
@@ -1566,68 +1477,75 @@ body::after{
 
 /* =====================================================
    MOBILE
+   전체 게임기 자체를 작게 + 좌우 여백
 ===================================================== */
 
 @media(max-width:560px){
 
   .page{
-    width:calc(100% - 8px);
+    width:88%;
+    max-width:390px;
 
     padding:
-      25px 0 38px;
+      27px 0 48px;
   }
 
   .hero{
-    min-height:112px;
+    min-height:110px;
 
-    margin-bottom:7px;
+    margin-bottom:20px;
   }
 
   .sunfish-logo{
-    width:min(360px,86vw);
+    width:min(340px,86vw);
   }
 
   .orbit-one{
-    width:310px;
-    height:75px;
+    width:290px;
+    height:70px;
   }
 
   .orbit-two{
-    width:255px;
-    height:58px;
+    width:235px;
+    height:54px;
+  }
+
+  .star.a{
+    left:2%;
+  }
+
+  .star.b{
+    right:2%;
   }
 
 
-  /*
-    컨트롤러를 44px까지 찌그러뜨리지 않고
-    적당한 폭 유지
-  */
+  /* 게임기 전체 비율 */
 
   .handheld{
     grid-template-columns:
-      62px
+      58px
       minmax(0,1fr)
-      62px;
+      58px;
 
-    height:400px;
+    height:345px;
 
-    border-radius:36px;
+    border-radius:35px;
   }
 
   .handheld::after{
-    border-radius:36px;
+    border-radius:35px;
 
     border-width:2px;
   }
 
   .controller.left{
     border-radius:
-      34px 0 0 34px;
+      33px 0 0 33px;
   }
 
   .controller.right{
     border-radius:
-      0 34px 34px 0;
+      0 33px 33px 0;
   }
 
   .center-unit{
@@ -1635,181 +1553,227 @@ body::after{
   }
 
   .screen{
-    border-radius:11px;
+    border-radius:10px;
+
+    border-width:1.5px;
   }
 
+
+  /* STATUS */
+
   .status{
-    height:34px;
+    height:31px;
 
-    padding:0 8px;
+    padding:0 7px;
 
-    font-size:8px;
+    font-size:7px;
   }
 
   .system-dot{
-    width:6px;
-    height:6px;
+    width:5px;
+    height:5px;
+  }
+
+  .battery{
+    gap:3px;
   }
 
   .battery-icon{
-    width:18px;
-    height:9px;
+    width:16px;
+    height:8px;
+
+    border-width:1px;
   }
 
   .battery-icon::before{
-    width:12px;
+    left:2px;
+    top:2px;
+
+    width:10px;
+    height:2px;
+  }
+
+  .battery-icon::after{
+    right:-3px;
+
+    width:2px;
     height:3px;
   }
 
+
+  /* SLIDER */
+
   .slider-wrap{
     height:
-      calc(100% - 34px);
+      calc(100% - 31px);
   }
 
   .slide{
     padding:
-      12px 12px 45px;
+      10px 10px 40px;
   }
 
   .slide-top{
-    font-size:8px;
-  }
-
-
-  /* 오리 메인 */
-
-  .duck-area{
-    height:132px;
-
-    margin-top:-8px;
-  }
-
-  .duck{
-    height:125px;
-
-    max-width:180px;
-  }
-
-  .caveduck-title{
-    font-size:
-      clamp(28px,8vw,36px);
-  }
-
-  .caveduck-sub{
     font-size:7px;
   }
 
 
-  /* 메뉴 */
+  /* CAVEDUCK */
 
-  .game-menu{
-    padding-top:3px;
+  .duck-area{
+    height:105px;
+
+    margin-top:-7px;
   }
 
-  .game-row{
-    min-height:57px;
+  .duck{
+    height:100px;
 
-    grid-template-columns:
-      34px 1fr;
-
-    padding:
-      6px 5px;
+    max-width:145px;
   }
 
-  .menu-number{
-    font-size:9px;
+  .caveduck-title{
+    font-size:
+      clamp(23px,7vw,30px);
   }
 
-  .menu-ko{
-    font-size:13px;
-  }
+  .caveduck-sub{
+    margin-top:6px;
 
-  .menu-en{
     font-size:6px;
   }
 
-  .small-menu .game-row{
-    min-height:53px;
+
+  /* MENU */
+
+  .game-menu{
+    padding-top:2px;
+  }
+
+  .game-row{
+    min-height:48px;
 
     grid-template-columns:
-      28px 1fr;
+      30px 1fr;
+
+    padding:
+      5px 4px;
+  }
+
+  .menu-number{
+    font-size:8px;
+  }
+
+  .menu-ko{
+    font-size:12px;
+  }
+
+  .menu-en{
+    font-size:5.5px;
+  }
+
+  .small-menu .game-row{
+    min-height:45px;
+
+    grid-template-columns:
+      25px 1fr;
   }
 
 
-  /* 네비게이션 */
+  /* PAGE DOTS */
 
   .slider-nav{
-    bottom:8px;
+    bottom:6px;
 
-    gap:7px;
+    gap:6px;
 
     padding:
-      4px 8px;
+      3px 7px;
   }
 
   .nav-arrow{
-    width:19px;
+    width:17px;
+    height:15px;
+
+    font-size:8px;
   }
 
   .dot{
-    width:6px;
-    height:6px;
+    width:5px;
+    height:5px;
   }
 
 
-  /* 상세 안내 */
+  /* INFO */
 
   .info-screen{
     height:
-      calc(100% - 34px);
+      calc(100% - 31px);
 
     padding:
-      15px 14px 12px;
+      12px 12px 10px;
   }
 
   .info-top{
-    margin-bottom:17px;
+    margin-bottom:12px;
+
+    font-size:7px;
+  }
+
+  .back{
+    font-size:7px;
   }
 
   .info-title{
-    font-size:18px;
+    margin-bottom:6px;
+
+    font-size:16px;
   }
 
   .info-subtitle{
-    margin-bottom:15px;
+    margin-bottom:11px;
+
+    font-size:6px;
   }
 
   .info-copy{
     padding:
-      14px 4px 3px;
+      11px 3px 2px;
 
-    font-size:12px;
+    font-size:10.5px;
 
-    line-height:1.72;
+    line-height:1.65;
   }
 
   .info-copy p{
-    margin-bottom:12px;
+    margin-bottom:9px;
   }
 
   .info-close{
-    margin-top:5px;
+    margin-top:1px;
+
+    padding:5px 8px;
+
+    font-size:7px;
   }
 
 
-  /* =========================
-     MOBILE CONTROLS
-  ========================= */
+  /* CONTROLLERS */
+
+  .controller::after{
+    left:5px;
+    right:5px;
+  }
 
   .joy-stick{
-    width:36px;
-    height:36px;
+    width:33px;
+    height:33px;
 
     border-width:2px;
 
     box-shadow:
       0 0 0 1px rgba(61,151,207,.35),
-      0 4px 5px rgba(49,113,157,.13),
+      0 3px 5px rgba(49,113,157,.13),
       inset 0 2px 4px rgba(255,255,255,.65);
   }
 
@@ -1820,64 +1784,65 @@ body::after{
   }
 
   .left .joy-stick{
-    top:58px;
+    top:52px;
   }
 
   .right .joy-stick{
-    top:154px;
+    top:137px;
   }
 
   .minus{
-    top:22px;
-    right:10px;
+    top:19px;
+    right:9px;
 
-    width:16px;
-    height:5px;
+    width:15px;
+    height:4px;
   }
 
   .plus{
-    top:17px;
-    left:9px;
+    top:15px;
+    left:8px;
 
-    transform:
-      scale(.8);
+    transform:scale(.72);
   }
 
 
-  /* dpad */
+  /* D-PAD */
 
   .dpad{
-    top:137px;
+    top:121px;
 
-    width:51px;
-    height:51px;
+    width:47px;
+    height:47px;
   }
 
   .dpad-v{
-    width:20px;
-    height:51px;
+    width:18px;
+    height:47px;
 
-    left:15.5px;
+    left:14.5px;
 
     border-width:1px;
+    border-radius:6px;
   }
 
   .dpad-h{
-    width:51px;
-    height:20px;
+    width:47px;
+    height:18px;
 
-    top:15.5px;
+    top:14.5px;
 
     border-width:1px;
+    border-radius:6px;
   }
 
   .dpad-center{
-    width:19px;
-    height:19px;
+    width:17px;
+    height:17px;
   }
 
   .dpad-arrow{
-    font-size:6px;
+    font-size:5px;
   }
 
   .dpad-arrow.up{
@@ -1900,87 +1865,87 @@ body::after{
   /* ABXY */
 
   .abxy{
-    top:55px;
+    top:49px;
 
-    width:54px;
-    height:54px;
+    width:49px;
+    height:49px;
   }
 
   .game-button{
-    width:23px;
-    height:23px;
+    width:21px;
+    height:21px;
 
     border-width:1px;
 
-    font-size:7px;
+    font-size:6px;
   }
 
   .game-button.x{
-    left:15.5px;
+    left:14px;
   }
 
   .game-button.a{
-    top:15.5px;
+    top:14px;
   }
 
   .game-button.b{
-    left:15.5px;
+    left:14px;
   }
 
   .game-button.y{
-    top:15.5px;
+    top:14px;
   }
 
 
-  /* 하단 버튼 */
+  /* LOWER BUTTONS */
 
   .capture{
-    width:24px;
-    height:24px;
+    width:22px;
+    height:22px;
 
-    bottom:52px;
+    bottom:46px;
 
     border-width:1px;
   }
 
   .capture::after{
-    width:9px;
-    height:9px;
+    width:8px;
+    height:8px;
   }
 
   .home-button{
-    width:25px;
-    height:25px;
+    width:23px;
+    height:23px;
 
-    bottom:51px;
+    bottom:45px;
 
     border-width:1px;
   }
 
   .home-button::before{
-    width:8px;
-    height:7px;
+    width:7px;
+    height:6px;
 
     border-width:1px;
   }
 
   .home-button::after{
-    top:6px;
+    top:5px;
 
-    width:6px;
-    height:6px;
+    width:5px;
+    height:5px;
 
     border-left-width:1px;
     border-top-width:1px;
   }
 
   .controller-dots{
-    bottom:16px;
+    bottom:14px;
 
     grid-template-columns:
       repeat(3,3px);
 
-    gap:4px;
+    gap:3px;
   }
 
   .controller-dots i{
@@ -1992,55 +1957,79 @@ body::after{
 
 
 /* =========================
-   SMALL PHONE
+   VERY SMALL MOBILE
 ========================= */
 
 @media(max-width:380px){
 
   .page{
-    width:
-      calc(100% - 6px);
+    width:86%;
   }
 
   .handheld{
     grid-template-columns:
-      57px
+      52px
       minmax(0,1fr)
-      57px;
+      52px;
 
-    height:390px;
+    height:325px;
+  }
+
+  .hero{
+    margin-bottom:17px;
   }
 
   .slide{
-    padding-left:9px;
-    padding-right:9px;
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .duck-area{
+    height:96px;
   }
 
   .duck{
-    height:115px;
-    max-width:165px;
+    height:91px;
+
+    max-width:130px;
   }
 
   .caveduck-title{
-    font-size:27px;
-  }
-
-  .menu-ko{
-    font-size:12px;
+    font-size:23px;
   }
 
   .game-row{
+    min-height:44px;
+
     grid-template-columns:
-      30px 1fr;
+      27px 1fr;
   }
 
   .small-menu .game-row{
+    min-height:42px;
+
     grid-template-columns:
-      25px 1fr;
+      23px 1fr;
+  }
+
+  .menu-ko{
+    font-size:11px;
   }
 
   .info-copy{
-    font-size:11.5px;
+    font-size:10px;
+  }
+
+  .dpad{
+    transform:
+      translateX(-50%)
+      scale(.9);
+  }
+
+  .abxy{
+    transform:
+      translateX(-50%)
+      scale(.9);
   }
 
 }
@@ -2048,13 +2037,10 @@ body::after{
 </style>
 </head>
 
-
 <body>
 
 <main class="page">
 
-
-  <!-- LOGO -->
 
   <header class="hero">
 
@@ -2074,60 +2060,35 @@ body::after{
   </header>
 
 
-  <!-- HANDHELD -->
-
   <section class="handheld">
 
 
-    <!-- LEFT -->
+    <!-- LEFT CONTROLLER -->
 
-    <aside
-      class="controller left"
-      aria-hidden="true"
-    >
+    <aside class="controller left" aria-hidden="true">
 
       <div class="minus"></div>
 
       <div class="joy-stick"></div>
 
-
       <div class="dpad">
 
         <div class="dpad-v"></div>
-
         <div class="dpad-h"></div>
-
         <div class="dpad-center"></div>
 
-        <span class="dpad-arrow up">
-          ▲
-        </span>
-
-        <span class="dpad-arrow down">
-          ▼
-        </span>
-
-        <span class="dpad-arrow left-arrow">
-          ◀
-        </span>
-
-        <span class="dpad-arrow right-arrow">
-          ▶
-        </span>
+        <span class="dpad-arrow up">▲</span>
+        <span class="dpad-arrow down">▼</span>
+        <span class="dpad-arrow left-arrow">◀</span>
+        <span class="dpad-arrow right-arrow">▶</span>
 
       </div>
 
-
       <div class="capture"></div>
 
-
       <div class="controller-dots">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
+        <i></i><i></i><i></i>
+        <i></i><i></i><i></i>
       </div>
 
     </aside>
@@ -2137,10 +2098,7 @@ body::after{
 
     <div class="center-unit">
 
-      <div
-        class="screen"
-        id="screen"
-      >
+      <div class="screen" id="screen">
 
 
         <!-- STATUS -->
@@ -2155,7 +2113,6 @@ body::after{
 
           </span>
 
-
           <span class="battery">
 
             100%
@@ -2169,15 +2126,9 @@ body::after{
 
         <!-- SLIDER -->
 
-        <div
-          class="slider-wrap"
-          id="sliderWrap"
-        >
+        <div class="slider-wrap">
 
-          <div
-            class="slides"
-            id="slides"
-          >
+          <div class="slides" id="slides">
 
 
             <!-- PAGE 1 -->
@@ -2186,9 +2137,7 @@ body::after{
 
               <div class="slide-top">
 
-                <span>
-                  MAIN
-                </span>
+                <span>MAIN</span>
 
                 <span class="slide-line"></span>
 
@@ -2216,11 +2165,9 @@ body::after{
 
                 </div>
 
-
                 <div class="caveduck-title">
                   CAVEDUCK
                 </div>
-
 
                 <div class="caveduck-sub">
                   MAIN LINK
@@ -2237,9 +2184,7 @@ body::after{
 
               <div class="slide-top">
 
-                <span>
-                  MENU
-                </span>
+                <span>MENU</span>
 
                 <span class="slide-line"></span>
 
@@ -2262,7 +2207,6 @@ body::after{
                   <span class="menu-number">
                     01
                   </span>
-
 
                   <span class="menu-copy">
 
@@ -2287,7 +2231,6 @@ body::after{
                   <span class="menu-number">
                     02
                   </span>
-
 
                   <span class="menu-copy">
 
@@ -2348,16 +2291,14 @@ body::after{
 
                 </div>
 
-
               </nav>
 
             </section>
 
-
           </div>
 
 
-          <!-- PAGE CONTROL -->
+          <!-- SLIDER CONTROL -->
 
           <div class="slider-nav">
 
@@ -2369,7 +2310,6 @@ body::after{
             >
               ◀
             </button>
-
 
             <div class="dots">
 
@@ -2391,7 +2331,6 @@ body::after{
 
             </div>
 
-
             <button
               class="nav-arrow"
               type="button"
@@ -2406,10 +2345,9 @@ body::after{
         </div>
 
 
-        <!-- INFO SCREEN -->
+        <!-- INFO -->
 
         <div class="info-screen">
-
 
           <div class="info-top">
 
@@ -2461,7 +2399,6 @@ body::after{
             ◀ RETURN
           </button>
 
-
         </div>
 
 
@@ -2470,33 +2407,19 @@ body::after{
     </div>
 
 
-    <!-- RIGHT -->
+    <!-- RIGHT CONTROLLER -->
 
-    <aside
-      class="controller right"
-      aria-hidden="true"
-    >
+    <aside class="controller right" aria-hidden="true">
 
       <div class="plus"></div>
 
 
       <div class="abxy">
 
-        <div class="game-button x">
-          X
-        </div>
-
-        <div class="game-button a">
-          A
-        </div>
-
-        <div class="game-button b">
-          B
-        </div>
-
-        <div class="game-button y">
-          Y
-        </div>
+        <div class="game-button x">X</div>
+        <div class="game-button a">A</div>
+        <div class="game-button b">B</div>
+        <div class="game-button y">Y</div>
 
       </div>
 
@@ -2507,12 +2430,8 @@ body::after{
 
 
       <div class="controller-dots">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
+        <i></i><i></i><i></i>
+        <i></i><i></i><i></i>
       </div>
 
     </aside>
