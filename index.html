@@ -19,97 +19,63 @@
   --blue:#4ca8ee;
 }
 
-*{
-  box-sizing:border-box;
-}
-
-html,
-body{
-  min-height:100%;
-}
+*{box-sizing:border-box;}
+html,body{min-height:100%;}
 
 body{
   margin:0;
   overflow-x:hidden;
   color:var(--ink);
-
-  font-family:
-    "Jua",
-    "Apple SD Gothic Neo",
-    "Malgun Gothic",
-    sans-serif;
-
+  font-family:"Jua","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   background:
     radial-gradient(circle at 12% 20%,rgba(255,255,255,.95) 0 2px,transparent 3px),
     radial-gradient(circle at 82% 12%,rgba(255,255,255,.95) 0 3px,transparent 4px),
     radial-gradient(circle at 88% 72%,rgba(255,255,255,.8) 0 2px,transparent 3px),
-    linear-gradient(
-      180deg,
-      #cceaff 0%,
-      #eaf8ff 52%,
-      #d9f0fb 100%
-    );
+    linear-gradient(180deg,#cceaff 0%,#eaf8ff 52%,#d9f0fb 100%);
 }
 
 .page{
   position:relative;
   z-index:2;
-
   width:min(720px,calc(100% - 36px));
   min-height:100vh;
-
   margin:auto;
   padding:38px 0 55px;
 }
 
-
-/* =====================================================
-   BACKGROUND DECORATION
-===================================================== */
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
 .bg-deco{
   position:fixed;
   inset:0;
   z-index:0;
-
   overflow:hidden;
   pointer-events:none;
 }
 
-
-/* CLOUDS */
-
 .cloud{
   position:absolute;
-
   width:220px;
   height:60px;
-
   border-radius:999px;
-
   background:rgba(255,255,255,.38);
-
   filter:blur(.3px);
-
-  box-shadow:
-    0 8px 25px rgba(255,255,255,.18);
+  box-shadow:0 8px 25px rgba(255,255,255,.18);
 }
 
 .cloud::before,
 .cloud::after{
   content:"";
-
   position:absolute;
-
   border-radius:50%;
-
   background:rgba(255,255,255,.38);
 }
 
 .cloud::before{
   width:95px;
   height:95px;
-
   left:35px;
   bottom:10px;
 }
@@ -117,7 +83,6 @@ body{
 .cloud::after{
   width:125px;
   height:125px;
-
   right:25px;
   bottom:5px;
 }
@@ -125,333 +90,231 @@ body{
 .cloud-1{
   top:10%;
   left:-80px;
-
   transform:scale(.85);
-
   opacity:.68;
 }
 
 .cloud-2{
   top:29%;
   right:-100px;
-
   transform:scale(1.15);
-
   opacity:.48;
 }
 
 .cloud-3{
   bottom:13%;
   left:-65px;
-
   transform:scale(1.05);
-
   opacity:.44;
 }
 
 .cloud-4{
   bottom:-5px;
   right:-55px;
-
   transform:scale(.75);
-
   opacity:.55;
 }
 
-
-/* BUBBLES */
-
 .bubble{
   position:absolute;
-
   display:block;
-
-  border:
-    2px solid rgba(255,255,255,.58);
-
+  border:2px solid rgba(255,255,255,.58);
   border-radius:50%;
-
   background:
     linear-gradient(
       145deg,
       rgba(255,255,255,.20),
       rgba(170,224,255,.04)
     );
-
   box-shadow:
     inset 3px 3px 5px rgba(255,255,255,.28),
     0 4px 12px rgba(74,159,211,.06);
-
-  animation:
-    bubbleFloat 6s ease-in-out infinite;
+  animation:bubbleFloat 6s ease-in-out infinite;
 }
 
 .bubble::after{
   content:"";
-
   position:absolute;
-
   width:22%;
   height:22%;
-
   top:19%;
   left:22%;
-
   border-radius:50%;
-
   background:rgba(255,255,255,.72);
 }
 
 .bubble-1{
   width:38px;
   height:38px;
-
   left:7%;
   top:38%;
-
   animation-delay:-1s;
 }
 
 .bubble-2{
   width:17px;
   height:17px;
-
   left:15%;
   top:70%;
-
   animation-delay:-4s;
 }
 
 .bubble-3{
   width:57px;
   height:57px;
-
   right:5%;
   top:53%;
-
   opacity:.72;
-
   animation-delay:-2.5s;
 }
 
 .bubble-4{
   width:25px;
   height:25px;
-
   right:15%;
   top:78%;
-
   animation-delay:-5s;
 }
 
 .bubble-5{
   width:13px;
   height:13px;
-
   left:26%;
   top:17%;
-
   animation-delay:-3s;
 }
 
 .bubble-6{
   width:30px;
   height:30px;
-
   right:24%;
   top:15%;
-
   opacity:.65;
-
   animation-delay:-.5s;
 }
 
 @keyframes bubbleFloat{
   0%,100%{
-    transform:
-      translateY(0)
-      rotate(0deg);
+    transform:translateY(0) rotate(0deg);
   }
-
   50%{
-    transform:
-      translateY(-12px)
-      rotate(5deg);
+    transform:translateY(-12px) rotate(5deg);
   }
 }
 
-
-/* LITTLE STARS */
-
 .sky-sparkle{
   position:absolute;
-
   color:rgba(255,255,255,.88);
-
-  font-family:
-    "Nunito",
-    sans-serif;
-
-  text-shadow:
-    0 2px 10px rgba(78,153,211,.25);
-
-  animation:
-    skyTwinkle 3s ease-in-out infinite;
+  font-family:"Nunito",sans-serif;
+  text-shadow:0 2px 10px rgba(78,153,211,.25);
+  animation:skyTwinkle 3s ease-in-out infinite;
 }
 
 .sp-1{
   left:7%;
   top:23%;
-
   font-size:18px;
 }
 
 .sp-2{
   right:9%;
   top:19%;
-
   font-size:13px;
-
   animation-delay:-1.2s;
 }
 
 .sp-3{
   left:11%;
   top:57%;
-
   font-size:14px;
-
   animation-delay:-2.1s;
 }
 
 .sp-4{
   right:8%;
   top:67%;
-
   font-size:20px;
-
   animation-delay:-.7s;
 }
 
 .sp-5{
   left:20%;
   bottom:8%;
-
   font-size:11px;
-
   animation-delay:-1.8s;
 }
 
 .sp-6{
   right:22%;
   bottom:13%;
-
   font-size:13px;
-
   animation-delay:-2.7s;
 }
 
 .sp-7{
   right:4%;
   top:39%;
-
   font-size:9px;
-
   animation-delay:-1.4s;
 }
 
 @keyframes skyTwinkle{
   0%,100%{
     opacity:.35;
-
-    transform:
-      scale(.8)
-      rotate(0deg);
+    transform:scale(.8) rotate(0deg);
   }
-
   50%{
     opacity:1;
-
-    transform:
-      scale(1.18)
-      rotate(8deg);
+    transform:scale(1.18) rotate(8deg);
   }
 }
 
-
-/* BIG BACKGROUND RINGS */
-
 .bg-ring{
   position:absolute;
-
-  border:
-    2px solid rgba(255,255,255,.18);
-
-  border-left-color:
-    rgba(255,255,255,.5);
-
-  border-right-color:
-    rgba(123,195,239,.15);
-
+  border:2px solid rgba(255,255,255,.18);
+  border-left-color:rgba(255,255,255,.5);
+  border-right-color:rgba(123,195,239,.15);
   border-radius:50%;
 }
 
 .ring-1{
   width:620px;
   height:180px;
-
   left:50%;
   top:39%;
-
-  transform:
-    translate(-50%,-50%)
-    rotate(-12deg);
-
+  transform:translate(-50%,-50%) rotate(-12deg);
   opacity:.72;
 }
 
 .ring-2{
   width:470px;
   height:135px;
-
   left:50%;
   top:42%;
-
-  transform:
-    translate(-50%,-50%)
-    rotate(14deg);
-
+  transform:translate(-50%,-50%) rotate(14deg);
   opacity:.40;
 }
 
-
-/* =========================
+/* =========================================================
    LOGO
-========================= */
+========================================================= */
 
 .hero{
   position:relative;
-
   min-height:145px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   margin-bottom:15px;
 }
 
 .sunfish-logo{
   position:relative;
   z-index:3;
-
   display:block;
-
   width:min(430px,82vw);
   height:auto;
-
   object-fit:contain;
-
   filter:
     drop-shadow(0 5px 0 rgba(100,157,211,.18))
     drop-shadow(0 11px 17px rgba(65,120,170,.14));
@@ -459,57 +322,37 @@ body{
 
 .orbit{
   position:absolute;
-
   left:50%;
   top:50%;
-
   z-index:1;
-
   border:3px solid rgba(255,255,255,.94);
-
   border-left-color:transparent;
   border-right-color:transparent;
-
   border-radius:50%;
-
   pointer-events:none;
 }
 
 .orbit-one{
   width:430px;
   height:100px;
-
-  transform:
-    translate(-50%,-50%)
-    rotate(-10deg);
+  transform:translate(-50%,-50%) rotate(-10deg);
 }
 
 .orbit-two{
   width:350px;
   height:75px;
-
   opacity:.62;
-
   border-width:2px;
-
-  transform:
-    translate(-50%,-50%)
-    rotate(8deg);
+  transform:translate(-50%,-50%) rotate(8deg);
 }
 
 .star{
   position:absolute;
   z-index:4;
-
   color:#fff;
-
   pointer-events:none;
-
-  text-shadow:
-    0 2px 9px #77b7e2;
-
-  animation:
-    twinkle 2.4s ease-in-out infinite;
+  text-shadow:0 2px 9px #77b7e2;
+  animation:twinkle 2.4s ease-in-out infinite;
 }
 
 .star.a{
@@ -535,66 +378,44 @@ body{
     opacity:.45;
     transform:scale(.8);
   }
-
   50%{
     opacity:1;
     transform:scale(1.18);
   }
 }
 
-
-/* =========================
+/* =========================================================
    HANDHELD
-========================= */
+========================================================= */
 
 .handheld{
   position:relative;
-
   display:grid;
-
-  grid-template-columns:
-    94px
-    minmax(0,1fr)
-    94px;
-
+  grid-template-columns:94px minmax(0,1fr) 94px;
   height:455px;
-
   border-radius:48px;
-
-  filter:
-    drop-shadow(0 18px 18px rgba(60,128,174,.16));
+  filter:drop-shadow(0 18px 18px rgba(60,128,174,.16));
 }
 
 .handheld::after{
   content:"";
-
   position:absolute;
   inset:0;
-
   z-index:20;
-
-  border:
-    3px solid rgba(255,255,255,.96);
-
+  border:3px solid rgba(255,255,255,.96);
   border-radius:48px;
-
-  box-shadow:
-    0 0 0 2px rgba(76,168,238,.28);
-
+  box-shadow:0 0 0 2px rgba(76,168,238,.28);
   pointer-events:none;
 }
 
-
-/* =========================
+/* =========================================================
    CONTROLLERS
-========================= */
+========================================================= */
 
 .controller{
   position:relative;
   z-index:2;
-
   overflow:hidden;
-
   background:
     linear-gradient(
       130deg,
@@ -608,7 +429,6 @@ body{
       #d3f2ff 46%,
       #bce8fb 100%
     );
-
   box-shadow:
     inset 0 0 18px rgba(255,255,255,.95),
     inset 0 -20px 28px rgba(68,165,222,.09);
@@ -616,12 +436,9 @@ body{
 
 .controller::before{
   content:"";
-
   position:absolute;
   inset:0;
-
   opacity:.10;
-
   background:
     linear-gradient(
       90deg,
@@ -635,23 +452,17 @@ body{
       var(--blue) 50%,
       transparent 51%
     );
-
   background-size:28px 28px;
 }
 
 .controller::after{
   content:"";
-
   position:absolute;
-
   left:8px;
   right:8px;
   top:5px;
-
   height:43%;
-
   border-radius:999px;
-
   background:
     linear-gradient(
       180deg,
@@ -661,41 +472,25 @@ body{
 }
 
 .controller.left{
-  border-radius:
-    45px 0 0 45px;
-
-  border-right:
-    2px solid rgba(76,168,238,.28);
+  border-radius:45px 0 0 45px;
+  border-right:2px solid rgba(76,168,238,.28);
 }
 
 .controller.right{
-  border-radius:
-    0 45px 45px 0;
-
-  border-left:
-    2px solid rgba(76,168,238,.28);
+  border-radius:0 45px 45px 0;
+  border-left:2px solid rgba(76,168,238,.28);
 }
 
-
-/* =========================
+/* =========================================================
    CENTER
-========================= */
+========================================================= */
 
 .center-unit{
   position:relative;
   z-index:3;
-
   min-width:0;
-
   padding:9px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #dff5ff,
-      #a9dcf5
-    );
-
+  background:linear-gradient(145deg,#dff5ff,#a9dcf5);
   box-shadow:
     inset 0 3px 7px rgba(255,255,255,.88),
     inset 0 -4px 8px rgba(66,137,177,.08);
@@ -703,17 +498,11 @@ body{
 
 .screen{
   position:relative;
-
   width:100%;
   height:100%;
-
   overflow:hidden;
-
   border-radius:15px;
-
-  border:
-    2px solid rgba(86,180,226,.55);
-
+  border:2px solid rgba(86,180,226,.55);
   background:
     radial-gradient(
       circle,
@@ -725,42 +514,26 @@ body{
       #f5fdff 0%,
       #ebfaff 100%
     );
-
-  background-size:
-    6px 6px,
-    100% 100%;
-
+  background-size:6px 6px,100% 100%;
   box-shadow:
     inset 0 0 22px rgba(87,177,199,.08),
     inset 0 0 0 2px rgba(255,255,255,.78);
 }
 
-
-/* =========================
+/* =========================================================
    STATUS
-========================= */
+========================================================= */
 
 .status{
   height:38px;
-
   padding:0 12px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  border-bottom:
-    1px solid rgba(76,168,218,.24);
-
-  background:
-    rgba(255,255,255,.45);
-
+  border-bottom:1px solid rgba(76,168,218,.24);
+  background:rgba(255,255,255,.45);
   color:#6093b5;
-
-  font:
-    900 10px/1
-    "Nunito",
-    sans-serif;
+  font:900 10px/1 "Nunito",sans-serif;
 }
 
 .system-name{
@@ -772,11 +545,8 @@ body{
 .system-dot{
   width:8px;
   height:8px;
-
   border-radius:2px;
-
   background:#79c9f5;
-
   transform:rotate(45deg);
 }
 
@@ -788,72 +558,51 @@ body{
 
 .battery-icon{
   position:relative;
-
   width:21px;
   height:10px;
-
-  border:
-    1.5px solid #68a4c9;
-
+  border:1.5px solid #68a4c9;
   border-radius:2px;
 }
 
 .battery-icon::before{
   content:"";
-
   position:absolute;
-
   left:2px;
   top:2px;
-
   width:14px;
   height:4px;
-
   background:#8ed4f3;
 }
 
 .battery-icon::after{
   content:"";
-
   position:absolute;
-
   right:-4px;
   top:2px;
-
   width:2px;
   height:4px;
-
   background:#68a4c9;
 }
 
-
-/* =========================
+/* =========================================================
    SLIDER
-========================= */
+========================================================= */
 
 .slider-wrap{
   position:relative;
-
-  height:
-    calc(100% - 38px);
+  height:calc(100% - 38px);
 }
 
 .slides{
   display:flex;
-
   width:100%;
   height:100%;
-
   overflow-x:auto;
   overflow-y:hidden;
-
   scroll-snap-type:x mandatory;
   scroll-behavior:smooth;
-
   scrollbar-width:none;
-
   overscroll-behavior-x:contain;
-
   -webkit-overflow-scrolling:touch;
 }
 
@@ -862,43 +611,28 @@ body{
 }
 
 .slide{
-  flex:
-    0 0 100%;
-
+  flex:0 0 100%;
   width:100%;
   min-width:100%;
   height:100%;
-
   scroll-snap-align:start;
   scroll-snap-stop:always;
-
-  padding:
-    14px 17px 48px;
-
+  padding:14px 17px 64px;
   overflow:hidden;
 }
 
 .slide-top{
   display:flex;
   align-items:center;
-
   gap:8px;
-
   color:#6094b5;
-
-  font:
-    900 9px/1
-    "Nunito",
-    sans-serif;
-
+  font:900 9px/1 "Nunito",sans-serif;
   letter-spacing:.08em;
 }
 
 .slide-line{
   flex:1;
-
   height:2px;
-
   background:
     repeating-linear-gradient(
       90deg,
@@ -911,71 +645,46 @@ body{
   color:#8ab0c6;
 }
 
-
-/* =========================
+/* =========================================================
    CAVEDUCK
-========================= */
+========================================================= */
 
 .cave-feature{
-  height:
-    calc(100% - 20px);
-
+  height:calc(100% - 20px);
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-
   color:inherit;
-
   text-decoration:none;
 }
 
 .duck-area{
   height:150px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   margin-top:-10px;
 }
 
 .duck{
   display:block;
-
   width:auto;
   height:140px;
-
   max-width:210px;
-
   object-fit:contain;
-
-  filter:
-    drop-shadow(
-      0 6px 8px
-      rgba(70,140,180,.14)
-    );
-
-  transition:
-    transform .18s ease;
+  filter:drop-shadow(0 6px 8px rgba(70,140,180,.14));
+  transition:transform .18s ease;
 }
 
 .cave-feature:hover .duck{
-  transform:
-    translateY(-3px)
-    rotate(-2deg);
+  transform:translateY(-3px) rotate(-2deg);
 }
 
 .caveduck-title{
   color:#4b8dbd;
-
-  font:
-    900 clamp(31px,5vw,42px)/1
-    "Nunito",
-    sans-serif;
-
+  font:900 clamp(31px,5vw,42px)/1 "Nunito",sans-serif;
   letter-spacing:-.045em;
-
   text-shadow:
     2px 0 #fff,
     -2px 0 #fff,
@@ -986,21 +695,14 @@ body{
 
 .caveduck-sub{
   margin-top:8px;
-
   color:#96b9cd;
-
-  font:
-    900 8px/1
-    "Nunito",
-    sans-serif;
-
+  font:900 8px/1 "Nunito",sans-serif;
   letter-spacing:.17em;
 }
 
-
-/* =========================
+/* =========================================================
    MENU
-========================= */
+========================================================= */
 
 .menu-page{
   display:flex;
@@ -1009,194 +711,208 @@ body{
 
 .game-menu{
   flex:1;
-
   display:flex;
   flex-direction:column;
   justify-content:center;
-
   padding-top:5px;
 }
 
 .game-row{
   position:relative;
-
   width:100%;
   min-height:64px;
-
   display:grid;
-
-  grid-template-columns:
-    42px 1fr;
-
+  grid-template-columns:42px 1fr;
   align-items:center;
-
   padding:8px;
-
   border:0;
-
-  border-bottom:
-    1px dashed rgba(104,178,213,.38);
-
+  border-bottom:1px dashed rgba(104,178,213,.38);
   background:transparent;
-
   color:#4f7f9e;
-
   text-decoration:none;
   text-align:left;
-
   font:inherit;
-
   cursor:pointer;
 }
 
 .game-row:first-child{
-  border-top:
-    1px dashed rgba(104,178,213,.38);
+  border-top:1px dashed rgba(104,178,213,.38);
 }
 
 .game-row:hover,
 .game-row:focus-visible{
-  background:
-    rgba(255,255,255,.48);
-
+  background:rgba(255,255,255,.48);
   outline:none;
 }
 
 .menu-number{
   color:#82b9d7;
-
-  font:
-    900 11px/1
-    "Nunito",
-    sans-serif;
+  font:900 11px/1 "Nunito",sans-serif;
 }
 
 .menu-copy{
   display:flex;
   flex-direction:column;
-
   gap:4px;
 }
 
 .menu-ko{
   color:#4f7d9a;
-
   font-size:15px;
 }
 
 .menu-en{
   color:#a0bdcd;
-
-  font:
-    900 7px/1
-    "Nunito",
-    sans-serif;
-
+  font:900 7px/1 "Nunito",sans-serif;
   letter-spacing:.14em;
 }
 
-
-/* =========================
+/* =========================================================
    SLIDER NAV
-========================= */
+========================================================= */
 
 .slider-nav{
   position:absolute;
-
   z-index:8;
-
   left:50%;
-  bottom:10px;
-
-  transform:
-    translateX(-50%);
-
+  bottom:33px;
+  transform:translateX(-50%);
   display:flex;
   align-items:center;
-
   gap:9px;
-
-  padding:
-    5px 10px;
-
-  border:
-    1px solid rgba(115,185,218,.24);
-
+  padding:5px 10px;
+  border:1px solid rgba(115,185,218,.24);
   border-radius:999px;
-
-  background:
-    rgba(242,251,255,.82);
-
-  box-shadow:
-    0 3px 8px rgba(75,143,180,.08);
+  background:rgba(242,251,255,.82);
+  box-shadow:0 3px 8px rgba(75,143,180,.08);
 }
 
 .nav-arrow{
   width:22px;
   height:18px;
-
   padding:0;
-
   border:0;
-
   background:transparent;
-
   color:#73a9c7;
-
-  font:
-    900 10px/1
-    "Nunito",
-    sans-serif;
-
+  font:900 10px/1 "Nunito",sans-serif;
   cursor:pointer;
 }
 
 .dots{
   display:flex;
   align-items:center;
-
   gap:7px;
 }
 
 .dot{
   width:7px;
   height:7px;
-
   padding:0;
-
-  border:
-    1px solid #82b8d6;
-
+  border:1px solid #82b8d6;
   border-radius:50%;
-
   background:transparent;
-
   cursor:pointer;
 }
 
 .dot.active{
   background:#82c8ec;
-
-  box-shadow:
-    0 0 0 2px rgba(130,200,236,.15);
+  box-shadow:0 0 0 2px rgba(130,200,236,.15);
 }
 
+/* =========================================================
+   MUSIC VISUALIZER
+========================================================= */
 
-/* =========================
+.music-control{
+  position:absolute;
+  z-index:10;
+  left:50%;
+  bottom:7px;
+  transform:translateX(-50%);
+  width:126px;
+  height:22px;
+  padding:0;
+  border:0;
+  background:transparent;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:4px;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.music-control:focus-visible{
+  outline:1px dashed rgba(84,158,199,.6);
+  outline-offset:4px;
+  border-radius:4px;
+}
+
+.eq-bar{
+  display:block;
+  width:4px;
+  height:var(--idle);
+  min-height:4px;
+  border-radius:3px 3px 1px 1px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(102,185,226,.94),
+      rgba(113,171,205,.70)
+    );
+  box-shadow:
+    inset 1px 0 rgba(255,255,255,.4),
+    0 1px 2px rgba(69,136,176,.10);
+  transform-origin:center bottom;
+  opacity:.76;
+}
+
+/* 재생 중일 때만 움직임 */
+.music-control.playing .eq-bar{
+  animation:eqMove var(--speed) ease-in-out infinite alternate;
+  animation-delay:var(--delay);
+  opacity:.95;
+}
+
+@keyframes eqMove{
+  from{
+    height:var(--low);
+  }
+  to{
+    height:var(--high);
+  }
+}
+
+.music-control:not(.playing) .eq-bar{
+  animation:none;
+}
+
+/* YouTube 플레이어는 화면 밖에 작게 둠 */
+.youtube-player-wrap{
+  position:fixed;
+  left:-200px;
+  bottom:-200px;
+  width:100px;
+  height:100px;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:.01;
+}
+
+#youtubePlayer{
+  width:100px;
+  height:100px;
+}
+
+/* =========================================================
    INFO
-========================= */
+========================================================= */
 
 .info-screen{
   display:none;
-
-  height:
-    calc(100% - 38px);
-
-  padding:
-    18px 20px 15px;
-
+  height:calc(100% - 38px);
+  padding:18px 20px 15px;
   overflow-y:auto;
-
   scrollbar-width:none;
 }
 
@@ -1215,43 +931,25 @@ body{
 .info-top{
   display:flex;
   align-items:center;
-
   gap:10px;
-
   margin-bottom:23px;
-
   color:#6899b6;
-
-  font:
-    900 9px/1
-    "Nunito",
-    sans-serif;
+  font:900 9px/1 "Nunito",sans-serif;
 }
 
 .back{
   flex:0 0 auto;
-
   padding:0;
-
   border:0;
-
   background:none;
-
   color:#5f96b8;
-
-  font:
-    900 9px/1
-    "Nunito",
-    sans-serif;
-
+  font:900 9px/1 "Nunito",sans-serif;
   cursor:pointer;
 }
 
 .info-top-line{
   flex:1;
-
   height:2px;
-
   background:
     repeating-linear-gradient(
       90deg,
@@ -1262,45 +960,25 @@ body{
 
 .info-title{
   margin:0 0 9px;
-
   color:#4f82a3;
-
   text-align:center;
-
   font-size:20px;
 }
 
 .info-subtitle{
   margin-bottom:20px;
-
   color:#9ab9ca;
-
   text-align:center;
-
-  font:
-    900 8px/1
-    "Nunito",
-    sans-serif;
-
+  font:900 8px/1 "Nunito",sans-serif;
   letter-spacing:.14em;
 }
 
 .info-copy{
-  padding:
-    18px 8px 5px;
-
-  border-top:
-    1px dashed rgba(103,177,211,.42);
-
+  padding:18px 8px 5px;
+  border-top:1px dashed rgba(103,177,211,.42);
   color:#557b92;
-
-  font-family:
-    "Apple SD Gothic Neo",
-    "Malgun Gothic",
-    sans-serif;
-
+  font-family:"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   font-size:13px;
-
   line-height:1.85;
 }
 
@@ -1310,43 +988,26 @@ body{
 
 .info-close{
   display:block;
-
-  margin:
-    12px auto 0;
-
-  padding:
-    8px 14px;
-
+  margin:12px auto 0;
+  padding:8px 14px;
   border:0;
-
   background:transparent;
-
   color:#77a6c0;
-
-  font:
-    900 9px/1
-    "Nunito",
-    sans-serif;
-
+  font:900 9px/1 "Nunito",sans-serif;
   letter-spacing:.12em;
-
   cursor:pointer;
 }
 
-
-/* =========================
+/* =========================================================
    CONTROLS
-========================= */
+========================================================= */
 
 .joy-stick{
   position:absolute;
   z-index:4;
-
   width:46px;
   height:46px;
-
   border-radius:50%;
-
   background:
     radial-gradient(
       circle at 38% 30%,
@@ -1356,10 +1017,7 @@ body{
       #76bee5 75%,
       #5aa8d5 100%
     );
-
-  border:
-    3px solid rgba(255,255,255,.95);
-
+  border:3px solid rgba(255,255,255,.95);
   box-shadow:
     0 0 0 2px rgba(61,151,207,.35),
     0 5px 7px rgba(49,113,157,.15),
@@ -1368,54 +1026,40 @@ body{
 
 .joy-stick::after{
   content:"";
-
   position:absolute;
   inset:9px;
-
   border-radius:50%;
-
-  border:
-    2px solid rgba(68,156,207,.20);
+  border:2px solid rgba(68,156,207,.20);
 }
 
 .left .joy-stick{
   top:64px;
   left:50%;
-
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .right .joy-stick{
   top:178px;
   left:50%;
-
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .minus{
   position:absolute;
   z-index:4;
-
   top:24px;
   right:14px;
-
   width:20px;
   height:6px;
-
   border-radius:999px;
-
   background:#6fb4da;
 }
 
 .plus{
   position:absolute;
   z-index:4;
-
   top:20px;
   left:14px;
-
   width:22px;
   height:22px;
 }
@@ -1423,17 +1067,11 @@ body{
 .plus::before,
 .plus::after{
   content:"";
-
   position:absolute;
-
   left:50%;
   top:50%;
-
-  transform:
-    translate(-50%,-50%);
-
+  transform:translate(-50%,-50%);
   border-radius:2px;
-
   background:#6fb4da;
 }
 
@@ -1447,37 +1085,21 @@ body{
   height:22px;
 }
 
-
-/* D-PAD */
-
 .dpad{
   position:absolute;
   z-index:4;
-
   top:154px;
   left:50%;
-
   width:70px;
   height:70px;
-
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .dpad-v,
 .dpad-h{
   position:absolute;
-
-  background:
-    linear-gradient(
-      145deg,
-      #e8f8ff,
-      #91cff0
-    );
-
-  border:
-    2px solid rgba(255,255,255,.95);
-
+  background:linear-gradient(145deg,#e8f8ff,#91cff0);
+  border:2px solid rgba(255,255,255,.95);
   box-shadow:
     0 0 0 1px rgba(59,153,208,.34),
     inset 0 3px 5px rgba(255,255,255,.72);
@@ -1486,128 +1108,84 @@ body{
 .dpad-v{
   width:27px;
   height:70px;
-
   left:21.5px;
-
   border-radius:8px;
 }
 
 .dpad-h{
   width:70px;
   height:27px;
-
   top:21.5px;
-
   border-radius:8px;
 }
 
 .dpad-center{
   position:absolute;
   z-index:2;
-
   left:50%;
   top:50%;
-
   width:25px;
   height:25px;
-
-  transform:
-    translate(-50%,-50%);
-
+  transform:translate(-50%,-50%);
   border-radius:5px;
-
   background:#91cff0;
 }
 
 .dpad-arrow{
   position:absolute;
   z-index:3;
-
   color:#5ba8d5;
-
   font-size:8px;
 }
 
 .dpad-arrow.up{
   left:50%;
   top:8px;
-
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .dpad-arrow.down{
   left:50%;
   bottom:8px;
-
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .dpad-arrow.left-arrow{
   left:8px;
   top:50%;
-
-  transform:
-    translateY(-50%);
+  transform:translateY(-50%);
 }
 
 .dpad-arrow.right-arrow{
   right:8px;
   top:50%;
-
-  transform:
-    translateY(-50%);
+  transform:translateY(-50%);
 }
-
-
-/* ABXY */
 
 .abxy{
   position:absolute;
   z-index:4;
-
   top:62px;
   left:50%;
-
   width:72px;
   height:72px;
-
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .game-button{
   position:absolute;
-
   width:30px;
   height:30px;
-
   display:grid;
   place-items:center;
-
   border-radius:50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #bde7f9
-    );
-
-  border:
-    2px solid rgba(255,255,255,.96);
-
+  background:linear-gradient(145deg,#ffffff,#bde7f9);
+  border:2px solid rgba(255,255,255,.96);
   box-shadow:
     0 0 0 1px rgba(67,156,210,.34),
     inset 0 3px 4px rgba(255,255,255,.78);
-
   color:#4d94c2;
-
-  font:
-    900 10px/1
-    "Nunito",
-    sans-serif;
+  font:900 10px/1 "Nunito",sans-serif;
 }
 
 .game-button.x{
@@ -1630,178 +1208,104 @@ body{
   top:21px;
 }
 
-
-/* LOWER BUTTONS */
-
 .capture{
   position:absolute;
   z-index:4;
-
   left:50%;
   bottom:57px;
-
   width:30px;
   height:30px;
-
-  transform:
-    translateX(-50%);
-
+  transform:translateX(-50%);
   border-radius:7px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #c8ecfb
-    );
-
-  border:
-    2px solid rgba(255,255,255,.94);
-
-  box-shadow:
-    0 0 0 1px rgba(75,164,211,.35);
+  background:linear-gradient(145deg,#ffffff,#c8ecfb);
+  border:2px solid rgba(255,255,255,.94);
+  box-shadow:0 0 0 1px rgba(75,164,211,.35);
 }
 
 .capture::after{
   content:"";
-
   position:absolute;
-
   left:50%;
   top:50%;
-
   width:12px;
   height:12px;
-
-  transform:
-    translate(-50%,-50%);
-
+  transform:translate(-50%,-50%);
   border-radius:50%;
-
   background:#83c8e9;
 }
 
 .home-button{
   position:absolute;
   z-index:4;
-
   left:50%;
   bottom:55px;
-
   width:32px;
   height:32px;
-
-  transform:
-    translateX(-50%);
-
+  transform:translateX(-50%);
   border-radius:50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff,
-      #d3effb
-    );
-
-  border:
-    2px solid rgba(255,255,255,.95);
-
-  box-shadow:
-    0 0 0 1px rgba(75,164,211,.32);
+  background:linear-gradient(145deg,#fff,#d3effb);
+  border:2px solid rgba(255,255,255,.95);
+  box-shadow:0 0 0 1px rgba(75,164,211,.32);
 }
 
 .home-button::before{
   content:"";
-
   position:absolute;
-
   left:50%;
   top:50%;
-
   width:11px;
   height:9px;
-
-  transform:
-    translate(-50%,-35%);
-
-  border:
-    2px solid #72b6d9;
-
+  transform:translate(-50%,-35%);
+  border:2px solid #72b6d9;
   border-top:0;
-
   border-radius:2px;
 }
 
 .home-button::after{
   content:"";
-
   position:absolute;
-
   left:50%;
   top:8px;
-
   width:8px;
   height:8px;
-
-  border-left:
-    2px solid #72b6d9;
-
-  border-top:
-    2px solid #72b6d9;
-
-  transform:
-    translateX(-50%)
-    rotate(45deg);
+  border-left:2px solid #72b6d9;
+  border-top:2px solid #72b6d9;
+  transform:translateX(-50%) rotate(45deg);
 }
 
 .controller-dots{
   position:absolute;
   z-index:4;
-
   bottom:17px;
   left:50%;
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,4px);
-
+  grid-template-columns:repeat(3,4px);
   gap:5px;
-
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
 .controller-dots i{
   display:block;
-
   width:4px;
   height:4px;
-
   border-radius:50%;
-
-  background:
-    rgba(69,148,190,.38);
+  background:rgba(69,148,190,.38);
 }
 
-
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media(max-width:560px){
 
   .page{
     width:88%;
     max-width:390px;
-
-    padding:
-      27px 0 48px;
+    padding:27px 0 48px;
   }
 
   .hero{
     min-height:110px;
-
     margin-bottom:20px;
   }
 
@@ -1827,34 +1331,24 @@ body{
     right:2%;
   }
 
-
-  /* GAME */
-
+  /* 게임기 크기는 기존 그대로 */
   .handheld{
-    grid-template-columns:
-      58px
-      minmax(0,1fr)
-      58px;
-
+    grid-template-columns:58px minmax(0,1fr) 58px;
     height:345px;
-
     border-radius:35px;
   }
 
   .handheld::after{
     border-radius:35px;
-
     border-width:2px;
   }
 
   .controller.left{
-    border-radius:
-      33px 0 0 33px;
+    border-radius:33px 0 0 33px;
   }
 
   .controller.right{
-    border-radius:
-      0 33px 33px 0;
+    border-radius:0 33px 33px 0;
   }
 
   .center-unit{
@@ -1863,18 +1357,12 @@ body{
 
   .screen{
     border-radius:10px;
-
     border-width:1.5px;
   }
 
-
-  /* STATUS */
-
   .status{
     height:31px;
-
     padding:0 7px;
-
     font-size:7px;
   }
 
@@ -1890,70 +1378,52 @@ body{
   .battery-icon{
     width:16px;
     height:8px;
-
     border-width:1px;
   }
 
   .battery-icon::before{
     left:2px;
     top:2px;
-
     width:10px;
     height:2px;
   }
 
   .battery-icon::after{
     right:-3px;
-
     width:2px;
     height:3px;
   }
 
-
-  /* SLIDER */
-
   .slider-wrap{
-    height:
-      calc(100% - 31px);
+    height:calc(100% - 31px);
   }
 
   .slide{
-    padding:
-      10px 10px 40px;
+    padding:10px 10px 52px;
   }
 
   .slide-top{
     font-size:7px;
   }
 
-
-  /* CAVEDUCK */
-
   .duck-area{
     height:105px;
-
     margin-top:-7px;
   }
 
   .duck{
     height:100px;
-
     max-width:145px;
   }
 
   .caveduck-title{
-    font-size:
-      clamp(23px,7vw,30px);
+    font-size:clamp(23px,7vw,30px);
   }
 
   .caveduck-sub{
     margin-top:6px;
-
     font-size:6px;
   }
-
-
-  /* MENU */
 
   .game-menu{
     padding-top:2px;
@@ -1961,12 +1431,8 @@ body{
 
   .game-row{
     min-height:48px;
-
-    grid-template-columns:
-      30px 1fr;
-
-    padding:
-      5px 4px;
+    grid-template-columns:30px 1fr;
+    padding:5px 4px;
   }
 
   .menu-number{
@@ -1981,22 +1447,15 @@ body{
     font-size:5.5px;
   }
 
-
-  /* PAGE DOTS */
-
   .slider-nav{
-    bottom:6px;
-
+    bottom:27px;
     gap:6px;
-
-    padding:
-      3px 7px;
+    padding:3px 7px;
   }
 
   .nav-arrow{
     width:17px;
     height:15px;
-
     font-size:8px;
   }
 
@@ -2005,20 +1464,26 @@ body{
     height:5px;
   }
 
+  /* 모바일 이퀄라이저 */
+  .music-control{
+    bottom:5px;
+    width:104px;
+    height:18px;
+    gap:3px;
+  }
 
-  /* INFO */
+  .eq-bar{
+    width:3px;
+    border-radius:2px 2px 1px 1px;
+  }
 
   .info-screen{
-    height:
-      calc(100% - 31px);
-
-    padding:
-      12px 12px 10px;
+    height:calc(100% - 31px);
+    padding:12px 12px 10px;
   }
 
   .info-top{
     margin-bottom:12px;
-
     font-size:7px;
   }
 
@@ -2028,22 +1493,17 @@ body{
 
   .info-title{
     margin-bottom:6px;
-
     font-size:16px;
   }
 
   .info-subtitle{
     margin-bottom:11px;
-
     font-size:6px;
   }
 
   .info-copy{
-    padding:
-      11px 3px 2px;
-
+    padding:11px 3px 2px;
     font-size:10.5px;
-
     line-height:1.65;
   }
 
@@ -2053,14 +1513,9 @@ body{
 
   .info-close{
     margin-top:1px;
-
     padding:5px 8px;
-
     font-size:7px;
   }
-
-
-  /* CONTROLLERS */
 
   .controller::after{
     left:5px;
@@ -2070,9 +1525,7 @@ body{
   .joy-stick{
     width:33px;
     height:33px;
-
     border-width:2px;
-
     box-shadow:
       0 0 0 1px rgba(61,151,207,.35),
       0 3px 5px rgba(49,113,157,.13),
@@ -2081,7 +1534,6 @@ body{
 
   .joy-stick::after{
     inset:7px;
-
     border-width:1px;
   }
 
@@ -2096,7 +1548,6 @@ body{
   .minus{
     top:19px;
     right:9px;
-
     width:15px;
     height:4px;
   }
@@ -2104,16 +1555,11 @@ body{
   .plus{
     top:15px;
     left:8px;
-
     transform:scale(.72);
   }
 
-
-  /* D-PAD */
-
   .dpad{
     top:121px;
-
     width:47px;
     height:47px;
   }
@@ -2121,9 +1567,7 @@ body{
   .dpad-v{
     width:18px;
     height:47px;
-
     left:14.5px;
-
     border-width:1px;
     border-radius:6px;
   }
@@ -2131,9 +1575,7 @@ body{
   .dpad-h{
     width:47px;
     height:18px;
-
     top:14.5px;
-
     border-width:1px;
     border-radius:6px;
   }
@@ -2163,12 +1605,8 @@ body{
     right:5px;
   }
 
-
-  /* ABXY */
-
   .abxy{
     top:49px;
-
     width:49px;
     height:49px;
   }
@@ -2176,9 +1614,7 @@ body{
   .game-button{
     width:21px;
     height:21px;
-
     border-width:1px;
-
     font-size:6px;
   }
 
@@ -2198,15 +1634,10 @@ body{
     top:14px;
   }
 
-
-  /* LOWER BUTTONS */
-
   .capture{
     width:22px;
     height:22px;
-
     bottom:46px;
-
     border-width:1px;
   }
 
@@ -2218,35 +1649,27 @@ body{
   .home-button{
     width:23px;
     height:23px;
-
     bottom:45px;
-
     border-width:1px;
   }
 
   .home-button::before{
     width:7px;
     height:6px;
-
     border-width:1px;
   }
 
   .home-button::after{
     top:5px;
-
     width:5px;
     height:5px;
-
     border-left-width:1px;
     border-top-width:1px;
   }
 
   .controller-dots{
     bottom:14px;
-
-    grid-template-columns:
-      repeat(3,3px);
-
+    grid-template-columns:repeat(3,3px);
     gap:3px;
   }
 
@@ -2255,8 +1678,10 @@ body{
     height:3px;
   }
 
-
-  /* MOBILE BACKGROUND */
+  /* =====================================================
+     MOBILE BACKGROUND
+     게임기 뒤가 아니라 위/아래에 보이도록 재배치
+  ===================================================== */
 
   .cloud{
     width:145px;
@@ -2266,7 +1691,6 @@ body{
   .cloud::before{
     width:62px;
     height:62px;
-
     left:23px;
     bottom:7px;
   }
@@ -2274,129 +1698,154 @@ body{
   .cloud::after{
     width:82px;
     height:82px;
-
     right:17px;
     bottom:4px;
   }
 
   .cloud-1{
-    top:8%;
-    left:-72px;
+    top:18px;
+    left:-58px;
+    transform:scale(.72);
+    opacity:.54;
   }
 
   .cloud-2{
-    top:31%;
-    right:-78px;
+    top:122px;
+    right:-66px;
+    transform:scale(.82);
+    opacity:.44;
   }
 
   .cloud-3{
-    bottom:16%;
-    left:-65px;
+    top:auto;
+    bottom:42px;
+    left:-54px;
+    transform:scale(.75);
+    opacity:.46;
   }
 
   .cloud-4{
-    bottom:0;
-    right:-70px;
+    top:auto;
+    bottom:-13px;
+    right:-43px;
+    transform:scale(.68);
+    opacity:.58;
   }
 
+  /* 큰 링도 게임기 중앙에서 빼냄 */
   .ring-1{
-    width:430px;
-    height:125px;
-
-    top:43%;
+    width:390px;
+    height:100px;
+    left:50%;
+    top:84px;
+    transform:translate(-50%,-50%) rotate(-10deg);
+    opacity:.38;
   }
 
   .ring-2{
-    width:340px;
-    height:100px;
-
-    top:46%;
+    width:350px;
+    height:92px;
+    left:50%;
+    top:auto;
+    bottom:-18px;
+    transform:translateX(-50%) rotate(10deg);
+    opacity:.30;
   }
 
+  /* 로고 주변 버블 */
   .bubble-1{
-    width:25px;
-    height:25px;
-
-    left:3%;
-    top:37%;
-  }
-
-  .bubble-2{
-    width:13px;
-    height:13px;
-
-    left:8%;
-    top:73%;
-  }
-
-  .bubble-3{
-    width:34px;
-    height:34px;
-
-    right:2%;
-    top:55%;
-  }
-
-  .bubble-4{
-    width:18px;
-    height:18px;
-
-    right:8%;
-    top:82%;
+    width:23px;
+    height:23px;
+    left:4%;
+    top:118px;
   }
 
   .bubble-5{
-    width:10px;
-    height:10px;
-
-    left:13%;
-    top:18%;
+    width:11px;
+    height:11px;
+    left:10%;
+    top:43px;
   }
 
   .bubble-6{
     width:20px;
     height:20px;
-
-    right:12%;
-    top:21%;
+    right:8%;
+    top:88px;
   }
 
+  /* 게임기 아래쪽 버블 */
+  .bubble-2{
+    width:13px;
+    height:13px;
+    left:9%;
+    top:auto;
+    bottom:77px;
+  }
+
+  .bubble-3{
+    width:31px;
+    height:31px;
+    right:3%;
+    top:auto;
+    bottom:30px;
+  }
+
+  .bubble-4{
+    width:17px;
+    height:17px;
+    right:19%;
+    top:auto;
+    bottom:93px;
+  }
+
+  /* 위쪽 반짝이 */
   .sp-1{
-    left:4%;
-    top:24%;
+    left:5%;
+    top:31px;
+    font-size:15px;
   }
 
   .sp-2{
-    right:4%;
-    top:17%;
+    right:5%;
+    top:54px;
+    font-size:11px;
   }
 
   .sp-3{
-    left:4%;
-    top:58%;
+    left:17%;
+    top:124px;
+    font-size:10px;
   }
 
+  .sp-7{
+    right:17%;
+    top:133px;
+    font-size:9px;
+  }
+
+  /* 아래쪽 반짝이 */
   .sp-4{
-    right:3%;
-    top:68%;
+    right:6%;
+    top:auto;
+    bottom:116px;
+    font-size:16px;
   }
 
   .sp-5{
     left:8%;
-    bottom:7%;
+    top:auto;
+    bottom:24px;
+    font-size:10px;
   }
 
   .sp-6{
-    right:10%;
-    bottom:15%;
+    right:29%;
+    top:auto;
+    bottom:52px;
+    font-size:11px;
   }
-
 }
-
-
-/* =========================
-   VERY SMALL MOBILE
-========================= */
 
 @media(max-width:380px){
 
@@ -2405,11 +1854,7 @@ body{
   }
 
   .handheld{
-    grid-template-columns:
-      52px
-      minmax(0,1fr)
-      52px;
-
+    grid-template-columns:52px minmax(0,1fr) 52px;
     height:325px;
   }
 
@@ -2428,7 +1873,6 @@ body{
 
   .duck{
     height:91px;
-
     max-width:130px;
   }
 
@@ -2438,9 +1882,7 @@ body{
 
   .game-row{
     min-height:44px;
-
-    grid-template-columns:
-      27px 1fr;
+    grid-template-columns:27px 1fr;
   }
 
   .menu-ko{
@@ -2452,26 +1894,36 @@ body{
   }
 
   .dpad{
-    transform:
-      translateX(-50%)
-      scale(.9);
+    transform:translateX(-50%) scale(.9);
   }
 
   .abxy{
-    transform:
-      translateX(-50%)
-      scale(.9);
+    transform:translateX(-50%) scale(.9);
   }
 
+  .music-control{
+    width:94px;
+    gap:2.7px;
+  }
+
+  .eq-bar{
+    width:3px;
+  }
 }
 
+/* 움직임 줄이기 설정 사용자는 애니메이션 최소화 */
+@media(prefers-reduced-motion:reduce){
+  .bubble,
+  .sky-sparkle,
+  .star,
+  .music-control.playing .eq-bar{
+    animation:none !important;
+  }
+}
 </style>
 </head>
 
 <body>
-
-
-<!-- BACKGROUND -->
 
 <div class="bg-deco" aria-hidden="true">
 
@@ -2500,11 +1952,7 @@ body{
 
 </div>
 
-
 <main class="page">
-
-
-  <!-- LOGO -->
 
   <header class="hero">
 
@@ -2518,27 +1966,19 @@ body{
     <img
       class="sunfish-logo"
       src="https://cdn.caveduck.io/cdn-cgi/image/dpr=1.5,f=auto,fit=crop,w=400/charim/3d76a567-fa86-40ec-b5b1-c24667e4cf01?v=8d931a"
-      alt="SUNFISH"
-    >
+      alt="SUNFISH">
 
   </header>
 
-
-  <!-- HANDHELD -->
-
   <section class="handheld">
 
-
     <!-- LEFT CONTROLLER -->
-
     <aside class="controller left" aria-hidden="true">
 
       <div class="minus"></div>
-
       <div class="joy-stick"></div>
 
       <div class="dpad">
-
         <div class="dpad-v"></div>
         <div class="dpad-h"></div>
         <div class="dpad-center"></div>
@@ -2547,7 +1987,6 @@ body{
         <span class="dpad-arrow down">▼</span>
         <span class="dpad-arrow left-arrow">◀</span>
         <span class="dpad-arrow right-arrow">▶</span>
-
       </div>
 
       <div class="capture"></div>
@@ -2559,75 +1998,50 @@ body{
 
     </aside>
 
-
     <!-- CENTER -->
-
     <div class="center-unit">
 
       <div class="screen" id="screen">
 
-
-        <!-- STATUS -->
-
         <div class="status">
 
           <span class="system-name">
-
             <span class="system-dot"></span>
-
             SUNFISH
-
           </span>
 
           <span class="battery">
-
             100%
-
             <span class="battery-icon"></span>
-
           </span>
 
         </div>
-
-
-        <!-- SLIDER -->
 
         <div class="slider-wrap">
 
           <div class="slides" id="slides">
 
-
             <!-- PAGE 1 -->
-
             <section class="slide">
 
               <div class="slide-top">
-
                 <span>MAIN</span>
-
                 <span class="slide-line"></span>
-
-                <span class="slide-no">
-                  01
-                </span>
-
+                <span class="slide-no">01</span>
               </div>
-
 
               <a
                 class="cave-feature"
                 href="https://caveduck.io/ko/user/sunfish"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
 
                 <div class="duck-area">
 
                   <img
                     class="duck"
                     src="https://cdn.caveduck.io/cdn-cgi/image/anim=true,f=auto,fit=crop,g=top,w=400/charim/70b20bf0-a8cc-48d0-acd1-2709169f43a6?v=ac06f0"
-                    alt="CAVEDUCK"
-                  >
+                    alt="CAVEDUCK">
 
                 </div>
 
@@ -2643,34 +2057,21 @@ body{
 
             </section>
 
-
             <!-- PAGE 2 -->
-
             <section class="slide menu-page">
 
               <div class="slide-top">
-
                 <span>MENU</span>
-
                 <span class="slide-line"></span>
-
-                <span class="slide-no">
-                  02
-                </span>
-
+                <span class="slide-no">02</span>
               </div>
 
-
               <nav class="game-menu">
-
-
-                <!-- 01 -->
 
                 <button
                   class="game-row"
                   type="button"
-                  onclick="openInfo()"
-                >
+                  onclick="openInfo()">
 
                   <span class="menu-number">
                     01
@@ -2690,13 +2091,9 @@ body{
 
                 </button>
 
-
-                <!-- 02 -->
-
                 <a
                   class="game-row"
-                  href="mailto:sunfish.molamola.ocean@gmail.com"
-                >
+                  href="mailto:sunfish.molamola.ocean@gmail.com">
 
                   <span class="menu-number">
                     02
@@ -2716,30 +2113,23 @@ body{
 
                 </a>
 
-
-                <!-- 03 -->
-
                 <a
                   class="game-row"
                   href="https://rofan.ai/user/90a80efa-baf1-4bd6-a09d-7d90a6e4a3d1"
                   target="_blank"
-                  rel="noopener noreferrer"
-                >
+                  rel="noopener noreferrer">
 
                   <span class="menu-number">
                     03
                   </span>
 
                   <span class="menu-copy">
-
                     <span class="menu-ko">
                       로판AI
                     </span>
-
                   </span>
 
                 </a>
-
 
               </nav>
 
@@ -2747,17 +2137,14 @@ body{
 
           </div>
 
-
-          <!-- SLIDER CONTROL -->
-
+          <!-- PAGE BUTTONS -->
           <div class="slider-nav">
 
             <button
               class="nav-arrow"
               type="button"
               onclick="goPage(0)"
-              aria-label="이전 페이지"
-            >
+              aria-label="이전 페이지">
               ◀
             </button>
 
@@ -2768,16 +2155,16 @@ body{
                 id="dot0"
                 type="button"
                 onclick="goPage(0)"
-                aria-label="1페이지"
-              ></button>
+                aria-label="1페이지">
+              </button>
 
               <button
                 class="dot"
                 id="dot1"
                 type="button"
                 onclick="goPage(1)"
-                aria-label="2페이지"
-              ></button>
+                aria-label="2페이지">
+              </button>
 
             </div>
 
@@ -2785,18 +2172,67 @@ body{
               class="nav-arrow"
               type="button"
               onclick="goPage(1)"
-              aria-label="다음 페이지"
-            >
+              aria-label="다음 페이지">
               ▶
             </button>
 
           </div>
 
+          <!-- MUSIC EQUALIZER -->
+          <button
+            class="music-control"
+            id="musicControl"
+            type="button"
+            aria-label="음악 재생"
+            aria-pressed="false">
+
+            <span class="eq-bar"
+              style="--idle:7px;--low:5px;--high:17px;--speed:.72s;--delay:-.10s"></span>
+
+            <span class="eq-bar"
+              style="--idle:12px;--low:7px;--high:20px;--speed:.91s;--delay:-.42s"></span>
+
+            <span class="eq-bar"
+              style="--idle:8px;--low:4px;--high:14px;--speed:.63s;--delay:-.25s"></span>
+
+            <span class="eq-bar"
+              style="--idle:15px;--low:8px;--high:21px;--speed:.83s;--delay:-.58s"></span>
+
+            <span class="eq-bar"
+              style="--idle:10px;--low:5px;--high:18px;--speed:.68s;--delay:-.31s"></span>
+
+            <span class="eq-bar"
+              style="--idle:6px;--low:4px;--high:13px;--speed:.77s;--delay:-.66s"></span>
+
+            <span class="eq-bar"
+              style="--idle:13px;--low:7px;--high:20px;--speed:.58s;--delay:-.18s"></span>
+
+            <span class="eq-bar"
+              style="--idle:9px;--low:5px;--high:16px;--speed:.88s;--delay:-.49s"></span>
+
+            <span class="eq-bar"
+              style="--idle:16px;--low:8px;--high:21px;--speed:.70s;--delay:-.37s"></span>
+
+            <span class="eq-bar"
+              style="--idle:8px;--low:4px;--high:15px;--speed:.94s;--delay:-.12s"></span>
+
+            <span class="eq-bar"
+              style="--idle:12px;--low:6px;--high:19px;--speed:.61s;--delay:-.55s"></span>
+
+            <span class="eq-bar"
+              style="--idle:7px;--low:4px;--high:13px;--speed:.79s;--delay:-.28s"></span>
+
+            <span class="eq-bar"
+              style="--idle:14px;--low:7px;--high:21px;--speed:.67s;--delay:-.72s"></span>
+
+            <span class="eq-bar"
+              style="--idle:9px;--low:5px;--high:16px;--speed:.86s;--delay:-.21s"></span>
+
+          </button>
+
         </div>
 
-
-        <!-- INFO -->
-
+        <!-- INFO SCREEN -->
         <div class="info-screen">
 
           <div class="info-top">
@@ -2804,8 +2240,7 @@ body{
             <button
               class="back"
               type="button"
-              onclick="closeInfo()"
-            >
+              onclick="closeInfo()">
               ‹ BACK
             </button>
 
@@ -2813,71 +2248,54 @@ body{
 
           </div>
 
-
           <h2 class="info-title">
             캐릭터 이식 안내
           </h2>
-
 
           <div class="info-subtitle">
             CHARACTER TRANSFER
           </div>
 
-
           <div class="info-copy">
 
             <p>
-              일라이 이전에 제작한 캐릭터는 오리지널 표시가 붙어 있더라도
-              케이브덕 공식 크리에이터 신청 전에 제작한 캐릭터이기 때문에
-              이식이 가능합니다. 원하시는 경우 편하게 문의해 주세요.
+              일라이 이전에 제작한 캐릭터는 오리지널 표시가 붙어 있더라도 케이브덕 공식 크리에이터 신청 전에 제작한 캐릭터이기 때문에 이식이 가능합니다. 원하시는 경우 편하게 문의해 주세요.
             </p>
 
             <p>
-              다만 제가 이용해 보지 않은 사이트의 이식은 제작 방식을
-              따로 알아보고 테스트하는 과정이 필요해
-              시간이 다소 오래 소요될 수 있습니다.
+              다만 제가 이용해 보지 않은 사이트의 이식은 제작 방식을 따로 알아보고 테스트하는 과정이 필요해 시간이 다소 오래 소요될 수 있습니다.
             </p>
 
           </div>
 
-
           <button
             class="info-close"
             type="button"
-            onclick="closeInfo()"
-          >
+            onclick="closeInfo()">
             ◀ RETURN
           </button>
 
         </div>
 
-
       </div>
 
     </div>
 
-
     <!-- RIGHT CONTROLLER -->
-
     <aside class="controller right" aria-hidden="true">
 
       <div class="plus"></div>
 
-
       <div class="abxy">
-
         <div class="game-button x">X</div>
         <div class="game-button a">A</div>
         <div class="game-button b">B</div>
         <div class="game-button y">Y</div>
-
       </div>
-
 
       <div class="joy-stick"></div>
 
       <div class="home-button"></div>
-
 
       <div class="controller-dots">
         <i></i><i></i><i></i>
@@ -2886,37 +2304,37 @@ body{
 
     </aside>
 
-
   </section>
 
 </main>
 
+<!-- 실제 YouTube 플레이어 -->
+<div class="youtube-player-wrap" aria-hidden="true">
+  <div id="youtubePlayer"></div>
+</div>
 
 <script>
 
-const slides = document.getElementById("slides");
+/* =========================================================
+   PAGE SLIDER
+========================================================= */
 
+const slides = document.getElementById("slides");
 const dot0 = document.getElementById("dot0");
 const dot1 = document.getElementById("dot1");
 
-
 function goPage(page){
-
   slides.scrollTo({
     left:slides.clientWidth * page,
     behavior:"smooth"
   });
-
 }
-
 
 function updateDots(){
 
-  const page =
-    Math.round(
-      slides.scrollLeft /
-      slides.clientWidth
-    );
+  const page = Math.round(
+    slides.scrollLeft / slides.clientWidth
+  );
 
   dot0.classList.toggle(
     "active",
@@ -2927,9 +2345,7 @@ function updateDots(){
     "active",
     page === 1
   );
-
 }
-
 
 slides.addEventListener(
   "scroll",
@@ -2937,31 +2353,195 @@ slides.addEventListener(
   {passive:true}
 );
 
-
 window.addEventListener(
   "resize",
   updateDots
 );
 
 
-function openInfo(){
+/* =========================================================
+   INFO
+========================================================= */
 
+function openInfo(){
   document
     .getElementById("screen")
     .classList
     .add("show-info");
-
 }
 
-
 function closeInfo(){
-
   document
     .getElementById("screen")
     .classList
     .remove("show-info");
-
 }
+
+
+/* =========================================================
+   YOUTUBE MUSIC
+========================================================= */
+
+const musicControl =
+  document.getElementById("musicControl");
+
+let youtubePlayer = null;
+let youtubeReady = false;
+let musicPlaying = false;
+let requestedPlay = false;
+
+
+/* YouTube iframe API 불러오기 */
+const youtubeScript =
+  document.createElement("script");
+
+youtubeScript.src =
+  "https://www.youtube.com/iframe_api";
+
+document.head.appendChild(
+  youtubeScript
+);
+
+
+/* API 준비 완료 */
+function onYouTubeIframeAPIReady(){
+
+  youtubePlayer = new YT.Player(
+    "youtubePlayer",
+    {
+      width:"100",
+      height:"100",
+
+      videoId:"zwA13CahRkc",
+
+      playerVars:{
+        autoplay:0,
+        controls:0,
+        disablekb:1,
+        fs:0,
+        playsinline:1,
+        rel:0
+      },
+
+      events:{
+        onReady:onPlayerReady,
+        onStateChange:onPlayerStateChange
+      }
+    }
+  );
+}
+
+
+/* 플레이어 준비 */
+function onPlayerReady(){
+
+  youtubeReady = true;
+
+  if(requestedPlay){
+    requestedPlay = false;
+    playMusic();
+  }
+}
+
+
+/* YouTube 실제 상태에 맞춰 이퀄라이저 상태 변경 */
+function onPlayerStateChange(event){
+
+  if(event.data === YT.PlayerState.PLAYING){
+
+    musicPlaying = true;
+
+    musicControl
+      .classList
+      .add("playing");
+
+    musicControl.setAttribute(
+      "aria-label",
+      "음악 일시정지"
+    );
+
+    musicControl.setAttribute(
+      "aria-pressed",
+      "true"
+    );
+
+  }
+
+  if(
+    event.data === YT.PlayerState.PAUSED ||
+    event.data === YT.PlayerState.ENDED
+  ){
+
+    musicPlaying = false;
+
+    musicControl
+      .classList
+      .remove("playing");
+
+    musicControl.setAttribute(
+      "aria-label",
+      "음악 재생"
+    );
+
+    musicControl.setAttribute(
+      "aria-pressed",
+      "false"
+    );
+  }
+}
+
+
+/* 음악 재생 */
+function playMusic(){
+
+  if(!youtubeReady || !youtubePlayer){
+
+    requestedPlay = true;
+    return;
+  }
+
+  try{
+    youtubePlayer.playVideo();
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
+
+/* 음악 정지 */
+function pauseMusic(){
+
+  if(!youtubeReady || !youtubePlayer){
+    return;
+  }
+
+  try{
+    youtubePlayer.pauseVideo();
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
+
+/* 이퀄라이저 클릭 */
+musicControl.addEventListener(
+  "click",
+  function(){
+
+    if(musicPlaying){
+
+      pauseMusic();
+
+    }else{
+
+      playMusic();
+
+    }
+
+  }
+);
 
 </script>
 
