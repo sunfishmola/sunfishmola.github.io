@@ -31,7 +31,6 @@ body{
 body{
   margin:0;
   overflow-x:hidden;
-
   color:var(--ink);
 
   font-family:
@@ -88,8 +87,7 @@ body{
 
   border-radius:999px;
 
-  background:
-    rgba(255,255,255,.38);
+  background:rgba(255,255,255,.38);
 
   filter:blur(.3px);
 
@@ -105,8 +103,7 @@ body{
 
   border-radius:50%;
 
-  background:
-    rgba(255,255,255,.38);
+  background:rgba(255,255,255,.38);
 }
 
 .cloud::before{
@@ -202,8 +199,7 @@ body{
 
   border-radius:50%;
 
-  background:
-    rgba(255,255,255,.72);
+  background:rgba(255,255,255,.72);
 }
 
 .bubble-1{
@@ -290,8 +286,7 @@ body{
 .sky-sparkle{
   position:absolute;
 
-  color:
-    rgba(255,255,255,.88);
+  color:rgba(255,255,255,.88);
 
   font-family:
     "Nunito",
@@ -1098,35 +1093,6 @@ body{
     sans-serif;
 
   letter-spacing:.14em;
-}
-
-.small-menu{
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-}
-
-.small-menu .game-row{
-  grid-template-columns:
-    35px 1fr;
-
-  min-height:61px;
-}
-
-.small-menu .game-row:first-child{
-  border-top:0;
-
-  border-right:
-    1px dashed rgba(104,178,213,.38);
-}
-
-.small-menu .game-row:last-child{
-  border-top:0;
-}
-
-.game-row.disabled{
-  cursor:default;
 }
 
 
@@ -2015,13 +1981,6 @@ body{
     font-size:5.5px;
   }
 
-  .small-menu .game-row{
-    min-height:45px;
-
-    grid-template-columns:
-      25px 1fr;
-  }
-
 
   /* PAGE DOTS */
 
@@ -2484,13 +2443,6 @@ body{
       27px 1fr;
   }
 
-  .small-menu .game-row{
-    min-height:42px;
-
-    grid-template-columns:
-      23px 1fr;
-  }
-
   .menu-ko{
     font-size:11px;
   }
@@ -2519,9 +2471,7 @@ body{
 <body>
 
 
-<!-- =========================
-     BACKGROUND
-========================= -->
+<!-- BACKGROUND -->
 
 <div class="bg-deco" aria-hidden="true">
 
@@ -2714,6 +2664,8 @@ body{
               <nav class="game-menu">
 
 
+                <!-- 01 -->
+
                 <button
                   class="game-row"
                   type="button"
@@ -2739,6 +2691,8 @@ body{
                 </button>
 
 
+                <!-- 02 -->
+
                 <a
                   class="game-row"
                   href="mailto:sunfish.molamola.ocean@gmail.com"
@@ -2763,49 +2717,29 @@ body{
                 </a>
 
 
-                <div class="small-menu">
+                <!-- 03 -->
 
+                <a
+                  class="game-row"
+                  href="https://rofan.ai/user/90a80efa-baf1-4bd6-a09d-7d90a6e4a3d1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
 
-                  <a
-                    class="game-row"
-                    href="https://rofan.ai/user/90a80efa-baf1-4bd6-a09d-7d90a6e4a3d1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <span class="menu-number">
+                    03
+                  </span>
 
-                    <span class="menu-number">
-                      03
+                  <span class="menu-copy">
+
+                    <span class="menu-ko">
+                      로판AI
                     </span>
 
-                    <span class="menu-copy">
+                  </span>
 
-                      <span class="menu-ko">
-                        로판AI
-                      </span>
+                </a>
 
-                    </span>
-
-                  </a>
-
-
-                  <div class="game-row disabled">
-
-                    <span class="menu-number">
-                      04
-                    </span>
-
-                    <span class="menu-copy">
-
-                      <span class="menu-ko">
-                        —
-                      </span>
-
-                    </span>
-
-                  </div>
-
-
-                </div>
 
               </nav>
 
