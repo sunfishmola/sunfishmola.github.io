@@ -180,14 +180,12 @@ body::after{
   right:8%;
   top:70px;
   font-size:18px;
-  animation-delay:.8s;
 }
 
 .star.c{
   left:20%;
   bottom:7px;
   font-size:13px;
-  animation-delay:1.4s;
 }
 
 @keyframes twinkle{
@@ -493,7 +491,7 @@ body::after{
 
 
 /* =========================
-   SCREEN
+   SCREEN CONTENT
 ========================= */
 
 .screen-page{
@@ -582,8 +580,6 @@ body::after{
   display:flex;
   align-items:center;
   justify-content:center;
-
-  margin-bottom:0;
 }
 
 .duck{
@@ -642,7 +638,7 @@ body::after{
 
 
 /* =========================
-   GAME MENU
+   MENU
 ========================= */
 
 .game-menu{
@@ -791,7 +787,7 @@ body::after{
 
 
 /* =========================
-   SCREEN BOTTOM
+   BOTTOM
 ========================= */
 
 .screen-bottom{
@@ -830,7 +826,7 @@ body::after{
 
 
 /* =========================
-   INFO SCREEN
+   INFO
 ========================= */
 
 .info-screen{
@@ -1025,7 +1021,7 @@ body::after{
 
 
 /* =========================
-   MINUS / PLUS
+   PLUS / MINUS
 ========================= */
 
 .minus{
@@ -1176,28 +1172,24 @@ body::after{
 .dpad-arrow.up{
   left:50%;
   top:8px;
-
   transform:translateX(-50%);
 }
 
 .dpad-arrow.down{
   left:50%;
   bottom:8px;
-
   transform:translateX(-50%);
 }
 
 .dpad-arrow.left-arrow{
   left:8px;
   top:50%;
-
   transform:translateY(-50%);
 }
 
 .dpad-arrow.right-arrow{
   right:8px;
   top:50%;
-
   transform:translateY(-50%);
 }
 
@@ -1399,7 +1391,7 @@ body::after{
 
 
 /* =========================
-   SPEAKER DOTS
+   SPEAKER
 ========================= */
 
 .controller-dots{
@@ -1433,20 +1425,21 @@ body::after{
 }
 
 
-/* =========================
+/* ======================================================
    MOBILE
-========================= */
+   가운데 화면을 넓히고 컨트롤러는 얇은 장식형으로 변경
+====================================================== */
 
 @media(max-width:560px){
 
   .page{
-    width:calc(100% - 10px);
-    padding:28px 0 42px;
+    width:calc(100% - 8px);
+    padding:25px 0 38px;
   }
 
   .hero{
     min-height:115px;
-    margin-bottom:8px;
+    margin-bottom:9px;
   }
 
   .sunfish-logo{
@@ -1463,252 +1456,493 @@ body::after{
     height:58px;
   }
 
+
+  /* 핵심: 좌우 44px */
+
   .handheld{
     grid-template-columns:
-      72px
+      44px
       minmax(0,1fr)
-      72px;
+      44px;
 
     min-height:510px;
 
-    border-radius:36px;
+    border-radius:29px;
   }
 
   .handheld::after{
-    border-radius:36px;
+    border-radius:29px;
+    border-width:2px;
   }
 
   .controller.left{
     border-radius:
-      34px 0 0 34px;
+      27px 0 0 27px;
   }
 
   .controller.right{
     border-radius:
-      0 34px 34px 0;
+      0 27px 27px 0;
   }
 
+
+  /* 가운데 프레임도 얇게 */
+
   .center-unit{
-    padding:6px;
+    padding:5px;
   }
 
   .screen{
-    min-height:496px;
-    border-radius:12px;
+    min-height:500px;
+
+    border-radius:11px;
+
+    border-width:1.5px;
   }
+
+
+  /* 상단 */
 
   .status{
     height:35px;
-    padding:0 8px;
+
+    padding:0 9px;
+
     font-size:8px;
   }
 
+  .system-dot{
+    width:6px;
+    height:6px;
+  }
+
+  .battery-icon{
+    width:18px;
+    height:9px;
+  }
+
+  .battery-icon::before{
+    width:12px;
+    height:3px;
+  }
+
+
+  /* 가운데 콘텐츠 */
+
   .screen-page{
     padding:
-      14px 10px 12px;
+      14px 14px 12px;
   }
 
   .menu-header{
     font-size:8px;
+
+    margin-bottom:5px;
   }
 
+
+  /* CAVEDUCK 영역 */
+
   .cave-feature{
-    min-height:170px;
+    min-height:174px;
+
+    padding:
+      3px 8px 14px;
   }
 
   .duck-area{
-    height:92px;
+    height:96px;
   }
 
   .duck{
-    height:87px;
-    max-width:135px;
+    height:91px;
+    max-width:150px;
   }
 
   .caveduck-title{
     font-size:
-      clamp(23px,7vw,30px);
+      clamp(26px,8vw,34px);
+  }
+
+  .caveduck-sub{
+    font-size:7px;
+  }
+
+
+  /* 메뉴 */
+
+  .game-menu{
+    padding-top:7px;
   }
 
   .game-row{
-    min-height:54px;
+    min-height:55px;
 
     grid-template-columns:
-      32px 1fr;
+      35px 1fr;
+
+    padding:
+      7px 6px;
+  }
+
+  .menu-number{
+    font-size:10px;
+  }
+
+  .menu-ko{
+    font-size:14px;
+  }
+
+  .menu-en{
+    font-size:7px;
+  }
+
+  .small-menu .game-row{
+    grid-template-columns:
+      31px 1fr;
+  }
+
+
+  /* 상세 안내도 화면 넓어진 만큼 읽기 편하게 */
+
+  .info-title{
+    font-size:19px;
+  }
+
+  .info-copy{
+    padding:
+      18px 5px 8px;
+
+    font-size:13px;
+    line-height:1.85;
+  }
+
+
+  /* =========================
+     MOBILE CONTROLS
+     44px 폭에 맞춰 축소
+  ========================= */
+
+  .controller::after{
+    left:4px;
+    right:4px;
+  }
+
+
+  /* 조이스틱 */
+
+  .joy-stick{
+    width:28px;
+    height:28px;
+
+    border-width:2px;
+
+    box-shadow:
+      0 0 0 1px rgba(61,151,207,.32),
+      0 3px 4px rgba(49,113,157,.12),
+      inset 0 2px 3px rgba(255,255,255,.65);
+  }
+
+  .joy-stick::after{
+    inset:6px;
+
+    border-width:1px;
+  }
+
+  .left .joy-stick{
+    top:67px;
+  }
+
+  .right .joy-stick{
+    top:178px;
+  }
+
+
+  /* 마이너스 */
+
+  .minus{
+    top:25px;
+    right:8px;
+
+    width:14px;
+    height:4px;
+  }
+
+
+  /* 플러스 */
+
+  .plus{
+    top:20px;
+    left:7px;
+
+    width:16px;
+    height:16px;
+  }
+
+  .plus::before{
+    width:16px;
+    height:4px;
+  }
+
+  .plus::after{
+    width:4px;
+    height:16px;
+  }
+
+
+  /* D-PAD 전체 축소 */
+
+  .dpad{
+    top:151px;
+
+    width:38px;
+    height:38px;
+
+    filter:
+      drop-shadow(
+        0 2px 2px
+        rgba(48,112,159,.12)
+      );
+  }
+
+  .dpad-v{
+    width:15px;
+    height:38px;
+
+    left:11.5px;
+
+    border-width:1px;
+    border-radius:5px;
+  }
+
+  .dpad-h{
+    width:38px;
+    height:15px;
+
+    top:11.5px;
+
+    border-width:1px;
+    border-radius:5px;
+  }
+
+  .dpad-center{
+    width:14px;
+    height:14px;
+
+    border-radius:3px;
+  }
+
+  .dpad-arrow{
+    font-size:5px;
+  }
+
+  .dpad-arrow.up{
+    top:4px;
+  }
+
+  .dpad-arrow.down{
+    bottom:4px;
+  }
+
+  .dpad-arrow.left-arrow{
+    left:4px;
+  }
+
+  .dpad-arrow.right-arrow{
+    right:4px;
+  }
+
+
+  /* ABXY */
+
+  .abxy{
+    top:62px;
+
+    width:40px;
+    height:40px;
+  }
+
+  .game-button{
+    width:18px;
+    height:18px;
+
+    border-width:1px;
+
+    font-size:6px;
+  }
+
+  .game-button.x{
+    left:11px;
+  }
+
+  .game-button.a{
+    top:11px;
+  }
+
+  .game-button.b{
+    left:11px;
+  }
+
+  .game-button.y{
+    top:11px;
+  }
+
+
+  /* 캡처 버튼 */
+
+  .capture{
+    width:20px;
+    height:20px;
+
+    bottom:65px;
+
+    border-width:1px;
+
+    border-radius:5px;
+  }
+
+  .capture::after{
+    width:8px;
+    height:8px;
+  }
+
+
+  /* 홈 버튼 */
+
+  .home-button{
+    width:21px;
+    height:21px;
+
+    bottom:64px;
+
+    border-width:1px;
+  }
+
+  .home-button::before{
+    width:7px;
+    height:6px;
+
+    border-width:1px;
+  }
+
+  .home-button::after{
+    top:5px;
+
+    width:5px;
+    height:5px;
+
+    border-left-width:1px;
+    border-top-width:1px;
+  }
+
+
+  /* 스피커 점 */
+
+  .controller-dots{
+    bottom:22px;
+
+    grid-template-columns:
+      repeat(2,3px);
+
+    gap:4px;
+  }
+
+  .controller-dots i{
+    width:3px;
+    height:3px;
+  }
+
+}
+
+
+/* =========================
+   VERY SMALL PHONE
+========================= */
+
+@media(max-width:380px){
+
+  .page{
+    width:calc(100% - 6px);
+  }
+
+  .handheld{
+    grid-template-columns:
+      40px
+      minmax(0,1fr)
+      40px;
+
+    border-radius:27px;
+  }
+
+  .handheld::after{
+    border-radius:27px;
+  }
+
+  .controller.left{
+    border-radius:
+      25px 0 0 25px;
+  }
+
+  .controller.right{
+    border-radius:
+      0 25px 25px 0;
+  }
+
+  .center-unit{
+    padding:4px;
+  }
+
+  .screen-page{
+    padding-left:11px;
+    padding-right:11px;
+  }
+
+  .caveduck-title{
+    font-size:
+      clamp(24px,8vw,31px);
+  }
+
+  .duck{
+    height:85px;
+    max-width:140px;
   }
 
   .menu-ko{
     font-size:13px;
   }
 
-  .menu-en{
-    font-size:6px;
+  .game-row{
+    grid-template-columns:
+      31px 1fr;
   }
 
   .small-menu .game-row{
     grid-template-columns:
-      29px 1fr;
+      27px 1fr;
+  }
+
+  .dpad{
+    transform:
+      translateX(-50%)
+      scale(.9);
+  }
+
+  .abxy{
+    transform:
+      translateX(-50%)
+      scale(.9);
   }
 
   .joy-stick{
-    width:39px;
-    height:39px;
-  }
-
-  .joy-stick::after{
-    inset:8px;
-  }
-
-  .left .joy-stick{
-    top:61px;
-  }
-
-  .right .joy-stick{
-    top:172px;
-  }
-
-  .dpad{
-    top:146px;
-
-    width:61px;
-    height:61px;
-  }
-
-  .dpad-v{
-    width:24px;
-    height:61px;
-    left:18.5px;
-  }
-
-  .dpad-h{
-    width:61px;
-    height:24px;
-    top:18.5px;
-  }
-
-  .dpad-center{
-    width:22px;
-    height:22px;
-  }
-
-  .dpad-arrow{
-    font-size:7px;
-  }
-
-  .dpad-arrow.up{
-    top:7px;
-  }
-
-  .dpad-arrow.down{
-    bottom:7px;
-  }
-
-  .dpad-arrow.left-arrow{
-    left:7px;
-  }
-
-  .dpad-arrow.right-arrow{
-    right:7px;
-  }
-
-  .abxy{
-    top:59px;
-
-    width:62px;
-    height:62px;
-  }
-
-  .game-button{
-    width:27px;
-    height:27px;
-
-    font-size:9px;
-  }
-
-  .game-button.x{
-    left:17.5px;
-  }
-
-  .game-button.b{
-    left:17.5px;
-  }
-
-  .game-button.a{
-    top:17.5px;
-  }
-
-  .game-button.y{
-    top:17.5px;
-  }
-
-  .minus{
-    top:22px;
-    right:9px;
-
-    width:17px;
-  }
-
-  .plus{
-    top:17px;
-    left:9px;
-
-    transform:scale(.82);
-  }
-
-  .capture{
-    width:26px;
-    height:26px;
-
-    bottom:60px;
-  }
-
-  .home-button{
-    width:28px;
-    height:28px;
-
-    bottom:59px;
-
-    transform:
-      translateX(-50%)
-      scale(.92);
-  }
-}
-
-
-@media(max-width:380px){
-
-  .handheld{
-    grid-template-columns:
-      66px
-      minmax(0,1fr)
-      66px;
-  }
-
-  .screen-page{
-    padding-left:8px;
-    padding-right:8px;
-  }
-
-  .dpad{
     transform:
       translateX(-50%)
       scale(.92);
   }
 
-  .abxy{
-    transform:
-      translateX(-50%)
-      scale(.92);
+  .info-copy{
+    font-size:12.5px;
   }
 
-  .menu-ko{
-    font-size:12px;
-  }
-
-  .duck{
-    height:80px;
-    max-width:120px;
-  }
 }
 
 </style>
@@ -1717,6 +1951,7 @@ body::after{
 <body>
 
 <main class="page">
+
 
   <!-- SUNFISH LOGO -->
 
@@ -1799,16 +2034,14 @@ body::after{
         </div>
 
 
-        <!-- HOME -->
+        <!-- HOME SCREEN -->
 
         <div class="screen-page home-screen">
 
 
           <div class="menu-header">
 
-            <span>
-              MAIN MENU
-            </span>
+            <span>MAIN MENU</span>
 
             <span class="menu-header-line"></span>
 
@@ -1918,9 +2151,11 @@ body::after{
                 </span>
 
                 <span class="menu-copy">
+
                   <span class="menu-ko">
                     로판AI
                   </span>
+
                 </span>
 
               </a>
@@ -1933,9 +2168,11 @@ body::after{
                 </span>
 
                 <span class="menu-copy">
+
                   <span class="menu-ko">
                     —
                   </span>
+
                 </span>
 
               </div>
@@ -1954,7 +2191,7 @@ body::after{
         </div>
 
 
-        <!-- CHARACTER TRANSFER INFO -->
+        <!-- CHARACTER TRANSFER -->
 
         <div class="screen-page info-screen">
 
