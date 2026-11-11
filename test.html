@@ -18,11 +18,13 @@
 
     body {
       min-height: 100vh;
+
+      /* 배경 이미지를 자르지 않고 전체 표시 */
       background-color: #000;
       background-image: url("사이트배경.png");
       background-repeat: no-repeat;
-      background-position: 65% center;
-      background-size: cover;
+      background-position: center bottom;
+      background-size: contain;
       background-attachment: fixed;
 
       color: #f4f4f2;
@@ -39,10 +41,6 @@
       padding: 40px 5vw;
     }
 
-    /*
-      왼쪽 전용 공간.
-      제목, 레코드판, 안내 문구를 함께 배치.
-    */
     .player-area {
       width: min(100%, 650px);
       text-align: center;
@@ -63,10 +61,6 @@
       color: #ddd;
     }
 
-    /*
-      기존 720px에서 576px로 축소.
-      레코드판과 톤암의 상대적 위치는 유지.
-    */
     .turntable {
       position: relative;
       width: min(100%, 576px);
@@ -138,13 +132,10 @@
       color: #f4f4f2;
     }
 
-    /*
-      모바일에서는 화면 너비에 맞게
-      턴테이블을 줄이고 가운데 배치.
-    */
     @media (max-width: 700px) {
       body {
-        background-position: 65% center;
+        background-position: center bottom;
+        background-size: contain;
         background-attachment: scroll;
       }
 
@@ -242,11 +233,7 @@
     }
 
     function updateTonearm(angle) {
-      currentAngle = clamp(
-        angle,
-        MIN_ANGLE,
-        MAX_ANGLE
-      );
+      currentAngle = clamp(angle, MIN_ANGLE, MAX_ANGLE);
 
       tonearm.style.transform =
         `rotate(${currentAngle}deg)`;
@@ -309,17 +296,10 @@
       let difference =
         pointerAngle - startPointerAngle;
 
-      if (difference > 180) {
-        difference -= 360;
-      }
+      if (difference > 180) difference -= 360;
+      if (difference < -180) difference += 360;
 
-      if (difference < -180) {
-        difference += 360;
-      }
-
-      updateTonearm(
-        startTonearmAngle + difference
-      );
+      updateTonearm(startTonearmAngle + difference);
     });
 
     function endDrag() {
@@ -335,4 +315,5 @@
   </script>
 </body>
 </html>
+
 
