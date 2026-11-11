@@ -23,8 +23,10 @@
       background-color: #000;
       background-image: url("커플.png");
       background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: contain;
+
+      /* PC: 전신이 보이도록 높이를 기준으로 조절 */
+      background-size: auto 90vh;
+      background-position: right bottom;
       background-attachment: fixed;
 
       color: #f4f4f2;
@@ -128,11 +130,15 @@
       color: #f4f4f2;
     }
 
-    /* 모바일 전용 설정 */
+    /* 모바일 전용 */
     @media (max-width: 700px) {
       body {
+        /*
+          모바일에서는 전신이 더 잘 보이도록
+          배경 크기를 줄임.
+        */
+        background-size: auto 75svh;
         background-position: center bottom;
-        background-size: contain;
         background-attachment: scroll;
       }
 
@@ -325,4 +331,3 @@
   </script>
 </body>
 </html>
-
