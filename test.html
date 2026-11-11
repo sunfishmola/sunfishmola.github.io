@@ -73,13 +73,13 @@
       pointer-events: none;
       -webkit-user-drag: none;
 
-      /* 이번에 추가한 부분 */
       clip-path: circle(48.5% at 50% 50%);
       -webkit-clip-path: circle(48.5% at 50% 50%);
     }
 
     .vinyl.playing {
-      animation: spin 2s linear infinite;
+      /* 회전 속도만 변경: 2초 → 3초 */
+      animation: spin 3s linear infinite;
     }
 
     @keyframes spin {
@@ -197,7 +197,6 @@
     const MIN_ANGLE = -27;
     const MAX_ANGLE = 0;
 
-    // 이전에 조정한 재생 기준 유지
     const PLAY_THRESHOLD = -12;
 
     let currentAngle = REST_ANGLE;
@@ -304,4 +303,5 @@
   </script>
 </body>
 </html>
+
 
