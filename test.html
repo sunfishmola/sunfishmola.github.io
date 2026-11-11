@@ -21,7 +21,7 @@
     body {
       min-height: 100vh;
       background-color: #000;
-      background-image: url("사이트배경.png");
+      background-image: url("오토바이.png");
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: contain;
@@ -128,7 +128,7 @@
       color: #f4f4f2;
     }
 
-    /* 모바일 전용 수정 */
+    /* 모바일 전용 설정 */
     @media (max-width: 700px) {
       body {
         background-position: center bottom;
@@ -160,25 +160,11 @@
         margin-bottom: 12px;
       }
 
-      /*
-        모바일에서는 턴테이블을 조금 축소하고
-        위쪽에 배치해 가로 넘침 방지.
-      */
       .turntable {
         width: min(76vw, 380px);
         margin: 0 auto;
       }
 
-      /*
-        톤암과 레코드의 상대적 크기는 유지.
-        회전 각도와 위치도 그대로.
-      */
-
-      /*
-        글자를 턴테이블 바로 아래에 배치.
-        배경 그림과 겹침을 줄이기 위해
-        반투명 검정 배경 추가.
-      */
       .instructions {
         display: inline-block;
         margin: 10px auto 0;
@@ -339,4 +325,5 @@
   </script>
 </body>
 </html>
+
 
