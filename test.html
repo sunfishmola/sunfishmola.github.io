@@ -22,14 +22,14 @@
       color: #222;
       font-family: Georgia, "Times New Roman", serif;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       overflow-x: hidden;
     }
 
     .page {
       width: 100%;
-      padding: 42px 12px;
+      padding: 40px 12px;
       text-align: center;
     }
 
@@ -41,16 +41,12 @@
     }
 
     .subtitle {
-      margin: 0 0 30px;
+      margin: 0 0 28px;
       font-size: 11px;
       letter-spacing: 0.2em;
       color: #777;
     }
 
-    /*
-      턴테이블 전체 영역
-      레코드판 중심을 화면 중앙에 맞춤
-    */
     .turntable {
       position: relative;
       width: min(94vw, 720px);
@@ -60,18 +56,16 @@
       -webkit-user-select: none;
     }
 
-    /*
-      레코드판: 정확히 가운데
-    */
+    /* 레코드판은 화면 정중앙에 고정 */
     .vinyl {
       position: absolute;
       width: 69%;
       height: auto;
       left: 50%;
       top: 50%;
-      display: block;
       transform: translate(-50%, -50%);
       transform-origin: center;
+      display: block;
       pointer-events: none;
       -webkit-user-drag: none;
     }
@@ -84,36 +78,23 @@
       from {
         transform: translate(-50%, -50%) rotate(0deg);
       }
-
       to {
         transform: translate(-50%, -50%) rotate(360deg);
       }
     }
 
     /*
-      톤암 이미지는 오른쪽 위 지지대가
-      고정된 상태로 회전하도록 설정
+      톤암은 오른쪽 위에 배치.
+      이미지 속 원형 지지대 중심을 기준으로 회전.
     */
     .tonearm {
       position: absolute;
       width: 73%;
       height: auto;
-
-      /*
-        이미지의 지지대 중심이
-        턴테이블 오른쪽 위에 오도록 배치
-      */
       left: 39%;
       top: -8%;
-
-      /*
-        업로드한 톤암 이미지의
-        오른쪽 위 원형 지지대 중심
-      */
       transform-origin: 77% 17%;
-
-      transform: rotate(-8deg);
-
+      transform: rotate(0deg);
       z-index: 2;
       cursor: grab;
       touch-action: none;
@@ -127,9 +108,8 @@
     .instructions {
       margin: 22px 0 0;
       font-size: 12px;
-      letter-spacing: 0.04em;
-      color: #777;
       line-height: 1.8;
+      color: #777;
     }
 
     .status {
@@ -148,12 +128,12 @@
         width: 98vw;
       }
 
-      .subtitle {
-        margin-bottom: 24px;
-      }
-
       h1 {
         font-size: 20px;
+      }
+
+      .subtitle {
+        margin-bottom: 24px;
       }
 
       .instructions {
@@ -191,7 +171,7 @@
     </div>
 
     <p class="instructions">
-      Drag the tonearm to play the record.<br>
+      Move the tonearm onto the record to play.<br>
       Move it back to stop.
     </p>
 
@@ -206,23 +186,31 @@
     const statusText = document.getElementById("status");
 
     /*
-      -8도: 기본 대기 위치
-      14도: 레코드 위 재생 위치
-
-      이전처럼 바늘이 중앙 라벨까지
-      넘어가지 않도록 회전 범위를 제한
-    */
-    const REST_ANGLE = -8;
-    const MIN_ANGLE = -8;
-    const MAX_ANGLE = 14;
-    const PLAY_ANGLE = 5;
-
-    /*
-      이미지 안에서 실제 지지대 중심의
-      상대 좌표
+      톤암 이미지의 회전축 위치.
+      기존 업로드 이미지 기준.
     */
     const PIVOT_X = 0.77;
     const PIVOT_Y = 0.17;
+
+    /*
+      양수 방향으로 돌면 바늘이 오른쪽으로 빠지고,
+      음수 방향으로 돌면 레코드 안쪽으로 들어옴.
+
+      REST: 레코드 바깥쪽 대기 위치
+      PLAY: 처음 화면과 비슷한 재생 위치
+    */
+    const REST_ANGLE = 13;
+    const PLAY_ANGLE = -8;
+
+    const MIN_ANGLE = -8;
+    const MAX_ANGLE = 13;
+
+    /*
+      이 각도 이하로 들어오면 재생.
+      중앙 라벨 쪽으로 더 들어가지 않도록
+      MIN_ANGLE에서 제한.
+    */
+    const PLAY_THRESHOLD = -3;
 
     let currentAngle = REST_ANGLE;
     let dragging = false;
@@ -244,35 +232,30 @@
       tonearm.style.transform =
         `rotate(${currentAngle}deg)`;
 
-      const playing = currentAngle >= PLAY_ANGLE;
+      const playing =
+        currentAngle <= PLAY_THRESHOLD;
 
       vinyl.classList.toggle("playing", playing);
 
-      statusText.textContent = playing
-        ? "PLAYING"
-        : "STOPPED";
+      statusText.textContent =
+        playing ? "PLAYING" : "STOPPED";
     }
 
-    /*
-      톤암의 실제 회전축 위치를 계산
-    */
     function getPivotPosition() {
-      const tableRect = turntable.getBoundingClientRect();
+      const rect = turntable.getBoundingClientRect();
 
       const imageLeft =
-        tableRect.left +
-        tableRect.width * 0.39;
+        rect.left + rect.width * 0.39;
 
       const imageTop =
-        tableRect.top -
-        tableRect.height * 0.08;
+        rect.top - rect.height * 0.08;
 
       const imageWidth =
-        tableRect.width * 0.73;
+        rect.width * 0.73;
 
       /*
-        톤암 이미지의 원래 가로세로 비율
-        1434 x 1434 기준
+        현재 톤암 이미지가 정사각형인
+        것을 기준으로 계산.
       */
       const imageHeight = imageWidth;
 
@@ -298,7 +281,6 @@
       startTonearmAngle = currentAngle;
 
       tonearm.classList.add("dragging");
-
       tonearm.setPointerCapture(event.pointerId);
 
       event.preventDefault();
@@ -312,10 +294,6 @@
       let difference =
         pointerAngle - startPointerAngle;
 
-      /*
-        각도가 -180도 / 180도를 지날 때
-        갑자기 튀지 않도록 보정
-      */
       if (difference > 180) {
         difference -= 360;
       }
