@@ -22,12 +22,8 @@
       background-color: #000;
       background-image: url("사이트배경.png");
       background-repeat: no-repeat;
-
-      /* 화면 너비에 맞춰 좌우 여백 제거 */
-      background-size: 100% auto;
-
-      /* 이미지 아래쪽을 화면 아래에 맞춤 */
       background-position: center bottom;
+      background-size: contain;
       background-attachment: fixed;
 
       color: #f4f4f2;
@@ -84,9 +80,6 @@
       display: block;
       pointer-events: none;
       -webkit-user-drag: none;
-
-      clip-path: circle(48.5% at 50% 50%);
-      -webkit-clip-path: circle(48.5% at 50% 50%);
     }
 
     .vinyl.playing {
@@ -137,8 +130,8 @@
 
     @media (max-width: 700px) {
       body {
-        background-size: 100% auto;
         background-position: center bottom;
+        background-size: contain;
         background-attachment: scroll;
       }
 
@@ -182,10 +175,10 @@
       <div class="turntable" id="turntable">
 
         <img
-          src="빈티지 선피시 레코드 레이블.png"
+          src="레코드.png"
           class="vinyl"
           id="vinyl"
-          alt="SUNFISH vinyl record"
+          alt="Black vinyl record"
           draggable="false"
         >
 
@@ -222,6 +215,7 @@
     const REST_ANGLE = -27;
     const MIN_ANGLE = -27;
     const MAX_ANGLE = 0;
+
     const PLAY_THRESHOLD = -12;
 
     let currentAngle = REST_ANGLE;
@@ -295,7 +289,8 @@
 
       const pointerAngle = getPointerAngle(event);
 
-      let difference = pointerAngle - startPointerAngle;
+      let difference =
+        pointerAngle - startPointerAngle;
 
       if (difference > 180) difference -= 360;
       if (difference < -180) difference += 360;
