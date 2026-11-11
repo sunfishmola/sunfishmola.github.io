@@ -47,16 +47,16 @@ body {
   flex-shrink: 0;
 }
 
-/* SUNFISH — 바랜 회색 잉크 효과 */
+/* SUNFISH — 좁은 자간 + 회색 잉크 번짐 */
 h1 {
   position: relative;
   display: inline-block;
   margin: 0 0 8px;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 300;
   line-height: 1.1;
-  letter-spacing: .19em;
+  letter-spacing: .035em;
   color: #777777;
 
   text-shadow:
@@ -153,7 +153,7 @@ h1::after {
   display: none;
 }
 
-/* 기존 유튜브 연결 유지 */
+/* 유튜브 플레이어 화면 밖에 배치 */
 .youtube-player-wrap {
   position: fixed;
   left: -300px;
@@ -194,8 +194,8 @@ h1::after {
   }
 
   h1 {
-    font-size: 35px;
-    letter-spacing: .16em;
+    font-size: 32px;
+    letter-spacing: .035em;
     margin-bottom: 8px;
   }
 
@@ -298,7 +298,7 @@ h1::after {
 
 </main>
 
-<!-- 기존 유튜브 플레이어 -->
+<!-- 화면 밖 유튜브 플레이어 -->
 <div class="youtube-player-wrap" aria-hidden="true">
   <div id="youtube-player"></div>
 </div>
@@ -461,3 +461,4 @@ updateTonearm(REST_ANGLE);
 
 </body>
 </html>
+
