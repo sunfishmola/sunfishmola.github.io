@@ -56,6 +56,11 @@
       -webkit-user-select: none;
     }
 
+    /*
+      레코드판:
+      바깥쪽의 불규칙한 테두리를
+      원형 마스크로 숨김.
+    */
     .vinyl {
       position: absolute;
       width: 69%;
@@ -67,6 +72,10 @@
       display: block;
       pointer-events: none;
       -webkit-user-drag: none;
+
+      /* 이번에 추가한 부분 */
+      clip-path: circle(48.5% at 50% 50%);
+      -webkit-clip-path: circle(48.5% at 50% 50%);
     }
 
     .vinyl.playing {
@@ -184,19 +193,12 @@
     const PIVOT_X = 0.77;
     const PIVOT_Y = 0.17;
 
-    // 기존 위치와 회전 범위는 그대로 유지
     const REST_ANGLE = -27;
     const MIN_ANGLE = -27;
     const MAX_ANGLE = 0;
 
-    /*
-      변경된 부분:
-      기존 -5도에서 -19도로 조정.
-
-      톤암을 조금만 안쪽으로 움직여도
-      레코드판 회전이 시작됨.
-    */
-    const PLAY_THRESHOLD = -19;
+    // 이전에 조정한 재생 기준 유지
+    const PLAY_THRESHOLD = -12;
 
     let currentAngle = REST_ANGLE;
     let dragging = false;
@@ -302,3 +304,4 @@
   </script>
 </body>
 </html>
+
