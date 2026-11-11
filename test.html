@@ -18,27 +18,35 @@
 
     body {
       min-height: 100vh;
-
-      /* 사이트 배경 이미지 적용 */
       background-color: #000;
       background-image: url("사이트배경.png");
       background-repeat: no-repeat;
-      background-position: center center;
+      background-position: 65% center;
       background-size: cover;
       background-attachment: fixed;
 
       color: #f4f4f2;
       font-family: Georgia, "Times New Roman", serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow-x: hidden;
     }
 
     .page {
+      min-height: 100vh;
       width: 100%;
-      padding: 36px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 5vw;
+    }
+
+    /*
+      왼쪽 전용 공간.
+      제목, 레코드판, 안내 문구를 함께 배치.
+    */
+    .player-area {
+      width: min(100%, 650px);
       text-align: center;
+      flex-shrink: 0;
     }
 
     h1 {
@@ -55,9 +63,13 @@
       color: #ddd;
     }
 
+    /*
+      기존 720px에서 576px로 축소.
+      레코드판과 톤암의 상대적 위치는 유지.
+    */
     .turntable {
       position: relative;
-      width: min(94vw, 720px);
+      width: min(100%, 576px);
       aspect-ratio: 1.3 / 1;
       margin: 0 auto;
       user-select: none;
@@ -113,7 +125,7 @@
     }
 
     .instructions {
-      margin: 22px 0 0;
+      margin: 18px 0 0;
       font-size: 12px;
       line-height: 1.8;
       color: #ddd;
@@ -126,13 +138,27 @@
       color: #f4f4f2;
     }
 
-    @media (max-width: 600px) {
+    /*
+      모바일에서는 화면 너비에 맞게
+      턴테이블을 줄이고 가운데 배치.
+    */
+    @media (max-width: 700px) {
+      body {
+        background-position: 65% center;
+        background-attachment: scroll;
+      }
+
       .page {
-        padding: 28px 4px;
+        justify-content: center;
+        padding: 40px 10px;
+      }
+
+      .player-area {
+        width: 100%;
       }
 
       .turntable {
-        width: 98vw;
+        width: min(96vw, 576px);
       }
 
       h1 {
@@ -154,35 +180,39 @@
 <body>
   <main class="page">
 
-    <h1>SUNFISH</h1>
-    <p class="subtitle">ANALOG SOUND EXPERIENCE</p>
+    <section class="player-area">
 
-    <div class="turntable" id="turntable">
+      <h1>SUNFISH</h1>
+      <p class="subtitle">ANALOG SOUND EXPERIENCE</p>
 
-      <img
-        src="빈티지 선피시 레코드 레이블.png"
-        class="vinyl"
-        id="vinyl"
-        alt="SUNFISH vinyl record"
-        draggable="false"
-      >
+      <div class="turntable" id="turntable">
 
-      <img
-        src="실버 턴테이블 톤암 어셈블리.png"
-        class="tonearm"
-        id="tonearm"
-        alt="Turntable tonearm"
-        draggable="false"
-      >
+        <img
+          src="빈티지 선피시 레코드 레이블.png"
+          class="vinyl"
+          id="vinyl"
+          alt="SUNFISH vinyl record"
+          draggable="false"
+        >
 
-    </div>
+        <img
+          src="실버 턴테이블 톤암 어셈블리.png"
+          class="tonearm"
+          id="tonearm"
+          alt="Turntable tonearm"
+          draggable="false"
+        >
 
-    <p class="instructions">
-      Move the tonearm onto the record to play.<br>
-      Move it back to stop.
-    </p>
+      </div>
 
-    <div class="status" id="status">STOPPED</div>
+      <p class="instructions">
+        Move the tonearm onto the record to play.<br>
+        Move it back to stop.
+      </p>
+
+      <div class="status" id="status">STOPPED</div>
+
+    </section>
 
   </main>
 
@@ -305,4 +335,5 @@
   </script>
 </body>
 </html>
+
 
