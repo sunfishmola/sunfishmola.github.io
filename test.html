@@ -19,12 +19,15 @@
     body {
       min-height: 100vh;
 
-      /* 배경 이미지를 자르지 않고 전체 표시 */
       background-color: #000;
       background-image: url("사이트배경.png");
       background-repeat: no-repeat;
+
+      /* 화면 너비에 맞춰 좌우 여백 제거 */
+      background-size: 100% auto;
+
+      /* 이미지 아래쪽을 화면 아래에 맞춤 */
       background-position: center bottom;
-      background-size: contain;
       background-attachment: fixed;
 
       color: #f4f4f2;
@@ -134,8 +137,8 @@
 
     @media (max-width: 700px) {
       body {
+        background-size: 100% auto;
         background-position: center bottom;
-        background-size: contain;
         background-attachment: scroll;
       }
 
@@ -219,7 +222,6 @@
     const REST_ANGLE = -27;
     const MIN_ANGLE = -27;
     const MAX_ANGLE = 0;
-
     const PLAY_THRESHOLD = -12;
 
     let currentAngle = REST_ANGLE;
@@ -293,8 +295,7 @@
 
       const pointerAngle = getPointerAngle(event);
 
-      let difference =
-        pointerAngle - startPointerAngle;
+      let difference = pointerAngle - startPointerAngle;
 
       if (difference > 180) difference -= 360;
       if (difference < -180) difference += 360;
