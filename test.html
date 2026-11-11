@@ -14,11 +14,12 @@
     html, body {
       margin: 0;
       min-height: 100%;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     body {
       min-height: 100vh;
-
       background-color: #000;
       background-image: url("사이트배경.png");
       background-repeat: no-repeat;
@@ -28,7 +29,6 @@
 
       color: #f4f4f2;
       font-family: Georgia, "Times New Roman", serif;
-      overflow-x: hidden;
     }
 
     .page {
@@ -69,10 +69,6 @@
       -webkit-user-select: none;
     }
 
-    /*
-      레코드판 크기만 변경:
-      기존 69% → 100%
-    */
     .vinyl {
       position: absolute;
       width: 100%;
@@ -132,6 +128,7 @@
       color: #f4f4f2;
     }
 
+    /* 모바일 전용 수정 */
     @media (max-width: 700px) {
       body {
         background-position: center bottom;
@@ -140,29 +137,65 @@
       }
 
       .page {
+        min-height: 100svh;
+        align-items: flex-start;
         justify-content: center;
-        padding: 40px 10px;
+        padding: 35px 12px 60px;
       }
 
       .player-area {
         width: 100%;
-      }
-
-      .turntable {
-        width: min(96vw, 576px);
+        max-width: 100%;
+        min-width: 0;
+        flex-shrink: 1;
       }
 
       h1 {
         font-size: 20px;
+        margin-bottom: 8px;
       }
 
       .subtitle {
-        margin-bottom: 24px;
+        font-size: 10px;
+        margin-bottom: 12px;
       }
 
+      /*
+        모바일에서는 턴테이블을 조금 축소하고
+        위쪽에 배치해 가로 넘침 방지.
+      */
+      .turntable {
+        width: min(76vw, 380px);
+        margin: 0 auto;
+      }
+
+      /*
+        톤암과 레코드의 상대적 크기는 유지.
+        회전 각도와 위치도 그대로.
+      */
+
+      /*
+        글자를 턴테이블 바로 아래에 배치.
+        배경 그림과 겹침을 줄이기 위해
+        반투명 검정 배경 추가.
+      */
       .instructions {
-        margin-top: 16px;
+        display: inline-block;
+        margin: 10px auto 0;
+        padding: 7px 12px;
+        font-size: 10px;
+        line-height: 1.7;
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 4px;
+      }
+
+      .status {
+        width: fit-content;
+        margin: 8px auto 0;
+        padding: 5px 10px;
         font-size: 11px;
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 4px;
       }
     }
   </style>
@@ -219,7 +252,6 @@
     const REST_ANGLE = -27;
     const MIN_ANGLE = -27;
     const MAX_ANGLE = 0;
-
     const PLAY_THRESHOLD = -12;
 
     let currentAngle = REST_ANGLE;
@@ -238,8 +270,7 @@
       tonearm.style.transform =
         `rotate(${currentAngle}deg)`;
 
-      const playing =
-        currentAngle >= PLAY_THRESHOLD;
+      const playing = currentAngle >= PLAY_THRESHOLD;
 
       vinyl.classList.toggle("playing", playing);
 
@@ -250,15 +281,9 @@
     function getPivotPosition() {
       const rect = turntable.getBoundingClientRect();
 
-      const imageLeft =
-        rect.left + rect.width * 0.39;
-
-      const imageTop =
-        rect.top - rect.height * 0.08;
-
-      const imageWidth =
-        rect.width * 0.73;
-
+      const imageLeft = rect.left + rect.width * 0.39;
+      const imageTop = rect.top - rect.height * 0.08;
+      const imageWidth = rect.width * 0.73;
       const imageHeight = imageWidth;
 
       return {
@@ -293,8 +318,7 @@
 
       const pointerAngle = getPointerAngle(event);
 
-      let difference =
-        pointerAngle - startPointerAngle;
+      let difference = pointerAngle - startPointerAngle;
 
       if (difference > 180) difference -= 360;
       if (difference < -180) difference += 360;
@@ -315,3 +339,4 @@
   </script>
 </body>
 </html>
+
