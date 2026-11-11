@@ -142,18 +142,47 @@ h1::after {
   color: #444;
 }
 
-.status {
-  margin-top: 12px;
-  font-size: 12px;
-  letter-spacing: .15em;
-  color: #111;
+/* 오디오 파형 */
+.audio-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 54px;
+  margin: 4px auto 0;
+}
+
+.audio-wave .bar {
+  display: block;
+  width: 5px;
+  height: var(--height);
+  border-radius: 999px;
+  background: #777777;
+  opacity: .65;
+  box-shadow: 0 0 5px rgba(110, 110, 110, .15);
+  transform-origin: center;
+  animation: waveMove var(--duration) ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.audio-wave.playing .bar {
+  animation-play-state: running;
+}
+
+@keyframes waveMove {
+  from {
+    transform: scaleY(.3);
+  }
+  to {
+    transform: scaleY(1.25);
+  }
 }
 
 .couple-mobile {
   display: none;
 }
 
-/* 유튜브 플레이어 화면 밖에 배치 */
+/* 기존 유튜브 연결 유지 */
 .youtube-player-wrap {
   position: fixed;
   left: -300px;
@@ -220,12 +249,14 @@ h1::after {
     color: #444;
   }
 
-  .status {
-    width: fit-content;
-    margin: 10px auto 0;
-    padding: 0;
-    font-size: 11px;
-    color: #111;
+  .audio-wave {
+    height: 48px;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  .audio-wave .bar {
+    width: 4px;
   }
 
   .couple-mobile {
@@ -245,6 +276,12 @@ h1::after {
     max-height: 78svh;
     margin: 0 auto;
     object-fit: contain;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio-wave .bar {
+    animation: none;
   }
 }
 </style>
@@ -284,7 +321,28 @@ h1::after {
       Move it back to stop.
     </p>
 
-    <div class="status" id="status">STOPPED</div>
+    <!-- PLAYING / STOPPED 대신 오디오 파형 -->
+    <div
+      class="audio-wave"
+      id="audioWave"
+      role="status"
+      aria-label="Stopped"
+    >
+      <span class="bar" style="--height:22px;--duration:.75s"></span>
+      <span class="bar" style="--height:30px;--duration:1.10s"></span>
+      <span class="bar" style="--height:25px;--duration:.85s"></span>
+      <span class="bar" style="--height:40px;--duration:1.20s"></span>
+      <span class="bar" style="--height:34px;--duration:.70s"></span>
+      <span class="bar" style="--height:26px;--duration:1.05s"></span>
+      <span class="bar" style="--height:36px;--duration:.90s"></span>
+      <span class="bar" style="--height:20px;--duration:1.15s"></span>
+      <span class="bar" style="--height:44px;--duration:.80s"></span>
+      <span class="bar" style="--height:12px;--duration:1.25s"></span>
+      <span class="bar" style="--height:24px;--duration:.95s"></span>
+      <span class="bar" style="--height:30px;--duration:.72s"></span>
+      <span class="bar" style="--height:26px;--duration:1.12s"></span>
+      <span class="bar" style="--height:18px;--duration:.88s"></span>
+    </div>
 
   </section>
 
@@ -307,7 +365,7 @@ h1::after {
 const turntable = document.getElementById("turntable");
 const vinyl = document.getElementById("vinyl");
 const tonearm = document.getElementById("tonearm");
-const statusText = document.getElementById("status");
+const audioWave = document.getElementById("audioWave");
 
 const PIVOT_X = .77;
 const PIVOT_Y = .17;
@@ -391,8 +449,12 @@ function updateTonearm(angle) {
 
   vinyl.classList.toggle("playing", playing);
 
-  statusText.textContent =
-    playing ? "PLAYING" : "STOPPED";
+  /* 음악 재생 시 파형 움직임 */
+  audioWave.classList.toggle("playing", playing);
+  audioWave.setAttribute(
+    "aria-label",
+    playing ? "Playing" : "Stopped"
+  );
 
   if (playing !== wantsToPlay) {
     syncMusic(playing);
@@ -461,4 +523,3 @@ updateTonearm(REST_ANGLE);
 
 </body>
 </html>
-
