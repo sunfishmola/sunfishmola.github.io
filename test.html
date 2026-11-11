@@ -24,8 +24,6 @@
       background-image: url("커플.png");
       background-repeat: no-repeat;
       background-size: auto 90vh;
-
-      /* 커플을 오른쪽 끝에서 왼쪽으로 120px 이동 */
       background-position: calc(100% - 120px) bottom;
       background-attachment: fixed;
 
@@ -130,26 +128,37 @@
       color: #f4f4f2;
     }
 
-    /* 모바일 전용 설정 */
+    /*
+      PC에서는 사용하지 않고,
+      모바일에서만 커플 이미지 표시
+    */
+    .couple-mobile {
+      display: none;
+    }
+
+    /* 모바일 전용 배치 */
     @media (max-width: 700px) {
       body {
-        background-size: auto 75svh;
-        background-position: center bottom;
-        background-attachment: scroll;
+        /* 모바일 배경 이미지 제거 */
+        background-image: none;
+        background-color: #000;
       }
 
       .page {
         min-height: 100svh;
-        align-items: flex-start;
-        justify-content: center;
-        padding: 35px 12px 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 34px 0 0;
       }
 
       .player-area {
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        flex-shrink: 1;
+        flex-shrink: 0;
+        padding: 0 12px;
       }
 
       h1 {
@@ -159,31 +168,58 @@
 
       .subtitle {
         font-size: 10px;
-        margin-bottom: 12px;
+        margin-bottom: 18px;
       }
 
+      /*
+        턴테이블을 화면 위쪽에 배치.
+        톤암이 오른쪽으로 뻗는 공간까지 고려.
+      */
       .turntable {
         width: min(76vw, 380px);
         margin: 0 auto;
       }
 
       .instructions {
-        display: inline-block;
-        margin: 10px auto 0;
-        padding: 7px 12px;
-        font-size: 10px;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: 18px auto 0;
+        padding: 0;
+        font-size: 11px;
         line-height: 1.7;
-        background: rgba(0, 0, 0, 0.75);
-        border-radius: 4px;
+        background: none;
       }
 
       .status {
         width: fit-content;
-        margin: 8px auto 0;
-        padding: 5px 10px;
+        margin: 10px auto 0;
+        padding: 0;
         font-size: 11px;
-        background: rgba(0, 0, 0, 0.75);
-        border-radius: 4px;
+        background: none;
+      }
+
+      /*
+        커플은 별도 영역에 표시.
+        레코드나 안내 문구와 겹치지 않음.
+      */
+      .couple-mobile {
+        display: block;
+        width: 100%;
+        margin-top: 36px;
+        text-align: center;
+        line-height: 0;
+        overflow: hidden;
+      }
+
+      .couple-mobile img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 78svh;
+        margin: 0 auto;
+        object-fit: contain;
       }
     }
   </style>
@@ -191,12 +227,14 @@
 
 <body>
   <main class="page">
+
     <section class="player-area">
 
       <h1>SUNFISH</h1>
       <p class="subtitle">ANALOG SOUND EXPERIENCE</p>
 
       <div class="turntable" id="turntable">
+
         <img
           src="레코드.png"
           class="vinyl"
@@ -212,6 +250,7 @@
           alt="Turntable tonearm"
           draggable="false"
         >
+
       </div>
 
       <p class="instructions">
@@ -222,6 +261,16 @@
       <div class="status" id="status">STOPPED</div>
 
     </section>
+
+    <!-- 모바일에서만 보이는 커플 이미지 -->
+    <div class="couple-mobile">
+      <img
+        src="커플.png"
+        alt="Couple illustration"
+        draggable="false"
+      >
+    </div>
+
   </main>
 
   <script>
@@ -323,4 +372,3 @@
   </script>
 </body>
 </html>
-
