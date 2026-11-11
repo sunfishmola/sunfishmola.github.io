@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SUNFISH — Turntable Test</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -66,8 +67,13 @@
     }
 
     @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .tonearm {
@@ -122,14 +128,17 @@
     }
   </style>
 </head>
+
 <body>
   <main class="page">
+
     <h1>SUNFISH</h1>
     <p class="subtitle">ANALOG SOUND EXPERIENCE</p>
 
     <div class="turntable" id="turntable">
+
       <img
-        src="vinyl.png"
+        src="빈티지 선피시 레코드 레이블.png"
         class="vinyl"
         id="vinyl"
         alt="SUNFISH vinyl record"
@@ -137,12 +146,13 @@
       >
 
       <img
-        src="tonearm.png"
+        src="실버 턴테이블 톤암 어셈블리.png"
         class="tonearm"
         id="tonearm"
         alt="Turntable tonearm"
         draggable="false"
       >
+
     </div>
 
     <p class="instructions">
@@ -151,6 +161,7 @@
     </p>
 
     <div class="status" id="status">STOPPED</div>
+
   </main>
 
   <script>
@@ -167,20 +178,28 @@
     const PLAY_ANGLE = 2;
 
     function setAngle(value) {
-      angle = Math.max(MIN_ANGLE, Math.min(MAX_ANGLE, value));
+      angle = Math.max(
+        MIN_ANGLE,
+        Math.min(MAX_ANGLE, value)
+      );
 
       tonearm.style.transform = `rotate(${angle}deg)`;
 
       const playing = angle >= PLAY_ANGLE;
 
       vinyl.classList.toggle("playing", playing);
-      status.textContent = playing ? "PLAYING" : "STOPPED";
+
+      status.textContent = playing
+        ? "PLAYING"
+        : "STOPPED";
     }
 
     tonearm.addEventListener("pointerdown", (event) => {
       dragging = true;
+
       tonearm.classList.add("dragging");
       tonearm.setPointerCapture(event.pointerId);
+
       event.preventDefault();
     });
 
