@@ -23,10 +23,10 @@
       background-color: #000;
       background-image: url("커플.png");
       background-repeat: no-repeat;
-
-      /* PC: 전신이 보이도록 높이를 기준으로 조절 */
       background-size: auto 90vh;
-      background-position: right bottom;
+
+      /* 커플을 오른쪽 끝에서 왼쪽으로 120px 이동 */
+      background-position: calc(100% - 120px) bottom;
       background-attachment: fixed;
 
       color: #f4f4f2;
@@ -130,13 +130,9 @@
       color: #f4f4f2;
     }
 
-    /* 모바일 전용 */
+    /* 모바일 전용 설정 */
     @media (max-width: 700px) {
       body {
-        /*
-          모바일에서는 전신이 더 잘 보이도록
-          배경 크기를 줄임.
-        */
         background-size: auto 75svh;
         background-position: center bottom;
         background-attachment: scroll;
@@ -195,14 +191,12 @@
 
 <body>
   <main class="page">
-
     <section class="player-area">
 
       <h1>SUNFISH</h1>
       <p class="subtitle">ANALOG SOUND EXPERIENCE</p>
 
       <div class="turntable" id="turntable">
-
         <img
           src="레코드.png"
           class="vinyl"
@@ -218,7 +212,6 @@
           alt="Turntable tonearm"
           draggable="false"
         >
-
       </div>
 
       <p class="instructions">
@@ -229,7 +222,6 @@
       <div class="status" id="status">STOPPED</div>
 
     </section>
-
   </main>
 
   <script>
@@ -331,3 +323,4 @@
   </script>
 </body>
 </html>
+
