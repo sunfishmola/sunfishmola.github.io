@@ -193,12 +193,8 @@ h1::after {
 }
 
 @keyframes waveMove {
-  from {
-    transform: scaleY(.3);
-  }
-  to {
-    transform: scaleY(1.25);
-  }
+  from { transform: scaleY(.3); }
+  to { transform: scaleY(1.25); }
 }
 
 /* 오른쪽 콘텐츠 영역 */
@@ -222,12 +218,10 @@ h1::after {
   background-position: calc(100% - 120px) bottom;
   opacity: 1;
   visibility: visible;
-  transition:
-    opacity .45s ease,
-    visibility .45s ease;
+  transition: opacity .45s ease, visibility .45s ease;
 }
 
-/* 공지 / 캐릭터 글 */
+/* NOTICE / CHARACTERS 패널 */
 .text-panel {
   position: absolute;
   inset: 0;
@@ -246,14 +240,17 @@ h1::after {
 
 .text-panel-inner {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   max-height: 80vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
   pointer-events: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 }
 
 .text-panel h2 {
-  margin: 0 0 30px;
+  margin: 0 0 28px;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 32px;
   font-weight: 300;
@@ -269,11 +266,95 @@ h1::after {
   word-break: keep-all;
 }
 
-.text-panel .small-label {
-  margin-bottom: 8px;
-  font-size: 10px;
-  letter-spacing: .16em;
+/* 목록 */
+.entry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.entry-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 2px;
+  border: 0;
+  border-bottom: 1px solid #e6e6e6;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: #666;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  transition: color .25s ease;
+}
+
+.entry-button:hover {
+  color: #222;
+}
+
+.entry-button::after {
+  content: "→";
+  flex-shrink: 0;
+  font-size: 16px;
+  color: #aaa;
+}
+
+/* 상세 페이지 */
+.detail-view {
+  display: none;
+}
+
+.detail-view.active {
+  display: block;
+}
+
+.list-view.hidden {
+  display: none;
+}
+
+.back-button {
+  display: inline-block;
+  margin: 0 0 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: #999;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 11px;
+  letter-spacing: .05em;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  color: #444;
+}
+
+.detail-title {
+  margin-bottom: 22px !important;
+}
+
+.detail-image {
+  display: block;
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin: 0 auto 28px;
+}
+
+.detail-label {
+  margin: 28px 0 10px !important;
+  font-size: 10px !important;
+  letter-spacing: .14em;
+  color: #999 !important;
+}
+
+.detail-divider {
+  height: 1px;
+  background: #e6e6e6;
+  margin: 28px 0;
 }
 
 /* 메뉴 전환 */
@@ -366,7 +447,6 @@ h1::after {
     width: 4px;
   }
 
-  /* 모바일에서는 턴테이블 아래 콘텐츠 표시 */
   .content-area {
     position: relative;
     right: auto;
@@ -403,6 +483,11 @@ h1::after {
     font-size: 12px;
     line-height: 2.1;
   }
+
+  .entry-button {
+    font-size: 13px;
+    padding: 18px 2px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -426,7 +511,6 @@ h1::after {
 
     <h1 data-text="SUNFISH">SUNFISH</h1>
 
-    <!-- 상단 메뉴 -->
     <nav class="site-nav" aria-label="Site navigation">
       <button
         class="nav-button active"
@@ -475,7 +559,6 @@ h1::after {
       Move it back to stop.
     </p>
 
-    <!-- 오디오 파형 -->
     <div
       class="audio-wave"
       id="audioWave"
@@ -513,48 +596,203 @@ h1::after {
 
     <!-- NOTICE -->
     <article class="text-panel notice-panel">
-      <div class="text-panel-inner">
-        <h2>NOTICE</h2>
+      <div class="text-panel-inner" id="noticeScroll">
 
-        <p class="small-label">01 / WELCOME</p>
-        <p>
-          SUNFISH에 오신 것을 환영합니다.
-        </p>
-        <p>
-          이 공간에는 사이트 공지사항이나
-          업데이트 소식 등을 자유롭게 작성할 수 있습니다.
-        </p>
+        <!-- 공지 목록 -->
+        <div class="list-view" id="noticeList">
+          <h2>NOTICE</h2>
 
-        <p class="small-label">02 / INFORMATION</p>
-        <p>
-          앞으로 추가할 이야기와 작업 기록을
-          이곳에 정리할 예정입니다.
-        </p>
+          <div class="entry-list">
+            <button
+              class="entry-button"
+              type="button"
+              data-detail="notice-welcome"
+            >사이트 안내</button>
+
+            <button
+              class="entry-button"
+              type="button"
+              data-detail="notice-update"
+            >업데이트 소식</button>
+          </div>
+        </div>
+
+        <!-- 공지 상세: 사이트 안내 -->
+        <div class="detail-view" id="notice-welcome">
+          <button class="back-button" type="button" data-back="notice">
+            ← 목록으로
+          </button>
+
+          <h2 class="detail-title">사이트 안내</h2>
+
+          <p>
+            SUNFISH에 오신 것을 환영합니다.
+          </p>
+
+          <p>
+            이곳에는 사이트 소개와 안내 사항을
+            자유롭게 작성할 수 있습니다.
+          </p>
+
+          <p>
+            글이 길어지더라도 이 영역 안에서
+            스크롤하면서 읽을 수 있습니다.
+          </p>
+        </div>
+
+        <!-- 공지 상세: 업데이트 소식 -->
+        <div class="detail-view" id="notice-update">
+          <button class="back-button" type="button" data-back="notice">
+            ← 목록으로
+          </button>
+
+          <h2 class="detail-title">업데이트 소식</h2>
+
+          <p>
+            새로운 업데이트 내용을 작성하는 공간입니다.
+          </p>
+
+          <p>
+            추가된 캐릭터나 새로운 작업물,
+            변경 사항 등을 기록할 수 있습니다.
+          </p>
+        </div>
+
       </div>
     </article>
 
     <!-- CHARACTERS -->
     <article class="text-panel characters-panel">
-      <div class="text-panel-inner">
-        <h2>CHARACTERS</h2>
+      <div class="text-panel-inner" id="charactersScroll">
 
-        <p class="small-label">01 / CHARACTER</p>
-        <p>
-          첫 번째 캐릭터 소개를 적는 공간입니다.
-        </p>
-        <p>
-          이름, 성격, 특징, 좋아하는 것 등
-          자유롭게 작성할 수 있습니다.
-        </p>
+        <!-- 캐릭터 / 세계관 목록 -->
+        <div class="list-view" id="charactersList">
+          <h2>CHARACTERS</h2>
 
-        <p class="small-label">02 / CHARACTER</p>
-        <p>
-          두 번째 캐릭터 소개를 적는 공간입니다.
-        </p>
-        <p>
-          두 사람의 관계나 이야기를
-          이곳에 적어도 좋습니다.
-        </p>
+          <div class="entry-list">
+            <button
+              class="entry-button"
+              type="button"
+              data-detail="character-first"
+            >첫 번째 캐릭터</button>
+
+            <button
+              class="entry-button"
+              type="button"
+              data-detail="character-second"
+            >두 번째 캐릭터</button>
+
+            <button
+              class="entry-button"
+              type="button"
+              data-detail="character-third"
+            >세 번째 캐릭터</button>
+
+            <button
+              class="entry-button"
+              type="button"
+              data-detail="character-fourth"
+            >네 번째 캐릭터</button>
+          </div>
+        </div>
+
+        <!-- 첫 번째 캐릭터 -->
+        <div class="detail-view" id="character-first">
+          <button class="back-button" type="button" data-back="characters">
+            ← 목록으로
+          </button>
+
+          <h2 class="detail-title">첫 번째 캐릭터</h2>
+
+          <p class="detail-label">PROFILE</p>
+          <p>
+            이름 : 미정<br>
+            나이 : 미정<br>
+            성격 : 미정
+          </p>
+
+          <div class="detail-divider"></div>
+
+          <p class="detail-label">STORY</p>
+          <p>
+            이곳에 캐릭터의 설정이나 이야기를 적어주세요.
+          </p>
+
+          <p>
+            과거 이야기, 성격, 특징, 다른 캐릭터와의 관계 등
+            원하는 만큼 길게 작성할 수 있습니다.
+          </p>
+        </div>
+
+        <!-- 두 번째 캐릭터 -->
+        <div class="detail-view" id="character-second">
+          <button class="back-button" type="button" data-back="characters">
+            ← 목록으로
+          </button>
+
+          <h2 class="detail-title">두 번째 캐릭터</h2>
+
+          <p class="detail-label">PROFILE</p>
+          <p>
+            이름 : 미정<br>
+            나이 : 미정<br>
+            성격 : 미정
+          </p>
+
+          <div class="detail-divider"></div>
+
+          <p class="detail-label">STORY</p>
+          <p>
+            두 번째 캐릭터의 소개를 작성하는 공간입니다.
+          </p>
+        </div>
+
+        <!-- 세 번째 캐릭터 -->
+        <div class="detail-view" id="character-third">
+          <button class="back-button" type="button" data-back="characters">
+            ← 목록으로
+          </button>
+
+          <h2 class="detail-title">세 번째 캐릭터</h2>
+
+          <p class="detail-label">PROFILE</p>
+          <p>
+            이름 : 미정<br>
+            나이 : 미정<br>
+            성격 : 미정
+          </p>
+
+          <div class="detail-divider"></div>
+
+          <p class="detail-label">STORY</p>
+          <p>
+            세 번째 캐릭터의 소개를 작성하는 공간입니다.
+          </p>
+        </div>
+
+        <!-- 네 번째 캐릭터 -->
+        <div class="detail-view" id="character-fourth">
+          <button class="back-button" type="button" data-back="characters">
+            ← 목록으로
+          </button>
+
+          <h2 class="detail-title">네 번째 캐릭터</h2>
+
+          <p class="detail-label">PROFILE</p>
+          <p>
+            이름 : 미정<br>
+            나이 : 미정<br>
+            성격 : 미정
+          </p>
+
+          <div class="detail-divider"></div>
+
+          <p class="detail-label">STORY</p>
+          <p>
+            네 번째 캐릭터의 소개를 작성하는 공간입니다.
+          </p>
+        </div>
+
       </div>
     </article>
 
@@ -572,6 +810,18 @@ h1::after {
 const contentArea = document.getElementById("contentArea");
 const navButtons = document.querySelectorAll(".nav-button");
 
+function resetDetails(section) {
+  const panel = document.querySelector("." + section + "-panel");
+
+  panel.querySelectorAll(".detail-view").forEach(detail => {
+    detail.classList.remove("active");
+  });
+
+  panel.querySelector(".list-view").classList.remove("hidden");
+
+  panel.querySelector(".text-panel-inner").scrollTop = 0;
+}
+
 navButtons.forEach(button => {
   button.addEventListener("click", () => {
     const target = button.dataset.target;
@@ -587,6 +837,39 @@ navButtons.forEach(button => {
         String(isActive)
       );
     });
+
+    if (target === "notice" || target === "characters") {
+      resetDetails(target);
+    }
+  });
+});
+
+/* 목록에서 상세 페이지 열기 */
+document.querySelectorAll("[data-detail]").forEach(button => {
+  button.addEventListener("click", () => {
+    const detailId = button.dataset.detail;
+    const detail = document.getElementById(detailId);
+
+    if (!detail) return;
+
+    const panel = button.closest(".text-panel");
+
+    panel.querySelector(".list-view").classList.add("hidden");
+
+    panel.querySelectorAll(".detail-view").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    detail.classList.add("active");
+
+    panel.querySelector(".text-panel-inner").scrollTop = 0;
+  });
+});
+
+/* 상세 페이지에서 목록으로 돌아가기 */
+document.querySelectorAll("[data-back]").forEach(button => {
+  button.addEventListener("click", () => {
+    resetDetails(button.dataset.back);
   });
 });
 
