@@ -18,8 +18,16 @@
 
     body {
       min-height: 100vh;
-      background: #f4f4f2;
-      color: #222;
+
+      /* 사이트 배경 이미지 적용 */
+      background-color: #000;
+      background-image: url("사이트배경.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-attachment: fixed;
+
+      color: #f4f4f2;
       font-family: Georgia, "Times New Roman", serif;
       display: flex;
       align-items: center;
@@ -44,7 +52,7 @@
       margin: 0 0 28px;
       font-size: 11px;
       letter-spacing: 0.2em;
-      color: #777;
+      color: #ddd;
     }
 
     .turntable {
@@ -56,11 +64,6 @@
       -webkit-user-select: none;
     }
 
-    /*
-      레코드판:
-      바깥쪽의 불규칙한 테두리를
-      원형 마스크로 숨김.
-    */
     .vinyl {
       position: absolute;
       width: 69%;
@@ -78,7 +81,6 @@
     }
 
     .vinyl.playing {
-      /* 회전 속도만 변경: 2초 → 3초 */
       animation: spin 3s linear infinite;
     }
 
@@ -114,14 +116,14 @@
       margin: 22px 0 0;
       font-size: 12px;
       line-height: 1.8;
-      color: #777;
+      color: #ddd;
     }
 
     .status {
       margin-top: 12px;
       font-size: 12px;
       letter-spacing: 0.15em;
-      color: #333;
+      color: #f4f4f2;
     }
 
     @media (max-width: 600px) {
@@ -303,5 +305,4 @@
   </script>
 </body>
 </html>
-
 
