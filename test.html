@@ -2,439 +2,443 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUNFISH — Turntable Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUNFISH — Turntable Test</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      width: 100%;
-      overflow-x: hidden;
-    }
+html, body {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
 
-    body {
-      min-height: 100vh;
-      background-color: #fff;
-      background-image: url("커플.png");
-      background-repeat: no-repeat;
-      background-size: auto 90vh;
-      background-position: calc(100% - 120px) bottom;
-      background-attachment: fixed;
+body {
+  min-height: 100vh;
+  background-color: #fff;
+  background-image: url("커플.png");
+  background-repeat: no-repeat;
+  background-size: auto 90vh;
+  background-position: calc(100% - 120px) bottom;
+  background-attachment: fixed;
+  color: #111;
+  font-family: Georgia, "Times New Roman", serif;
+}
 
-      color: #111;
-      font-family: Georgia, "Times New Roman", serif;
-    }
+.page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 5vw;
+}
 
-    .page {
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 40px 5vw;
-    }
+.player-area {
+  width: min(100%, 650px);
+  text-align: center;
+  flex-shrink: 0;
+}
 
-    .player-area {
-      width: min(100%, 650px);
-      text-align: center;
-      flex-shrink: 0;
-    }
+h1 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: normal;
+  letter-spacing: .25em;
+}
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      font-weight: normal;
-      letter-spacing: 0.25em;
-    }
+.subtitle {
+  margin: 0 0 28px;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: #555;
+}
 
-    .subtitle {
-      margin: 0 0 28px;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: #555;
-    }
+.turntable {
+  position: relative;
+  width: min(100%, 576px);
+  aspect-ratio: 1.3 / 1;
+  margin: 0 auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
 
-    .turntable {
-      position: relative;
-      width: min(100%, 576px);
-      aspect-ratio: 1.3 / 1;
-      margin: 0 auto;
-      user-select: none;
-      -webkit-user-select: none;
-    }
+.vinyl {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
 
-    .vinyl {
-      position: absolute;
-      width: 100%;
-      height: auto;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      transform-origin: center;
-      display: block;
-      pointer-events: none;
-      -webkit-user-drag: none;
-    }
+.vinyl.playing {
+  animation: spin 3s linear infinite;
+}
 
-    .vinyl.playing {
-      animation: spin 3s linear infinite;
-    }
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 
-    @keyframes spin {
-      from {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
+.tonearm {
+  position: absolute;
+  width: 73%;
+  height: auto;
+  left: 39%;
+  top: -8%;
+  transform-origin: 77% 17%;
+  transform: rotate(0deg);
+  z-index: 2;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-drag: none;
+}
 
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
-    }
+.tonearm.dragging {
+  cursor: grabbing;
+}
 
-    .tonearm {
-      position: absolute;
-      width: 73%;
-      height: auto;
-      left: 39%;
-      top: -8%;
-      transform-origin: 77% 17%;
-      transform: rotate(0deg);
-      z-index: 2;
-      cursor: grab;
-      touch-action: none;
-      -webkit-user-drag: none;
-    }
+.instructions {
+  margin: 18px 0 0;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #444;
+}
 
-    .tonearm.dragging {
-      cursor: grabbing;
-    }
+.status {
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: .15em;
+  color: #111;
+}
 
-    .instructions {
-      margin: 18px 0 0;
-      font-size: 12px;
-      line-height: 1.8;
-      color: #444;
-    }
+.couple-mobile {
+  display: none;
+}
 
-    .status {
-      margin-top: 12px;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      color: #111;
-    }
+/*
+  예전 코드처럼 유튜브 플레이어를
+  화면 바깥에 배치
+*/
+.youtube-player-wrap {
+  position: fixed;
+  left: -300px;
+  top: -300px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .01;
+}
 
-    /*
-      유튜브 플레이어는 실제 화면에 표시.
-      톤암으로 재생 제어 가능.
-    */
-    .youtube-area {
-      width: min(100%, 320px);
-      margin: 18px auto 0;
-    }
+#youtube-player {
+  width: 200px;
+  height: 200px;
+}
 
-    .youtube-area iframe {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: 0;
-    }
+@media (max-width: 700px) {
+  body {
+    background-image: none;
+    background-color: #fff;
+  }
 
-    .couple-mobile {
-      display: none;
-    }
+  .page {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 34px 0 0;
+  }
 
-    @media (max-width: 700px) {
-      body {
-        background-image: none;
-        background-color: #fff;
-      }
+  .player-area {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex-shrink: 0;
+    padding: 0 12px;
+  }
 
-      .page {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 34px 0 0;
-      }
+  h1 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
 
-      .player-area {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        flex-shrink: 0;
-        padding: 0 12px;
-      }
+  .subtitle {
+    font-size: 10px;
+    margin-bottom: 18px;
+  }
 
-      h1 {
-        font-size: 20px;
-        margin-bottom: 8px;
-      }
+  .turntable {
+    width: min(76vw, 380px);
+    margin: 0 auto;
+  }
 
-      .subtitle {
-        font-size: 10px;
-        margin-bottom: 18px;
-      }
+  .instructions {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 18px auto 0;
+    padding: 0;
+    font-size: 11px;
+    line-height: 1.7;
+    color: #444;
+  }
 
-      .turntable {
-        width: min(76vw, 380px);
-        margin: 0 auto;
-      }
+  .status {
+    width: fit-content;
+    margin: 10px auto 0;
+    padding: 0;
+    font-size: 11px;
+    color: #111;
+  }
 
-      .instructions {
-        display: block;
-        width: fit-content;
-        max-width: 100%;
-        margin: 18px auto 0;
-        padding: 0;
-        font-size: 11px;
-        line-height: 1.7;
-        color: #444;
-        background: none;
-      }
+  .couple-mobile {
+    display: block;
+    width: 100%;
+    margin-top: 36px;
+    text-align: center;
+    line-height: 0;
+    overflow: hidden;
+  }
 
-      .status {
-        width: fit-content;
-        margin: 10px auto 0;
-        padding: 0;
-        font-size: 11px;
-        color: #111;
-        background: none;
-      }
-
-      .youtube-area {
-        width: min(100%, 280px);
-        margin-top: 16px;
-      }
-
-      .couple-mobile {
-        display: block;
-        width: 100%;
-        margin-top: 36px;
-        text-align: center;
-        line-height: 0;
-        overflow: hidden;
-      }
-
-      .couple-mobile img {
-        display: block;
-        width: auto;
-        height: auto;
-        max-width: 100%;
-        max-height: 78svh;
-        margin: 0 auto;
-        object-fit: contain;
-      }
-    }
-  </style>
+  .couple-mobile img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 78svh;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="page">
 
-    <section class="player-area">
+<main class="page">
 
-      <h1>SUNFISH</h1>
-      <p class="subtitle">ANALOG SOUND EXPERIENCE</p>
+  <section class="player-area">
 
-      <div class="turntable" id="turntable">
+    <h1>SUNFISH</h1>
+    <p class="subtitle">ANALOG SOUND EXPERIENCE</p>
 
-        <img
-          src="레코드.png"
-          class="vinyl"
-          id="vinyl"
-          alt="Black vinyl record"
-          draggable="false"
-        >
+    <div class="turntable" id="turntable">
 
-        <img
-          src="실버 턴테이블 톤암 어셈블리.png"
-          class="tonearm"
-          id="tonearm"
-          alt="Turntable tonearm"
-          draggable="false"
-        >
-
-      </div>
-
-      <p class="instructions">
-        Move the tonearm onto the record to play.<br>
-        Move it back to stop.
-      </p>
-
-      <div class="status" id="status">STOPPED</div>
-
-      <div class="youtube-area">
-        <div id="youtube-player"></div>
-      </div>
-
-    </section>
-
-    <div class="couple-mobile">
       <img
-        src="커플.png"
-        alt="Couple illustration"
+        src="레코드.png"
+        class="vinyl"
+        id="vinyl"
+        alt="Black vinyl record"
         draggable="false"
       >
+
+      <img
+        src="실버 턴테이블 톤암 어셈블리.png"
+        class="tonearm"
+        id="tonearm"
+        alt="Turntable tonearm"
+        draggable="false"
+      >
+
     </div>
 
-  </main>
+    <p class="instructions">
+      Move the tonearm onto the record to play.<br>
+      Move it back to stop.
+    </p>
 
-  <script>
-    const turntable = document.getElementById("turntable");
-    const vinyl = document.getElementById("vinyl");
-    const tonearm = document.getElementById("tonearm");
-    const statusText = document.getElementById("status");
+    <div class="status" id="status">STOPPED</div>
 
-    const PIVOT_X = 0.77;
-    const PIVOT_Y = 0.17;
+  </section>
 
-    const REST_ANGLE = -27;
-    const MIN_ANGLE = -27;
-    const MAX_ANGLE = 0;
-    const PLAY_THRESHOLD = -12;
+  <div class="couple-mobile">
+    <img
+      src="커플.png"
+      alt="Couple illustration"
+      draggable="false"
+    >
+  </div>
 
-    let currentAngle = REST_ANGLE;
-    let dragging = false;
+</main>
 
-    let startPointerAngle = 0;
-    let startTonearmAngle = REST_ANGLE;
+<!-- 화면에는 보이지 않는 유튜브 플레이어 -->
+<div class="youtube-player-wrap" aria-hidden="true">
+  <div id="youtube-player"></div>
+</div>
 
-    let youtubePlayer = null;
-    let youtubeReady = false;
-    let wantsToPlay = false;
+<script>
+const turntable = document.getElementById("turntable");
+const vinyl = document.getElementById("vinyl");
+const tonearm = document.getElementById("tonearm");
+const statusText = document.getElementById("status");
 
-    /*
-      YouTube IFrame Player API 로드
-    */
-    const youtubeScript = document.createElement("script");
-    youtubeScript.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(youtubeScript);
+const PIVOT_X = .77;
+const PIVOT_Y = .17;
 
-    function onYouTubeIframeAPIReady() {
-      youtubePlayer = new YT.Player("youtube-player", {
-        width: "320",
-        height: "180",
-        videoId: "AJsvGtGgI6M",
-        playerVars: {
-          playsinline: 1,
-          controls: 1,
-          rel: 0
-        },
-        events: {
-          onReady: function () {
-            youtubeReady = true;
+const REST_ANGLE = -27;
+const MIN_ANGLE = -27;
+const MAX_ANGLE = 0;
+const PLAY_THRESHOLD = -12;
 
-            if (wantsToPlay) {
-              youtubePlayer.playVideo();
-            }
-          }
+let currentAngle = REST_ANGLE;
+let dragging = false;
+
+let startPointerAngle = 0;
+let startTonearmAngle = REST_ANGLE;
+
+let youtubePlayer = null;
+let youtubeReady = false;
+let wantsToPlay = false;
+
+/*
+  유튜브 API 불러오기
+*/
+const youtubeScript = document.createElement("script");
+youtubeScript.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(youtubeScript);
+
+function onYouTubeIframeAPIReady() {
+  youtubePlayer = new YT.Player("youtube-player", {
+    width: 200,
+    height: 200,
+    videoId: "AJsvGtGgI6M",
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      playsinline: 1,
+      rel: 0
+    },
+    events: {
+      onReady: function() {
+        youtubeReady = true;
+
+        if (wantsToPlay) {
+          youtubePlayer.playVideo();
         }
-      });
-    }
-
-    function syncMusic(playing) {
-      wantsToPlay = playing;
-
-      if (!youtubeReady || !youtubePlayer) {
-        return;
-      }
-
-      if (playing) {
-        youtubePlayer.playVideo();
-      } else {
-        youtubePlayer.pauseVideo();
+      },
+      onStateChange: function(event) {
+        if (
+          event.data === YT.PlayerState.PLAYING &&
+          !wantsToPlay
+        ) {
+          youtubePlayer.pauseVideo();
+        }
       }
     }
+  });
+}
 
-    function clamp(value, min, max) {
-      return Math.max(min, Math.min(max, value));
-    }
+function syncMusic(playing) {
+  wantsToPlay = playing;
 
-    function updateTonearm(angle) {
-      currentAngle = clamp(angle, MIN_ANGLE, MAX_ANGLE);
+  if (!youtubeReady || !youtubePlayer) {
+    return;
+  }
 
-      tonearm.style.transform =
-        `rotate(${currentAngle}deg)`;
+  if (playing) {
+    youtubePlayer.playVideo();
+  } else {
+    youtubePlayer.pauseVideo();
+  }
+}
 
-      const playing = currentAngle >= PLAY_THRESHOLD;
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
 
-      vinyl.classList.toggle("playing", playing);
+function updateTonearm(angle) {
+  currentAngle = clamp(angle, MIN_ANGLE, MAX_ANGLE);
 
-      statusText.textContent =
-        playing ? "PLAYING" : "STOPPED";
+  tonearm.style.transform =
+    `rotate(${currentAngle}deg)`;
 
-      /*
-        재생 상태가 바뀔 때만 유튜브 제어
-      */
-      if (playing !== wantsToPlay) {
-        syncMusic(playing);
-      }
-    }
+  const playing = currentAngle >= PLAY_THRESHOLD;
 
-    function getPivotPosition() {
-      const rect = turntable.getBoundingClientRect();
+  vinyl.classList.toggle("playing", playing);
 
-      const imageLeft = rect.left + rect.width * 0.39;
-      const imageTop = rect.top - rect.height * 0.08;
-      const imageWidth = rect.width * 0.73;
-      const imageHeight = imageWidth;
+  statusText.textContent =
+    playing ? "PLAYING" : "STOPPED";
 
-      return {
-        x: imageLeft + imageWidth * PIVOT_X,
-        y: imageTop + imageHeight * PIVOT_Y
-      };
-    }
+  if (playing !== wantsToPlay) {
+    syncMusic(playing);
+  }
+}
 
-    function getPointerAngle(event) {
-      const pivot = getPivotPosition();
+function getPivotPosition() {
+  const rect = turntable.getBoundingClientRect();
 
-      return Math.atan2(
-        event.clientY - pivot.y,
-        event.clientX - pivot.x
-      ) * 180 / Math.PI;
-    }
+  const imageLeft = rect.left + rect.width * .39;
+  const imageTop = rect.top - rect.height * .08;
+  const imageWidth = rect.width * .73;
+  const imageHeight = imageWidth;
 
-    tonearm.addEventListener("pointerdown", (event) => {
-      dragging = true;
+  return {
+    x: imageLeft + imageWidth * PIVOT_X,
+    y: imageTop + imageHeight * PIVOT_Y
+  };
+}
 
-      startPointerAngle = getPointerAngle(event);
-      startTonearmAngle = currentAngle;
+function getPointerAngle(event) {
+  const pivot = getPivotPosition();
 
-      tonearm.classList.add("dragging");
-      tonearm.setPointerCapture(event.pointerId);
+  return Math.atan2(
+    event.clientY - pivot.y,
+    event.clientX - pivot.x
+  ) * 180 / Math.PI;
+}
 
-      event.preventDefault();
-    });
+tonearm.addEventListener("pointerdown", event => {
+  dragging = true;
 
-    tonearm.addEventListener("pointermove", (event) => {
-      if (!dragging) return;
+  startPointerAngle = getPointerAngle(event);
+  startTonearmAngle = currentAngle;
 
-      const pointerAngle = getPointerAngle(event);
+  tonearm.classList.add("dragging");
+  tonearm.setPointerCapture(event.pointerId);
 
-      let difference = pointerAngle - startPointerAngle;
+  event.preventDefault();
+});
 
-      if (difference > 180) difference -= 360;
-      if (difference < -180) difference += 360;
+tonearm.addEventListener("pointermove", event => {
+  if (!dragging) return;
 
-      updateTonearm(startTonearmAngle + difference);
-    });
+  const pointerAngle = getPointerAngle(event);
 
-    function endDrag() {
-      dragging = false;
-      tonearm.classList.remove("dragging");
-    }
+  let difference = pointerAngle - startPointerAngle;
 
-    tonearm.addEventListener("pointerup", endDrag);
-    tonearm.addEventListener("pointercancel", endDrag);
-    tonearm.addEventListener("lostpointercapture", endDrag);
+  if (difference > 180) difference -= 360;
+  if (difference < -180) difference += 360;
 
-    updateTonearm(REST_ANGLE);
-  </script>
+  updateTonearm(startTonearmAngle + difference);
+});
+
+function endDrag() {
+  dragging = false;
+  tonearm.classList.remove("dragging");
+}
+
+tonearm.addEventListener("pointerup", endDrag);
+tonearm.addEventListener("pointercancel", endDrag);
+tonearm.addEventListener("lostpointercapture", endDrag);
+
+updateTonearm(REST_ANGLE);
+</script>
+
 </body>
 </html>
