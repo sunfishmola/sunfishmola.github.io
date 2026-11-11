@@ -47,7 +47,7 @@ body {
   flex-shrink: 0;
 }
 
-/* SUNFISH — 빈티지 세리프 + 잉크 번짐 */
+/* SUNFISH — 바랜 회색 잉크 효과 */
 h1 {
   position: relative;
   display: inline-block;
@@ -57,19 +57,19 @@ h1 {
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: .19em;
-  color: #262626;
+  color: #777777;
 
   text-shadow:
-    0 0 1px rgba(0, 0, 0, .4),
-    0 0 3px rgba(0, 0, 0, .18),
-    0 0 8px rgba(0, 0, 0, .10);
+    0 0 1px rgba(90, 90, 90, .25),
+    0 0 4px rgba(100, 100, 100, .18),
+    0 0 10px rgba(120, 120, 120, .12);
 }
 
 h1::after {
   content: attr(data-text);
   position: absolute;
   inset: 0;
-  color: rgba(30, 30, 30, .25);
+  color: rgba(110, 110, 110, .25);
   filter: blur(2.5px);
   transform: translate(.8px, .7px);
   pointer-events: none;
