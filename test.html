@@ -29,7 +29,7 @@
 
     .page {
       width: 100%;
-      padding: 40px 12px;
+      padding: 36px 10px;
       text-align: center;
     }
 
@@ -47,6 +47,10 @@
       color: #777;
     }
 
+    /*
+      전체 턴테이블 영역.
+      레코드판은 이 영역의 정중앙에 고정.
+    */
     .turntable {
       position: relative;
       width: min(94vw, 720px);
@@ -56,7 +60,6 @@
       -webkit-user-select: none;
     }
 
-    /* 레코드판은 화면 정중앙에 고정 */
     .vinyl {
       position: absolute;
       width: 69%;
@@ -78,14 +81,17 @@
       from {
         transform: translate(-50%, -50%) rotate(0deg);
       }
+
       to {
         transform: translate(-50%, -50%) rotate(360deg);
       }
     }
 
     /*
-      톤암은 오른쪽 위에 배치.
-      이미지 속 원형 지지대 중심을 기준으로 회전.
+      톤암 배치:
+      원형 지지대는 오른쪽 위에 위치.
+      이미지 전체가 아니라 내부 회전 영역을
+      지지대 중심 기준으로 회전시킴.
     */
     .tonearm {
       position: absolute;
@@ -186,31 +192,26 @@
     const statusText = document.getElementById("status");
 
     /*
-      톤암 이미지의 회전축 위치.
-      기존 업로드 이미지 기준.
+      이미지 내부 지지대의 중심 좌표.
     */
     const PIVOT_X = 0.77;
     const PIVOT_Y = 0.17;
 
     /*
-      양수 방향으로 돌면 바늘이 오른쪽으로 빠지고,
-      음수 방향으로 돌면 레코드 안쪽으로 들어옴.
+      중요:
+      이전에는 회전 방향이 반대로 잡혀
+      첫 화면에서 바늘이 중앙으로 들어갔음.
 
-      REST: 레코드 바깥쪽 대기 위치
-      PLAY: 처음 화면과 비슷한 재생 위치
+      이번에는 바깥쪽 대기 위치에서 시작.
+      톤암을 왼쪽으로 끌면 재생 위치로 이동.
     */
-    const REST_ANGLE = 13;
-    const PLAY_ANGLE = -8;
+    const REST_ANGLE = -27;
+    const PLAY_ANGLE = 0;
 
-    const MIN_ANGLE = -8;
-    const MAX_ANGLE = 13;
+    const MIN_ANGLE = -27;
+    const MAX_ANGLE = 0;
 
-    /*
-      이 각도 이하로 들어오면 재생.
-      중앙 라벨 쪽으로 더 들어가지 않도록
-      MIN_ANGLE에서 제한.
-    */
-    const PLAY_THRESHOLD = -3;
+    const PLAY_THRESHOLD = -5;
 
     let currentAngle = REST_ANGLE;
     let dragging = false;
@@ -233,7 +234,7 @@
         `rotate(${currentAngle}deg)`;
 
       const playing =
-        currentAngle <= PLAY_THRESHOLD;
+        currentAngle >= PLAY_THRESHOLD;
 
       vinyl.classList.toggle("playing", playing);
 
@@ -241,6 +242,9 @@
         playing ? "PLAYING" : "STOPPED";
     }
 
+    /*
+      톤암 지지대의 화면 좌표 계산.
+    */
     function getPivotPosition() {
       const rect = turntable.getBoundingClientRect();
 
@@ -253,10 +257,6 @@
       const imageWidth =
         rect.width * 0.73;
 
-      /*
-        현재 톤암 이미지가 정사각형인
-        것을 기준으로 계산.
-      */
       const imageHeight = imageWidth;
 
       return {
