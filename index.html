@@ -115,7 +115,7 @@ h1::after {
   height: auto;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   transform-origin: center;
   pointer-events: none;
   -webkit-user-drag: none;
@@ -127,10 +127,10 @@ h1::after {
 
 @keyframes spin {
   from {
-    transform: translate(-50%,-50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   to {
-    transform: translate(-50%,-50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -454,7 +454,7 @@ h1::after {
   line-height: 1.8;
 }
 
-/* HOME 이외의 화면에서는 업데이트 목록 숨김 */
+/* HOME에서만 업데이트 목록 표시 */
 
 body[data-view="notice"] .sunfish-updates,
 body[data-view="characters"] .sunfish-updates {
@@ -462,7 +462,7 @@ body[data-view="characters"] .sunfish-updates {
 }
 
 /* ========================================
-   반응형 레이아웃
+   모바일 / 태블릿
 ======================================== */
 
 @media (max-width: 900px) {
@@ -501,17 +501,6 @@ body[data-view="characters"] .sunfish-updates {
     padding: 28px 9vw 50px;
   }
 
-  .content-area[data-view="notice"],
-  .content-area[data-view="characters"] {
-    min-height: 60vh;
-  }
-
-  .content-area[data-view="notice"] .text-panel,
-  .content-area[data-view="characters"] .text-panel {
-    position: relative;
-    min-height: 60vh;
-  }
-
   .text-panel-inner {
     max-height: 100%;
   }
@@ -528,6 +517,66 @@ body[data-view="characters"] .sunfish-updates {
   .markdown-body {
     font-size: 12px;
     line-height: 2.1;
+  }
+
+  /* NOTICE / CHARACTERS에서는
+     턴테이블을 숨기고 글을 메뉴 바로 아래에 배치 */
+
+  body[data-view="notice"] .turntable,
+  body[data-view="characters"] .turntable {
+    display: none;
+  }
+
+  body[data-view="notice"] .content-area,
+  body[data-view="characters"] .content-area {
+    min-height: 0;
+    margin-top: 0;
+  }
+
+  body[data-view="notice"] .home-art,
+  body[data-view="characters"] .home-art {
+    display: none;
+  }
+
+  body[data-view="notice"] .text-panel,
+  body[data-view="characters"] .text-panel {
+    display: none;
+  }
+
+  body[data-view="notice"] .notice-panel,
+  body[data-view="characters"] .characters-panel {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 0;
+    padding: 8px 6vw 40px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  body[data-view="notice"] .notice-panel .text-panel-inner,
+  body[data-view="characters"] .characters-panel .text-panel-inner {
+    width: 100%;
+    max-width: 440px;
+    max-height: none;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  body[data-view="notice"] .site-nav,
+  body[data-view="characters"] .site-nav {
+    margin-bottom: 12px;
+  }
+
+  body[data-view="notice"] .page,
+  body[data-view="characters"] .page {
+    padding-bottom: 30px;
+  }
+
+  body[data-view="notice"] .cms-message,
+  body[data-view="characters"] .cms-message {
+    margin-top: 12px;
   }
 }
 
@@ -582,6 +631,7 @@ body[data-view="characters"] .sunfish-updates {
     <h1 data-text="SUNFISH">SUNFISH</h1>
 
     <nav class="site-nav" aria-label="Site navigation">
+
       <button
         class="nav-button active"
         data-target="home"
@@ -602,6 +652,7 @@ body[data-view="characters"] .sunfish-updates {
         type="button"
         aria-pressed="false"
       >CHARACTERS</button>
+
     </nav>
 
     <div class="turntable" id="turntable">
@@ -626,6 +677,7 @@ body[data-view="characters"] .sunfish-updates {
 
     <section class="sunfish-updates" aria-label="업데이트 목록">
       <h2>업데이트 목록</h2>
+
       <div id="sunfishUpdatesList">
         <p class="sunfish-update-empty">불러오는 중...</p>
       </div>
@@ -643,6 +695,7 @@ body[data-view="characters"] .sunfish-updates {
     <div class="home-art"></div>
 
     <article class="text-panel notice-panel">
+
       <div class="text-panel-inner" id="noticeScroll">
 
         <div class="list-view" id="noticeList">
@@ -652,6 +705,7 @@ body[data-view="characters"] .sunfish-updates {
         </div>
 
         <div class="detail-view" id="noticeDetail">
+
           <button
             class="back-button"
             type="button"
@@ -663,12 +717,15 @@ body[data-view="characters"] .sunfish-updates {
           <div id="noticeImageArea"></div>
 
           <div class="markdown-body" id="noticeBody"></div>
+
         </div>
 
       </div>
+
     </article>
 
     <article class="text-panel characters-panel">
+
       <div class="text-panel-inner" id="charactersScroll">
 
         <div class="list-view" id="charactersList">
@@ -678,6 +735,7 @@ body[data-view="characters"] .sunfish-updates {
         </div>
 
         <div class="detail-view" id="charactersDetail">
+
           <button
             class="back-button"
             type="button"
@@ -689,9 +747,11 @@ body[data-view="characters"] .sunfish-updates {
           <div id="charactersImageArea"></div>
 
           <div class="markdown-body" id="charactersBody"></div>
+
         </div>
 
       </div>
+
     </article>
 
   </section>
@@ -847,6 +907,11 @@ async function loadCMSSection(sectionName) {
       }
     });
 
+    /*
+      폴더가 없으면 글이 없는 상태로 처리.
+      다른 HTTP 오류는 실제 연결 오류로 구분.
+    */
+
     if (response.status === 404) {
       cmsCache[sectionName] = [];
       renderCMSList(sectionName);
@@ -872,6 +937,17 @@ async function loadCMSSection(sectionName) {
         b.name.localeCompare(a.name)
       );
 
+    /*
+      폴더에 마크다운 글이 없으면
+      추가 요청 없이 빈 목록 표시.
+    */
+
+    if (markdownFiles.length === 0) {
+      cmsCache[sectionName] = [];
+      renderCMSList(sectionName);
+      return;
+    }
+
     const entries = await Promise.all(
       markdownFiles.map(async file => {
         const rawUrl =
@@ -884,7 +960,10 @@ async function loadCMSSection(sectionName) {
         const fileResponse = await fetch(rawUrl);
 
         if (!fileResponse.ok) {
-          throw new Error("글 파일을 읽을 수 없습니다.");
+          throw new Error(
+            "글 파일을 읽을 수 없습니다: " +
+            fileResponse.status
+          );
         }
 
         const source = await fileResponse.text();
@@ -910,7 +989,7 @@ async function loadCMSSection(sectionName) {
     const message = document.createElement("p");
     message.className = "cms-message";
     message.textContent =
-      "글을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.";
+      "일시적으로 글을 불러오지 못했습니다.";
 
     const retry = document.createElement("button");
     retry.type = "button";
@@ -939,7 +1018,7 @@ function renderCMSList(sectionName) {
   if (entries.length === 0) {
     const empty = document.createElement("p");
     empty.className = "cms-message";
-    empty.textContent = "아직 작성된 글이 없어요.";
+    empty.textContent = "아직 작성된 글이 없습니다.";
     list.appendChild(empty);
     return;
   }
@@ -1099,8 +1178,6 @@ navButtons.forEach(button => {
     const target = button.dataset.target;
 
     contentArea.dataset.view = target;
-
-    /* 업데이트 목록 표시 상태도 함께 변경 */
     document.body.dataset.view = target;
 
     navButtons.forEach(navButton => {
@@ -1115,6 +1192,19 @@ navButtons.forEach(button => {
 
     if (target === "notice" || target === "characters") {
       resetCMSDetail(target);
+    }
+
+    /*
+      모바일에서 메뉴 전환 시
+      페이지 상단으로 이동.
+      글이 화면 아래에 남지 않도록 처리.
+    */
+
+    if (window.innerWidth <= 900) {
+      window.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
     }
   });
 });
@@ -1322,6 +1412,11 @@ async function loadSunfishUpdates() {
       /\.json$/i.test(file.name)
     );
 
+    if (files.length === 0) {
+      showUpdatesMessage("아직 업데이트가 없습니다.");
+      return;
+    }
+
     const items = await Promise.all(
       files.map(async file => {
         const rawUrl =
@@ -1375,8 +1470,9 @@ async function loadSunfishUpdates() {
 
   } catch (error) {
     console.error("업데이트 목록 오류:", error);
+
     showUpdatesMessage(
-      "업데이트를 불러오지 못했습니다."
+      "일시적으로 업데이트를 불러오지 못했습니다."
     );
   }
 }
