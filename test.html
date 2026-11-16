@@ -45,7 +45,7 @@ body {
   flex-shrink: 0;
 }
 
-/* SUNFISH 제목 */
+/* SUNFISH */
 h1 {
   position: relative;
   display: inline-block;
@@ -56,28 +56,27 @@ h1 {
   line-height: 1.1;
   letter-spacing: .035em;
   color: #777;
-
   text-shadow:
-    0 0 1px rgba(90, 90, 90, .25),
-    0 0 4px rgba(100, 100, 100, .18),
-    0 0 10px rgba(120, 120, 120, .12);
+    0 0 1px rgba(90,90,90,.25),
+    0 0 4px rgba(100,100,100,.18),
+    0 0 10px rgba(120,120,120,.12);
 }
 
 h1::after {
   content: attr(data-text);
   position: absolute;
   inset: 0;
-  color: rgba(110, 110, 110, .25);
+  color: rgba(110,110,110,.25);
   filter: blur(2.5px);
-  transform: translate(.8px, .7px);
+  transform: translate(.8px,.7px);
   pointer-events: none;
 }
 
-/* 상단 메뉴 */
+/* 메뉴 */
 .site-nav {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 22px;
   margin: 0 0 28px;
 }
@@ -87,9 +86,8 @@ h1::after {
   border: 0;
   background: transparent;
   color: #999;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, serif;
   font-size: 10px;
-  font-weight: normal;
   letter-spacing: .13em;
   cursor: pointer;
   transition: color .25s ease;
@@ -116,13 +114,13 @@ h1::after {
 
 .vinyl {
   position: absolute;
+  display: block;
   width: 100%;
   height: auto;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);
   transform-origin: center;
-  display: block;
   pointer-events: none;
   -webkit-user-drag: none;
 }
@@ -133,22 +131,21 @@ h1::after {
 
 @keyframes spin {
   from {
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%,-50%) rotate(0deg);
   }
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%,-50%) rotate(360deg);
   }
 }
 
 .tonearm {
   position: absolute;
+  z-index: 2;
   width: 73%;
   height: auto;
   left: 39%;
   top: -8%;
   transform-origin: 77% 17%;
-  transform: rotate(0deg);
-  z-index: 2;
   cursor: grab;
   touch-action: none;
   -webkit-user-drag: none;
@@ -182,9 +179,10 @@ h1::after {
   border-radius: 999px;
   background: #777;
   opacity: .65;
-  box-shadow: 0 0 5px rgba(110, 110, 110, .15);
+  box-shadow: 0 0 5px rgba(110,110,110,.15);
   transform-origin: center;
-  animation: waveMove var(--duration) ease-in-out infinite alternate;
+  animation: waveMove var(--duration)
+    ease-in-out infinite alternate;
   animation-play-state: paused;
 }
 
@@ -197,7 +195,7 @@ h1::after {
   to { transform: scaleY(1.25); }
 }
 
-/* 오른쪽 콘텐츠 영역 */
+/* 오른쪽 콘텐츠 */
 .content-area {
   position: fixed;
   z-index: 1;
@@ -208,7 +206,6 @@ h1::after {
   pointer-events: none;
 }
 
-/* HOME 그림 */
 .home-art {
   position: absolute;
   inset: 0;
@@ -218,10 +215,11 @@ h1::after {
   background-position: calc(100% - 120px) bottom;
   opacity: 1;
   visibility: visible;
-  transition: opacity .45s ease, visibility .45s ease;
+  transition:
+    opacity .45s ease,
+    visibility .45s ease;
 }
 
-/* NOTICE / CHARACTERS 패널 */
 .text-panel {
   position: absolute;
   inset: 0;
@@ -249,28 +247,23 @@ h1::after {
   scrollbar-color: #ccc transparent;
 }
 
-.text-panel h2 {
-  margin: 0 0 28px;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 32px;
-  font-weight: 300;
-  letter-spacing: .07em;
-  color: #777;
+.content-area[data-view="notice"] .home-art,
+.content-area[data-view="characters"] .home-art {
+  opacity: 0;
+  visibility: hidden;
 }
 
-.text-panel p {
-  margin: 0 0 18px;
-  font-size: 13px;
-  line-height: 2.2;
-  color: #666;
-  word-break: keep-all;
+.content-area[data-view="notice"] .notice-panel,
+.content-area[data-view="characters"] .characters-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-/* 목록 */
+/* CMS 목록 */
 .entry-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .entry-button {
@@ -284,10 +277,10 @@ h1::after {
   border-bottom: 1px solid #e6e6e6;
   background: transparent;
   text-align: left;
-  cursor: pointer;
   color: #666;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, serif;
   font-size: 14px;
+  cursor: pointer;
   transition: color .25s ease;
 }
 
@@ -302,7 +295,25 @@ h1::after {
   color: #aaa;
 }
 
-/* 상세 페이지 */
+.cms-message {
+  margin: 12px 0;
+  font-size: 12px;
+  line-height: 2;
+  color: #999;
+  word-break: keep-all;
+}
+
+.retry-button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  background: transparent;
+  color: #777;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* 상세 글 */
 .detail-view {
   display: none;
 }
@@ -322,9 +333,8 @@ h1::after {
   border: 0;
   background: transparent;
   color: #999;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, serif;
   font-size: 11px;
-  letter-spacing: .05em;
   cursor: pointer;
 }
 
@@ -333,45 +343,134 @@ h1::after {
 }
 
 .detail-title {
-  margin-bottom: 22px !important;
+  margin: 0 0 24px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: .03em;
+  color: #777;
+  word-break: keep-all;
 }
 
 .detail-image {
   display: block;
   width: 100%;
-  max-height: 300px;
+  max-height: 380px;
   object-fit: contain;
   margin: 0 auto 28px;
 }
 
-.detail-label {
-  margin: 28px 0 10px !important;
-  font-size: 10px !important;
-  letter-spacing: .14em;
-  color: #999 !important;
+/* CMS에서 작성한 마크다운 본문 */
+.markdown-body {
+  color: #666;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  line-height: 2.15;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
 }
 
-.detail-divider {
-  height: 1px;
-  background: #e6e6e6;
+.markdown-body p {
+  margin: 0 0 18px;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  position: static;
+  display: block;
+  margin: 30px 0 14px;
+  color: #666;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-shadow: none;
+  filter: none;
+  transform: none;
+}
+
+.markdown-body h1::after {
+  content: none;
+}
+
+.markdown-body h1 {
+  font-size: 22px;
+}
+
+.markdown-body h2 {
+  font-size: 19px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 24px auto;
+}
+
+.markdown-body a {
+  color: #777;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 22px;
+  margin: 0 0 20px;
+}
+
+.markdown-body blockquote {
+  margin: 20px 0;
+  padding-left: 16px;
+  border-left: 2px solid #ddd;
+  color: #888;
+}
+
+.markdown-body hr {
   margin: 28px 0;
+  border: 0;
+  border-top: 1px solid #e6e6e6;
 }
 
-/* 메뉴 전환 */
-.content-area[data-view="notice"] .home-art,
-.content-area[data-view="characters"] .home-art {
-  opacity: 0;
-  visibility: hidden;
+.markdown-body pre {
+  overflow-x: auto;
+  padding: 12px;
+  background: #f7f7f7;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
-.content-area[data-view="notice"] .notice-panel,
-.content-area[data-view="characters"] .characters-panel {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.markdown-body code {
+  overflow-wrap: anywhere;
 }
 
-/* 유튜브 플레이어 */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 12px;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 8px;
+  border-bottom: 1px solid #e6e6e6;
+  text-align: left;
+}
+
+/* 숨겨진 유튜브 */
 .youtube-player-wrap {
   position: fixed;
   left: -300px;
@@ -392,7 +491,6 @@ h1::after {
 @media (max-width: 700px) {
   .page {
     min-height: 100svh;
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -409,7 +507,6 @@ h1::after {
 
   h1 {
     font-size: 32px;
-    letter-spacing: .035em;
     margin-bottom: 8px;
   }
 
@@ -424,15 +521,12 @@ h1::after {
 
   .turntable {
     width: min(76vw, 380px);
-    margin: 0 auto;
   }
 
   .instructions {
-    display: block;
     width: fit-content;
     max-width: 100%;
     margin: 18px auto 0;
-    padding: 0;
     font-size: 11px;
     line-height: 1.7;
   }
@@ -465,28 +559,25 @@ h1::after {
 
   .text-panel {
     align-items: flex-start;
-    justify-content: center;
     padding: 28px 9vw 50px;
   }
 
   .text-panel-inner {
-    max-width: 440px;
     max-height: 100%;
   }
 
-  .text-panel h2 {
-    font-size: 30px;
-    margin-bottom: 26px;
+  .entry-button {
+    padding: 18px 2px;
+    font-size: 13px;
   }
 
-  .text-panel p {
+  .detail-title {
+    font-size: 29px;
+  }
+
+  .markdown-body {
     font-size: 12px;
     line-height: 2.1;
-  }
-
-  .entry-button {
-    font-size: 13px;
-    padding: 18px 2px;
   }
 }
 
@@ -501,6 +592,11 @@ h1::after {
   }
 }
 </style>
+
+<!-- 마크다운 표시 및 HTML 안전 처리 -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+
 </head>
 
 <body>
@@ -583,7 +679,6 @@ h1::after {
 
   </section>
 
-  <!-- 오른쪽 / 모바일 하단 콘텐츠 -->
   <section
     class="content-area"
     id="contentArea"
@@ -591,69 +686,34 @@ h1::after {
     aria-label="Site content"
   >
 
-    <!-- HOME -->
-    <div class="home-art" aria-label="Couple illustration"></div>
+    <!-- HOME 이미지 -->
+    <div class="home-art"></div>
 
     <!-- NOTICE -->
     <article class="text-panel notice-panel">
       <div class="text-panel-inner" id="noticeScroll">
 
-        <!-- 공지 목록: 큰 NOTICE 제목 삭제 -->
         <div class="list-view" id="noticeList">
-          <div class="entry-list">
-            <button
-              class="entry-button"
-              type="button"
-              data-detail="notice-welcome"
-            >사이트 안내</button>
-
-            <button
-              class="entry-button"
-              type="button"
-              data-detail="notice-update"
-            >업데이트 소식</button>
+          <div class="entry-list" id="noticeEntries">
+            <p class="cms-message">글을 불러오는 중...</p>
           </div>
         </div>
 
-        <!-- 공지 상세: 사이트 안내 -->
-        <div class="detail-view" id="notice-welcome">
-          <button class="back-button" type="button" data-back="notice">
-            ← 목록으로
-          </button>
+        <div class="detail-view" id="noticeDetail">
+          <button
+            class="back-button"
+            type="button"
+            data-back="notice"
+          >← 목록으로</button>
 
-          <h2 class="detail-title">사이트 안내</h2>
+          <h2 class="detail-title" id="noticeTitle"></h2>
 
-          <p>
-            SUNFISH에 오신 것을 환영합니다.
-          </p>
+          <div id="noticeImageArea"></div>
 
-          <p>
-            이곳에는 사이트 소개와 안내 사항을
-            자유롭게 작성할 수 있습니다.
-          </p>
-
-          <p>
-            글이 길어지더라도 이 영역 안에서
-            스크롤하면서 읽을 수 있습니다.
-          </p>
-        </div>
-
-        <!-- 공지 상세: 업데이트 소식 -->
-        <div class="detail-view" id="notice-update">
-          <button class="back-button" type="button" data-back="notice">
-            ← 목록으로
-          </button>
-
-          <h2 class="detail-title">업데이트 소식</h2>
-
-          <p>
-            새로운 업데이트 내용을 작성하는 공간입니다.
-          </p>
-
-          <p>
-            추가된 캐릭터나 새로운 작업물,
-            변경 사항 등을 기록할 수 있습니다.
-          </p>
+          <div
+            class="markdown-body"
+            id="noticeBody"
+          ></div>
         </div>
 
       </div>
@@ -663,130 +723,30 @@ h1::after {
     <article class="text-panel characters-panel">
       <div class="text-panel-inner" id="charactersScroll">
 
-        <!-- 캐릭터 목록: 큰 CHARACTERS 제목 삭제 -->
         <div class="list-view" id="charactersList">
-          <div class="entry-list">
-            <button
-              class="entry-button"
-              type="button"
-              data-detail="character-first"
-            >첫 번째 캐릭터</button>
-
-            <button
-              class="entry-button"
-              type="button"
-              data-detail="character-second"
-            >두 번째 캐릭터</button>
-
-            <button
-              class="entry-button"
-              type="button"
-              data-detail="character-third"
-            >세 번째 캐릭터</button>
-
-            <button
-              class="entry-button"
-              type="button"
-              data-detail="character-fourth"
-            >네 번째 캐릭터</button>
+          <div class="entry-list" id="charactersEntries">
+            <p class="cms-message">글을 불러오는 중...</p>
           </div>
         </div>
 
-        <!-- 첫 번째 캐릭터 -->
-        <div class="detail-view" id="character-first">
-          <button class="back-button" type="button" data-back="characters">
-            ← 목록으로
-          </button>
+        <div class="detail-view" id="charactersDetail">
+          <button
+            class="back-button"
+            type="button"
+            data-back="characters"
+          >← 목록으로</button>
 
-          <h2 class="detail-title">첫 번째 캐릭터</h2>
+          <h2
+            class="detail-title"
+            id="charactersTitle"
+          ></h2>
 
-          <p class="detail-label">PROFILE</p>
-          <p>
-            이름 : 미정<br>
-            나이 : 미정<br>
-            성격 : 미정
-          </p>
+          <div id="charactersImageArea"></div>
 
-          <div class="detail-divider"></div>
-
-          <p class="detail-label">STORY</p>
-          <p>
-            이곳에 캐릭터의 설정이나 이야기를 적어주세요.
-          </p>
-
-          <p>
-            과거 이야기, 성격, 특징, 다른 캐릭터와의 관계 등
-            원하는 만큼 길게 작성할 수 있습니다.
-          </p>
-        </div>
-
-        <!-- 두 번째 캐릭터 -->
-        <div class="detail-view" id="character-second">
-          <button class="back-button" type="button" data-back="characters">
-            ← 목록으로
-          </button>
-
-          <h2 class="detail-title">두 번째 캐릭터</h2>
-
-          <p class="detail-label">PROFILE</p>
-          <p>
-            이름 : 미정<br>
-            나이 : 미정<br>
-            성격 : 미정
-          </p>
-
-          <div class="detail-divider"></div>
-
-          <p class="detail-label">STORY</p>
-          <p>
-            두 번째 캐릭터의 소개를 작성하는 공간입니다.
-          </p>
-        </div>
-
-        <!-- 세 번째 캐릭터 -->
-        <div class="detail-view" id="character-third">
-          <button class="back-button" type="button" data-back="characters">
-            ← 목록으로
-          </button>
-
-          <h2 class="detail-title">세 번째 캐릭터</h2>
-
-          <p class="detail-label">PROFILE</p>
-          <p>
-            이름 : 미정<br>
-            나이 : 미정<br>
-            성격 : 미정
-          </p>
-
-          <div class="detail-divider"></div>
-
-          <p class="detail-label">STORY</p>
-          <p>
-            세 번째 캐릭터의 소개를 작성하는 공간입니다.
-          </p>
-        </div>
-
-        <!-- 네 번째 캐릭터 -->
-        <div class="detail-view" id="character-fourth">
-          <button class="back-button" type="button" data-back="characters">
-            ← 목록으로
-          </button>
-
-          <h2 class="detail-title">네 번째 캐릭터</h2>
-
-          <p class="detail-label">PROFILE</p>
-          <p>
-            이름 : 미정<br>
-            나이 : 미정<br>
-            성격 : 미정
-          </p>
-
-          <div class="detail-divider"></div>
-
-          <p class="detail-label">STORY</p>
-          <p>
-            네 번째 캐릭터의 소개를 작성하는 공간입니다.
-          </p>
+          <div
+            class="markdown-body"
+            id="charactersBody"
+          ></div>
         </div>
 
       </div>
@@ -796,27 +756,421 @@ h1::after {
 
 </main>
 
-<!-- 화면 밖 유튜브 플레이어 -->
 <div class="youtube-player-wrap" aria-hidden="true">
   <div id="youtube-player"></div>
 </div>
 
 <script>
-/* 메뉴 전환 */
-const contentArea = document.getElementById("contentArea");
-const navButtons = document.querySelectorAll(".nav-button");
+/* ========================================
+   SUNFISH CMS 연결 설정
+======================================== */
 
-function resetDetails(section) {
-  const panel = document.querySelector("." + section + "-panel");
+const GITHUB_OWNER = "sunfishmola";
+const GITHUB_REPO = "sunfishmola.github.io";
+const GITHUB_BRANCH = "main";
 
-  panel.querySelectorAll(".detail-view").forEach(detail => {
-    detail.classList.remove("active");
+const CMS_SECTIONS = {
+  characters: {
+    folder: "content/characters",
+    listId: "charactersEntries",
+    detailId: "charactersDetail",
+    titleId: "charactersTitle",
+    imageId: "charactersImageArea",
+    bodyId: "charactersBody"
+  },
+  notice: {
+    folder: "content/notices",
+    listId: "noticeEntries",
+    detailId: "noticeDetail",
+    titleId: "noticeTitle",
+    imageId: "noticeImageArea",
+    bodyId: "noticeBody"
+  }
+};
+
+const cmsCache = {
+  characters: [],
+  notice: []
+};
+
+/* ========================================
+   마크다운 파일 읽기
+======================================== */
+
+/*
+  Pages CMS 파일 예시:
+
+  ---
+  title: 테스트 캐릭터
+  image: /media/example.png
+  ---
+  안녕하세요. 테스트입니다.
+*/
+
+function parseMarkdownFile(source, fallbackTitle) {
+  const normalized = source.replace(/\r\n/g, "\n");
+
+  let metadata = {};
+  let body = normalized;
+
+  if (normalized.startsWith("---\n")) {
+    const closing = normalized.indexOf("\n---", 4);
+
+    if (closing !== -1) {
+      const frontmatter = normalized.slice(4, closing);
+      body = normalized.slice(closing + 4).trim();
+
+      let currentKey = null;
+
+      for (const line of frontmatter.split("\n")) {
+        const match = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
+
+        if (match) {
+          currentKey = match[1];
+          metadata[currentKey] = match[2].trim();
+        } else if (
+          currentKey &&
+          /^\s+\S/.test(line)
+        ) {
+          metadata[currentKey] += " " + line.trim();
+        }
+      }
+    }
+  }
+
+  for (const key of Object.keys(metadata)) {
+    const value = metadata[key];
+
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      metadata[key] = value.slice(1, -1);
+    }
+  }
+
+  return {
+    title: metadata.title || fallbackTitle,
+    image: metadata.image || "",
+    body: body
+  };
+}
+
+/* ========================================
+   이미지 경로 처리
+======================================== */
+
+function encodePath(path) {
+  return path
+    .split("/")
+    .map(part => encodeURIComponent(part))
+    .join("/");
+}
+
+function resolveMediaUrl(path) {
+  if (!path) return "";
+
+  const cleaned = String(path).trim();
+
+  if (/^https?:\/\//i.test(cleaned)) {
+    return cleaned;
+  }
+
+  if (/^(data|javascript|blob):/i.test(cleaned)) {
+    return "";
+  }
+
+  const root = window.location.origin;
+
+  if (cleaned.startsWith("/")) {
+    return root + encodePath(cleaned);
+  }
+
+  return root + "/" + encodePath(cleaned);
+}
+
+/* ========================================
+   GitHub에서 글 목록 가져오기
+======================================== */
+
+async function loadCMSSection(sectionName) {
+  const section = CMS_SECTIONS[sectionName];
+  const list = document.getElementById(section.listId);
+
+  list.replaceChildren();
+
+  const loading = document.createElement("p");
+  loading.className = "cms-message";
+  loading.textContent = "글을 불러오는 중...";
+  list.appendChild(loading);
+
+  try {
+    const apiUrl =
+      "https://api.github.com/repos/" +
+      GITHUB_OWNER + "/" +
+      GITHUB_REPO + "/contents/" +
+      section.folder +
+      "?ref=" + encodeURIComponent(GITHUB_BRANCH);
+
+    const response = await fetch(apiUrl, {
+      headers: {
+        Accept: "application/vnd.github+json"
+      }
+    });
+
+    if (response.status === 404) {
+      cmsCache[sectionName] = [];
+      renderCMSList(sectionName);
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error("GitHub API: " + response.status);
+    }
+
+    const files = await response.json();
+
+    if (!Array.isArray(files)) {
+      throw new Error("파일 목록 형식이 올바르지 않습니다.");
+    }
+
+    const markdownFiles = files
+      .filter(file =>
+        file.type === "file" &&
+        /\.md$/i.test(file.name)
+      )
+      .sort((a, b) =>
+        b.name.localeCompare(a.name)
+      );
+
+    const entries = await Promise.all(
+      markdownFiles.map(async file => {
+        const rawUrl =
+          "https://raw.githubusercontent.com/" +
+          GITHUB_OWNER + "/" +
+          GITHUB_REPO + "/" +
+          GITHUB_BRANCH + "/" +
+          encodePath(file.path);
+
+        const fileResponse = await fetch(rawUrl);
+
+        if (!fileResponse.ok) {
+          throw new Error("글 파일을 읽을 수 없습니다.");
+        }
+
+        const source = await fileResponse.text();
+
+        return {
+          ...parseMarkdownFile(
+            source,
+            file.name.replace(/\.md$/i, "")
+          ),
+          filename: file.name
+        };
+      })
+    );
+
+    cmsCache[sectionName] = entries;
+    renderCMSList(sectionName);
+
+  } catch (error) {
+    console.error("CMS 불러오기 오류:", error);
+
+    list.replaceChildren();
+
+    const message = document.createElement("p");
+    message.className = "cms-message";
+    message.textContent =
+      "글을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.";
+
+    const retry = document.createElement("button");
+    retry.type = "button";
+    retry.className = "retry-button";
+    retry.textContent = "다시 불러오기";
+    retry.addEventListener("click", () => {
+      loadCMSSection(sectionName);
+    });
+
+    list.append(message, retry);
+  }
+}
+
+/* ========================================
+   글 목록 표시
+======================================== */
+
+function renderCMSList(sectionName) {
+  const section = CMS_SECTIONS[sectionName];
+  const list = document.getElementById(section.listId);
+  const entries = cmsCache[sectionName];
+
+  list.replaceChildren();
+
+  if (entries.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "cms-message";
+    empty.textContent = "아직 작성된 글이 없어요.";
+    list.appendChild(empty);
+    return;
+  }
+
+  entries.forEach((entry, index) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "entry-button";
+    button.textContent = entry.title;
+
+    button.addEventListener("click", () => {
+      openCMSDetail(sectionName, index);
+    });
+
+    list.appendChild(button);
   });
+}
 
-  panel.querySelector(".list-view").classList.remove("hidden");
+/* ========================================
+   상세 페이지 열기
+======================================== */
+
+function openCMSDetail(sectionName, index) {
+  const section = CMS_SECTIONS[sectionName];
+  const entry = cmsCache[sectionName][index];
+
+  if (!entry) return;
+
+  const panel = document.querySelector(
+    sectionName === "notice"
+      ? ".notice-panel"
+      : ".characters-panel"
+  );
+
+  const listView = panel.querySelector(".list-view");
+  const detailView = document.getElementById(
+    section.detailId
+  );
+
+  const title = document.getElementById(
+    section.titleId
+  );
+
+  const imageArea = document.getElementById(
+    section.imageId
+  );
+
+  const bodyArea = document.getElementById(
+    section.bodyId
+  );
+
+  title.textContent = entry.title;
+
+  /* 대표 이미지 */
+  imageArea.replaceChildren();
+
+  if (entry.image) {
+    const imageUrl = resolveMediaUrl(entry.image);
+
+    if (imageUrl) {
+      const img = document.createElement("img");
+      img.src = imageUrl;
+      img.alt = entry.title;
+      img.className = "detail-image";
+      img.loading = "lazy";
+      img.onerror = () => img.remove();
+      imageArea.appendChild(img);
+    }
+  }
+
+  /* 마크다운 본문 */
+  bodyArea.replaceChildren();
+
+  if (window.marked && window.DOMPurify) {
+    const html = marked.parse(entry.body, {
+      breaks: true,
+      gfm: true
+    });
+
+    const sanitized = DOMPurify.sanitize(html);
+
+    const template = document.createElement("template");
+    template.innerHTML = sanitized;
+
+    /* 본문에 첨부된 이미지 경로도 처리 */
+    template.content.querySelectorAll("img").forEach(img => {
+      const original = img.getAttribute("src");
+
+      const resolved = resolveMediaUrl(original);
+
+      if (resolved) {
+        img.src = resolved;
+        img.loading = "lazy";
+      } else {
+        img.remove();
+      }
+    });
+
+    /* 링크는 안전한 주소만 허용 */
+    template.content.querySelectorAll("a").forEach(link => {
+      const href = link.getAttribute("href") || "";
+
+      if (
+        !/^(https?:\/\/|mailto:|\/|#)/i.test(href)
+      ) {
+        link.removeAttribute("href");
+      }
+
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+
+    bodyArea.appendChild(template.content);
+
+  } else {
+    /* 외부 라이브러리를 불러오지 못한 경우 */
+    const paragraph = document.createElement("p");
+    paragraph.style.whiteSpace = "pre-wrap";
+    paragraph.textContent = entry.body;
+    bodyArea.appendChild(paragraph);
+  }
+
+  listView.classList.add("hidden");
+  detailView.classList.add("active");
 
   panel.querySelector(".text-panel-inner").scrollTop = 0;
 }
+
+/* ========================================
+   목록으로 돌아가기
+======================================== */
+
+function resetCMSDetail(sectionName) {
+  const panel = document.querySelector(
+    sectionName === "notice"
+      ? ".notice-panel"
+      : ".characters-panel"
+  );
+
+  panel.querySelector(".detail-view")
+    .classList.remove("active");
+
+  panel.querySelector(".list-view")
+    .classList.remove("hidden");
+
+  panel.querySelector(".text-panel-inner").scrollTop = 0;
+}
+
+document.querySelectorAll("[data-back]").forEach(button => {
+  button.addEventListener("click", () => {
+    resetCMSDetail(button.dataset.back);
+  });
+});
+
+/* ========================================
+   상단 메뉴 전환
+======================================== */
+
+const contentArea = document.getElementById("contentArea");
+const navButtons = document.querySelectorAll(".nav-button");
 
 navButtons.forEach(button => {
   button.addEventListener("click", () => {
@@ -825,51 +1179,32 @@ navButtons.forEach(button => {
     contentArea.dataset.view = target;
 
     navButtons.forEach(navButton => {
-      const isActive = navButton === button;
+      const active = navButton === button;
 
-      navButton.classList.toggle("active", isActive);
+      navButton.classList.toggle("active", active);
       navButton.setAttribute(
         "aria-pressed",
-        String(isActive)
+        String(active)
       );
     });
 
     if (target === "notice" || target === "characters") {
-      resetDetails(target);
+      resetCMSDetail(target);
     }
   });
 });
 
-/* 목록에서 상세 페이지 열기 */
-document.querySelectorAll("[data-detail]").forEach(button => {
-  button.addEventListener("click", () => {
-    const detailId = button.dataset.detail;
-    const detail = document.getElementById(detailId);
+/* ========================================
+   CMS 글 불러오기 시작
+======================================== */
 
-    if (!detail) return;
+loadCMSSection("characters");
+loadCMSSection("notice");
 
-    const panel = button.closest(".text-panel");
+/* ========================================
+   기존 턴테이블 기능
+======================================== */
 
-    panel.querySelector(".list-view").classList.add("hidden");
-
-    panel.querySelectorAll(".detail-view").forEach(item => {
-      item.classList.remove("active");
-    });
-
-    detail.classList.add("active");
-
-    panel.querySelector(".text-panel-inner").scrollTop = 0;
-  });
-});
-
-/* 상세 페이지에서 목록으로 돌아가기 */
-document.querySelectorAll("[data-back]").forEach(button => {
-  button.addEventListener("click", () => {
-    resetDetails(button.dataset.back);
-  });
-});
-
-/* 턴테이블 */
 const turntable = document.getElementById("turntable");
 const vinyl = document.getElementById("vinyl");
 const tonearm = document.getElementById("tonearm");
@@ -958,6 +1293,7 @@ function updateTonearm(angle) {
   vinyl.classList.toggle("playing", playing);
 
   audioWave.classList.toggle("playing", playing);
+
   audioWave.setAttribute(
     "aria-label",
     playing ? "Playing" : "Stopped"
@@ -1030,4 +1366,3 @@ updateTonearm(REST_ANGLE);
 
 </body>
 </html>
-
