@@ -401,7 +401,9 @@ h1::after {
   pointer-events: none;
 }
 
-/* HOME 업데이트 목록 */
+/* ========================================
+   HOME 업데이트 목록
+======================================== */
 
 .sunfish-updates {
   width: min(100%, 440px);
@@ -451,6 +453,17 @@ h1::after {
   font-size: 11px;
   line-height: 1.8;
 }
+
+/* HOME 이외의 화면에서는 업데이트 목록 숨김 */
+
+body[data-view="notice"] .sunfish-updates,
+body[data-view="characters"] .sunfish-updates {
+  display: none;
+}
+
+/* ========================================
+   반응형 레이아웃
+======================================== */
 
 @media (max-width: 900px) {
   .page {
@@ -560,7 +573,7 @@ h1::after {
 <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
 </head>
 
-<body>
+<body data-view="home">
 
 <main class="page">
 
@@ -1086,6 +1099,9 @@ navButtons.forEach(button => {
     const target = button.dataset.target;
 
     contentArea.dataset.view = target;
+
+    /* 업데이트 목록 표시 상태도 함께 변경 */
+    document.body.dataset.view = target;
 
     navButtons.forEach(navButton => {
       const active = navButton === button;
