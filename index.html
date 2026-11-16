@@ -2,8 +2,10 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SUNFISH</title>
+
+<link rel="preconnect" href="https://data.jsdelivr.com">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap');
@@ -17,7 +19,7 @@ body {
   margin: 0;
   width: 100%;
   min-height: 100%;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
@@ -57,18 +59,18 @@ h1 {
   letter-spacing: .035em;
   color: #777;
   text-shadow:
-    0 0 1px rgba(90,90,90,.25),
-    0 0 4px rgba(100,100,100,.18),
-    0 0 10px rgba(120,120,120,.12);
+    0 0 1px rgba(90, 90, 90, .25),
+    0 0 4px rgba(100, 100, 100, .18),
+    0 0 10px rgba(120, 120, 120, .12);
 }
 
 h1::after {
   content: attr(data-text);
   position: absolute;
   inset: 0;
-  color: rgba(110,110,110,.25);
+  color: rgba(110, 110, 110, .25);
   filter: blur(2.5px);
-  transform: translate(.8px,.7px);
+  transform: translate(.8px, .7px);
   pointer-events: none;
 }
 
@@ -100,6 +102,8 @@ h1::after {
 .nav-button.active {
   border-bottom: 1px solid #aaa;
 }
+
+/* 턴테이블 */
 
 .turntable {
   position: relative;
@@ -154,6 +158,8 @@ h1::after {
   cursor: grabbing;
 }
 
+/* 오른쪽 콘텐츠 영역 */
+
 .content-area {
   position: fixed;
   z-index: 1;
@@ -163,6 +169,8 @@ h1::after {
   height: 100vh;
   pointer-events: none;
 }
+
+/* HOME의 별도 이미지: 싸움.png */
 
 .home-art {
   position: absolute;
@@ -177,6 +185,8 @@ h1::after {
     opacity .45s ease,
     visibility .45s ease;
 }
+
+/* NOTICE / CHARACTERS */
 
 .text-panel {
   position: absolute;
@@ -444,14 +454,14 @@ h1::after {
   white-space: nowrap;
 }
 
-/* 업데이트 목록은 HOME에만 표시 */
+/* HOME 이외에는 업데이트 목록 숨김 */
 
 body[data-view="notice"] .sunfish-updates,
 body[data-view="characters"] .sunfish-updates {
   display: none;
 }
 
-/* 태블릿 및 모바일 */
+/* 태블릿 / 모바일 */
 
 @media (max-width: 900px) {
   .page {
@@ -467,9 +477,10 @@ body[data-view="characters"] .sunfish-updates {
     width: 100%;
     max-width: 650px;
     min-width: 0;
-    flex-shrink: 0;
     margin: 0 auto;
   }
+
+  /* 음악 나오는 턴테이블 크기는 기존대로 */
 
   .turntable {
     width: min(76vw, 480px);
@@ -483,17 +494,29 @@ body[data-view="characters"] .sunfish-updates {
     width: 100%;
     max-width: 650px;
     height: auto;
-    min-height: 42svh;
+    min-height: 0;
     margin: 28px auto 0;
     overflow: visible;
   }
 
+  /*
+    중요:
+    모바일에서 싸움.png가 작아졌던 원인인
+    background-size: contain을 사용하지 않음.
+
+    이미지 높이를 화면 높이의 75% 정도로 크게 유지.
+    이미지가 화면 너비보다 넓으면 가운데를 기준으로 표시.
+  */
+
   .home-art {
     position: relative;
+    display: block;
     width: 100%;
-    height: 46svh;
-    background-size: contain;
+    height: 78svh;
+    min-height: 480px;
+    background-size: auto 75svh;
     background-position: center bottom;
+    background-repeat: no-repeat;
   }
 
   .text-panel {
@@ -505,7 +528,7 @@ body[data-view="characters"] .sunfish-updates {
     max-height: none;
   }
 
-  /* 글 화면에서는 턴테이블 아래로 밀리지 않도록 */
+  /* 글 화면에서는 턴테이블과 HOME 이미지를 표시하지 않음 */
 
   body[data-view="notice"] .turntable,
   body[data-view="characters"] .turntable {
@@ -583,6 +606,8 @@ body[data-view="characters"] .sunfish-updates {
     font-size: 9px;
   }
 
+  /* 턴테이블은 이전 크기 유지 */
+
   .turntable {
     width: min(76vw, 380px);
   }
@@ -592,8 +617,13 @@ body[data-view="characters"] .sunfish-updates {
     margin-top: 24px;
   }
 
+  /* 별도 그림만 크게 */
+
   .home-art {
-    height: 42svh;
+    height: 78svh;
+    min-height: 480px;
+    background-size: auto 75svh;
+    background-position: center bottom;
   }
 
   .markdown-body {
@@ -643,6 +673,7 @@ body[data-view="characters"] .sunfish-updates {
     <h1 data-text="SUNFISH">SUNFISH</h1>
 
     <nav class="site-nav" aria-label="Site navigation">
+
       <button
         class="nav-button active"
         data-target="home"
@@ -663,9 +694,11 @@ body[data-view="characters"] .sunfish-updates {
         type="button"
         aria-pressed="false"
       >CHARACTERS</button>
+
     </nav>
 
     <div class="turntable" id="turntable">
+
       <img
         src="레코드.png"
         class="vinyl"
@@ -681,6 +714,7 @@ body[data-view="characters"] .sunfish-updates {
         alt="Turntable tonearm"
         draggable="false"
       >
+
     </div>
 
     <section class="sunfish-updates" aria-label="업데이트 목록">
@@ -707,6 +741,7 @@ body[data-view="characters"] .sunfish-updates {
         </div>
 
         <div class="detail-view" id="noticeDetail">
+
           <button
             class="back-button"
             type="button"
@@ -714,8 +749,11 @@ body[data-view="characters"] .sunfish-updates {
           >← 목록으로</button>
 
           <h2 class="detail-title" id="noticeTitle"></h2>
+
           <div id="noticeImageArea"></div>
+
           <div class="markdown-body" id="noticeBody"></div>
+
         </div>
 
       </div>
@@ -729,6 +767,7 @@ body[data-view="characters"] .sunfish-updates {
         </div>
 
         <div class="detail-view" id="charactersDetail">
+
           <button
             class="back-button"
             type="button"
@@ -736,8 +775,11 @@ body[data-view="characters"] .sunfish-updates {
           >← 목록으로</button>
 
           <h2 class="detail-title" id="charactersTitle"></h2>
+
           <div id="charactersImageArea"></div>
+
           <div class="markdown-body" id="charactersBody"></div>
+
         </div>
 
       </div>
@@ -752,22 +794,13 @@ body[data-view="characters"] .sunfish-updates {
 </div>
 
 <script>
-/* SUNFISH CMS 설정 */
+/* GitHub 저장소 설정 */
 
 const GITHUB_OWNER = "sunfishmola";
 const GITHUB_REPO = "sunfishmola.github.io";
 const GITHUB_BRANCH = "main";
 
 const CMS_SECTIONS = {
-  characters: {
-    folder: "content/characters",
-    listId: "charactersEntries",
-    detailId: "charactersDetail",
-    titleId: "charactersTitle",
-    imageId: "charactersImageArea",
-    bodyId: "charactersBody"
-  },
-
   notice: {
     folder: "content/notices",
     listId: "noticeEntries",
@@ -775,15 +808,33 @@ const CMS_SECTIONS = {
     titleId: "noticeTitle",
     imageId: "noticeImageArea",
     bodyId: "noticeBody"
+  },
+
+  characters: {
+    folder: "content/characters",
+    listId: "charactersEntries",
+    detailId: "charactersDetail",
+    titleId: "charactersTitle",
+    imageId: "charactersImageArea",
+    bodyId: "charactersBody"
   }
 };
 
 const cmsCache = {
-  characters: [],
-  notice: []
+  notice: [],
+  characters: []
 };
 
-/* 마크다운 읽기 */
+/* 파일 경로 처리 */
+
+function encodePath(path) {
+  return path
+    .split("/")
+    .map(part => encodeURIComponent(part))
+    .join("/");
+}
+
+/* 마크다운 제목과 본문 읽기 */
 
 function parseMarkdownFile(source, fallbackTitle) {
   const normalized = source.replace(/\r\n/g, "\n");
@@ -801,12 +852,18 @@ function parseMarkdownFile(source, fallbackTitle) {
       let currentKey = null;
 
       for (const line of frontmatter.split("\n")) {
-        const match = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
+        const match = line.match(
+          /^([A-Za-z0-9_-]+):\s*(.*)$/
+        );
 
         if (match) {
           currentKey = match[1];
           metadata[currentKey] = match[2].trim();
-        } else if (currentKey && /^\s+\S/.test(line)) {
+
+        } else if (
+          currentKey &&
+          /^\s+\S/.test(line)
+        ) {
           metadata[currentKey] += " " + line.trim();
         }
       }
@@ -827,18 +884,11 @@ function parseMarkdownFile(source, fallbackTitle) {
   return {
     title: metadata.title || fallbackTitle,
     image: metadata.image || "",
-    body: body
+    body
   };
 }
 
 /* 이미지 경로 */
-
-function encodePath(path) {
-  return path
-    .split("/")
-    .map(part => encodeURIComponent(part))
-    .join("/");
-}
 
 function resolveMediaUrl(path) {
   if (!path) return "";
@@ -853,118 +903,148 @@ function resolveMediaUrl(path) {
     return "";
   }
 
-  const root = window.location.origin;
-
-  if (cleaned.startsWith("/")) {
-    return root + encodePath(cleaned);
-  }
-
-  return root + "/" + encodePath(cleaned);
+  return window.location.origin + "/" +
+    encodePath(cleaned.replace(/^\//, ""));
 }
 
-/* GitHub 글 목록 가져오기 */
+/*
+  공개 파일 목록 조회
+
+  GitHub API의 비인증 요청 제한을 피하기 위해
+  jsDelivr 공개 패키지 파일 목록을 사용한다.
+*/
+
+let publicFileListPromise = null;
+
+async function getPublicFileList() {
+  if (!publicFileListPromise) {
+    publicFileListPromise = (async () => {
+      const url =
+        "https://data.jsdelivr.com/v1/package/gh/" +
+        GITHUB_OWNER + "/" +
+        GITHUB_REPO + "@" +
+        GITHUB_BRANCH + "/flat";
+
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(
+          "공개 파일 목록 조회 실패: " + response.status
+        );
+      }
+
+      const data = await response.json();
+
+      if (!Array.isArray(data.files)) {
+        throw new Error("공개 파일 목록 형식 오류");
+      }
+
+      return data.files.map(file =>
+        file.name.replace(/^\//, "")
+      );
+    })();
+  }
+
+  return publicFileListPromise;
+}
+
+/* GitHub Pages에 공개된 실제 파일 읽기 */
+
+async function readPublicFile(path) {
+  const url =
+    window.location.origin +
+    "/" +
+    encodePath(path) +
+    "?v=" +
+    Date.now();
+
+  const response = await fetch(url, {
+    cache: "no-store"
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      "파일 읽기 실패: " + response.status
+    );
+  }
+
+  return response.text();
+}
+
+/* NOTICE / CHARACTERS 목록 */
 
 async function loadCMSSection(sectionName) {
   const section = CMS_SECTIONS[sectionName];
-  const list = document.getElementById(section.listId);
 
-  /* 아무런 로딩 문구도 표시하지 않음 */
+  const list = document.getElementById(
+    section.listId
+  );
+
+  /* 안내 문구 없이 비움 */
   list.replaceChildren();
 
   try {
-    const apiUrl =
-      "https://api.github.com/repos/" +
-      GITHUB_OWNER + "/" +
-      GITHUB_REPO + "/contents/" +
-      section.folder +
-      "?ref=" + encodeURIComponent(GITHUB_BRANCH);
+    const files = await getPublicFileList();
 
-    const response = await fetch(apiUrl, {
-      headers: {
-        Accept: "application/vnd.github+json"
-      }
-    });
-
-    if (response.status === 404) {
-      cmsCache[sectionName] = [];
-      renderCMSList(sectionName);
-      return;
-    }
-
-    if (!response.ok) {
-      throw new Error("GitHub API: " + response.status);
-    }
-
-    const files = await response.json();
-
-    if (!Array.isArray(files)) {
-      throw new Error("파일 목록 형식 오류");
-    }
-
-    const markdownFiles = files
-      .filter(file =>
-        file.type === "file" &&
-        /\.md$/i.test(file.name)
+    const names = files
+      .filter(name =>
+        name.startsWith(section.folder + "/") &&
+        /\.md$/i.test(name) &&
+        name.slice(section.folder.length + 1)
+          .indexOf("/") === -1
       )
       .sort((a, b) =>
-        b.name.localeCompare(a.name)
+        b.localeCompare(a)
       );
 
-    if (markdownFiles.length === 0) {
-      cmsCache[sectionName] = [];
-      renderCMSList(sectionName);
-      return;
-    }
-
     const entries = await Promise.all(
-      markdownFiles.map(async file => {
-        const rawUrl =
-          "https://raw.githubusercontent.com/" +
-          GITHUB_OWNER + "/" +
-          GITHUB_REPO + "/" +
-          GITHUB_BRANCH + "/" +
-          encodePath(file.path);
+      names.map(async path => {
+        const source = await readPublicFile(path);
 
-        const fileResponse = await fetch(rawUrl);
-
-        if (!fileResponse.ok) {
-          throw new Error("글 파일 읽기 오류");
-        }
-
-        const source = await fileResponse.text();
+        const fallbackTitle = path
+          .split("/")
+          .pop()
+          .replace(/\.md$/i, "");
 
         return {
           ...parseMarkdownFile(
             source,
-            file.name.replace(/\.md$/i, "")
+            fallbackTitle
           ),
-          filename: file.name
+          filename: path.split("/").pop()
         };
       })
     );
 
     cmsCache[sectionName] = entries;
+
     renderCMSList(sectionName);
 
   } catch (error) {
-    /* 오류는 개발자 콘솔에만 기록 */
-    console.error("CMS 불러오기 오류:", error);
+    console.error(
+      "글 목록 조회 실패:",
+      error
+    );
 
-    /* 방문자에게 안내 문구를 표시하지 않음 */
+    /* 방문자에게 오류 메시지 표시하지 않음 */
     list.replaceChildren();
   }
 }
 
-/* 글 목록 표시 */
+/* 글 목록 렌더링 */
 
 function renderCMSList(sectionName) {
   const section = CMS_SECTIONS[sectionName];
-  const list = document.getElementById(section.listId);
-  const entries = cmsCache[sectionName];
+
+  const list = document.getElementById(
+    section.listId
+  );
 
   list.replaceChildren();
 
-  /* 글이 없으면 아무것도 표시하지 않음 */
+  const entries = cmsCache[sectionName];
+
+  /* 글이 없으면 빈 화면 */
   if (entries.length === 0) {
     return;
   }
@@ -984,10 +1064,11 @@ function renderCMSList(sectionName) {
   });
 }
 
-/* 상세 페이지 */
+/* 글 상세 화면 */
 
 function openCMSDetail(sectionName, index) {
   const section = CMS_SECTIONS[sectionName];
+
   const entry = cmsCache[sectionName][index];
 
   if (!entry) return;
@@ -998,7 +1079,10 @@ function openCMSDetail(sectionName, index) {
       : ".characters-panel"
   );
 
-  const listView = panel.querySelector(".list-view");
+  const listView = panel.querySelector(
+    ".list-view"
+  );
+
   const detailView = document.getElementById(
     section.detailId
   );
@@ -1016,17 +1100,22 @@ function openCMSDetail(sectionName, index) {
   );
 
   title.textContent = entry.title;
+
   imageArea.replaceChildren();
 
   if (entry.image) {
-    const imageUrl = resolveMediaUrl(entry.image);
+    const imageUrl = resolveMediaUrl(
+      entry.image
+    );
 
     if (imageUrl) {
       const img = document.createElement("img");
+
       img.src = imageUrl;
       img.alt = entry.title;
       img.className = "detail-image";
       img.loading = "lazy";
+
       img.onerror = () => img.remove();
 
       imageArea.appendChild(img);
@@ -1041,47 +1130,63 @@ function openCMSDetail(sectionName, index) {
       gfm: true
     });
 
-    const sanitized = DOMPurify.sanitize(html);
+    const template = document.createElement(
+      "template"
+    );
 
-    const template = document.createElement("template");
-    template.innerHTML = sanitized;
+    template.innerHTML = DOMPurify.sanitize(html);
 
-    template.content.querySelectorAll("img").forEach(img => {
-      const original = img.getAttribute("src");
-      const resolved = resolveMediaUrl(original);
+    template.content
+      .querySelectorAll("img")
+      .forEach(img => {
+        const original = img.getAttribute("src");
 
-      if (resolved) {
-        img.src = resolved;
-        img.loading = "lazy";
-      } else {
-        img.remove();
-      }
-    });
+        const resolved = resolveMediaUrl(
+          original
+        );
 
-    template.content.querySelectorAll("a").forEach(link => {
-      const href = link.getAttribute("href") || "";
+        if (resolved) {
+          img.src = resolved;
+          img.loading = "lazy";
+        } else {
+          img.remove();
+        }
+      });
 
-      if (!/^(https?:\/\/|mailto:|\/|#)/i.test(href)) {
-        link.removeAttribute("href");
-      }
+    template.content
+      .querySelectorAll("a")
+      .forEach(link => {
+        const href = link.getAttribute("href") || "";
 
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    });
+        if (
+          !/^(https?:\/\/|mailto:|\/|#)/i.test(href)
+        ) {
+          link.removeAttribute("href");
+        }
+
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      });
 
     bodyArea.appendChild(template.content);
 
   } else {
-    const paragraph = document.createElement("p");
+    const paragraph = document.createElement(
+      "p"
+    );
+
     paragraph.style.whiteSpace = "pre-wrap";
     paragraph.textContent = entry.body;
+
     bodyArea.appendChild(paragraph);
   }
 
   listView.classList.add("hidden");
   detailView.classList.add("active");
 
-  panel.querySelector(".text-panel-inner").scrollTop = 0;
+  panel.querySelector(
+    ".text-panel-inner"
+  ).scrollTop = 0;
 
   if (window.innerWidth <= 900) {
     window.scrollTo(0, 0);
@@ -1103,19 +1208,30 @@ function resetCMSDetail(sectionName) {
   panel.querySelector(".list-view")
     .classList.remove("hidden");
 
-  panel.querySelector(".text-panel-inner").scrollTop = 0;
+  panel.querySelector(
+    ".text-panel-inner"
+  ).scrollTop = 0;
 }
 
-document.querySelectorAll("[data-back]").forEach(button => {
-  button.addEventListener("click", () => {
-    resetCMSDetail(button.dataset.back);
+document
+  .querySelectorAll("[data-back]")
+  .forEach(button => {
+    button.addEventListener("click", () => {
+      resetCMSDetail(
+        button.dataset.back
+      );
+    });
   });
-});
 
 /* 상단 메뉴 */
 
-const contentArea = document.getElementById("contentArea");
-const navButtons = document.querySelectorAll(".nav-button");
+const contentArea = document.getElementById(
+  "contentArea"
+);
+
+const navButtons = document.querySelectorAll(
+  ".nav-button"
+);
 
 navButtons.forEach(button => {
   button.addEventListener("click", () => {
@@ -1127,14 +1243,21 @@ navButtons.forEach(button => {
     navButtons.forEach(navButton => {
       const active = navButton === button;
 
-      navButton.classList.toggle("active", active);
+      navButton.classList.toggle(
+        "active",
+        active
+      );
+
       navButton.setAttribute(
         "aria-pressed",
         String(active)
       );
     });
 
-    if (target === "notice" || target === "characters") {
+    if (
+      target === "notice" ||
+      target === "characters"
+    ) {
       resetCMSDetail(target);
     }
 
@@ -1144,17 +1267,22 @@ navButtons.forEach(button => {
   });
 });
 
-loadCMSSection("characters");
 loadCMSSection("notice");
+loadCMSSection("characters");
 
-/* 턴테이블 */
+/* 턴테이블과 음악 */
 
-const turntable = document.getElementById("turntable");
-const vinyl = document.getElementById("vinyl");
-const tonearm = document.getElementById("tonearm");
+const turntable = document.getElementById(
+  "turntable"
+);
 
-const PIVOT_X = .77;
-const PIVOT_Y = .17;
+const vinyl = document.getElementById(
+  "vinyl"
+);
+
+const tonearm = document.getElementById(
+  "tonearm"
+);
 
 const REST_ANGLE = -27;
 const MIN_ANGLE = -27;
@@ -1171,39 +1299,50 @@ let youtubePlayer = null;
 let youtubeReady = false;
 let wantsToPlay = false;
 
-const youtubeScript = document.createElement("script");
-youtubeScript.src = "https://www.youtube.com/iframe_api";
+const youtubeScript = document.createElement(
+  "script"
+);
+
+youtubeScript.src =
+  "https://www.youtube.com/iframe_api";
+
 document.head.appendChild(youtubeScript);
 
 function onYouTubeIframeAPIReady() {
-  youtubePlayer = new YT.Player("youtube-player", {
-    width: 200,
-    height: 200,
-    videoId: "AJsvGtGgI6M",
-    playerVars: {
-      autoplay: 0,
-      controls: 0,
-      playsinline: 1,
-      rel: 0
-    },
-    events: {
-      onReady: function() {
-        youtubeReady = true;
+  youtubePlayer = new YT.Player(
+    "youtube-player",
+    {
+      width: 200,
+      height: 200,
+      videoId: "AJsvGtGgI6M",
 
-        if (wantsToPlay) {
-          youtubePlayer.playVideo();
-        }
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        playsinline: 1,
+        rel: 0
       },
-      onStateChange: function(event) {
-        if (
-          event.data === YT.PlayerState.PLAYING &&
-          !wantsToPlay
-        ) {
-          youtubePlayer.pauseVideo();
+
+      events: {
+        onReady() {
+          youtubeReady = true;
+
+          if (wantsToPlay) {
+            youtubePlayer.playVideo();
+          }
+        },
+
+        onStateChange(event) {
+          if (
+            event.data === YT.PlayerState.PLAYING &&
+            !wantsToPlay
+          ) {
+            youtubePlayer.pauseVideo();
+          }
         }
       }
     }
-  });
+  );
 }
 
 function syncMusic(playing) {
@@ -1221,18 +1360,29 @@ function syncMusic(playing) {
 }
 
 function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
+  return Math.max(
+    min,
+    Math.min(max, value)
+  );
 }
 
 function updateTonearm(angle) {
-  currentAngle = clamp(angle, MIN_ANGLE, MAX_ANGLE);
+  currentAngle = clamp(
+    angle,
+    MIN_ANGLE,
+    MAX_ANGLE
+  );
 
   tonearm.style.transform =
     `rotate(${currentAngle}deg)`;
 
-  const playing = currentAngle >= PLAY_THRESHOLD;
+  const playing =
+    currentAngle >= PLAY_THRESHOLD;
 
-  vinyl.classList.toggle("playing", playing);
+  vinyl.classList.toggle(
+    "playing",
+    playing
+  );
 
   if (playing !== wantsToPlay) {
     syncMusic(playing);
@@ -1242,14 +1392,18 @@ function updateTonearm(angle) {
 function getPivotPosition() {
   const rect = turntable.getBoundingClientRect();
 
-  const imageLeft = rect.left + rect.width * .39;
-  const imageTop = rect.top - rect.height * .08;
-  const imageWidth = rect.width * .73;
-  const imageHeight = imageWidth;
+  const imageLeft =
+    rect.left + rect.width * .39;
+
+  const imageTop =
+    rect.top - rect.height * .08;
+
+  const imageWidth =
+    rect.width * .73;
 
   return {
-    x: imageLeft + imageWidth * PIVOT_X,
-    y: imageTop + imageHeight * PIVOT_Y
+    x: imageLeft + imageWidth * .77,
+    y: imageTop + imageWidth * .17
   };
 }
 
@@ -1262,39 +1416,72 @@ function getPointerAngle(event) {
   ) * 180 / Math.PI;
 }
 
-tonearm.addEventListener("pointerdown", event => {
-  dragging = true;
+tonearm.addEventListener(
+  "pointerdown",
+  event => {
+    dragging = true;
 
-  startPointerAngle = getPointerAngle(event);
-  startTonearmAngle = currentAngle;
+    startPointerAngle = getPointerAngle(
+      event
+    );
 
-  tonearm.classList.add("dragging");
-  tonearm.setPointerCapture(event.pointerId);
+    startTonearmAngle = currentAngle;
 
-  event.preventDefault();
-});
+    tonearm.classList.add("dragging");
 
-tonearm.addEventListener("pointermove", event => {
-  if (!dragging) return;
+    tonearm.setPointerCapture(
+      event.pointerId
+    );
 
-  const pointerAngle = getPointerAngle(event);
+    event.preventDefault();
+  }
+);
 
-  let difference = pointerAngle - startPointerAngle;
+tonearm.addEventListener(
+  "pointermove",
+  event => {
+    if (!dragging) return;
 
-  if (difference > 180) difference -= 360;
-  if (difference < -180) difference += 360;
+    let difference =
+      getPointerAngle(event) -
+      startPointerAngle;
 
-  updateTonearm(startTonearmAngle + difference);
-});
+    if (difference > 180) {
+      difference -= 360;
+    }
+
+    if (difference < -180) {
+      difference += 360;
+    }
+
+    updateTonearm(
+      startTonearmAngle + difference
+    );
+  }
+);
 
 function endDrag() {
   dragging = false;
-  tonearm.classList.remove("dragging");
+
+  tonearm.classList.remove(
+    "dragging"
+  );
 }
 
-tonearm.addEventListener("pointerup", endDrag);
-tonearm.addEventListener("pointercancel", endDrag);
-tonearm.addEventListener("lostpointercapture", endDrag);
+tonearm.addEventListener(
+  "pointerup",
+  endDrag
+);
+
+tonearm.addEventListener(
+  "pointercancel",
+  endDrag
+);
+
+tonearm.addEventListener(
+  "lostpointercapture",
+  endDrag
+);
 
 updateTonearm(REST_ANGLE);
 
@@ -1305,103 +1492,80 @@ async function loadSunfishUpdates() {
     "sunfishUpdatesList"
   );
 
-  if (!container) return;
-
   /* 제목은 유지하고 내용만 비움 */
   container.replaceChildren();
 
   try {
-    const apiUrl =
-      "https://api.github.com/repos/" +
-      GITHUB_OWNER + "/" +
-      GITHUB_REPO +
-      "/contents/content/updates?ref=" +
-      encodeURIComponent(GITHUB_BRANCH);
+    const files = await getPublicFileList();
 
-    const response = await fetch(apiUrl, {
-      headers: {
-        Accept: "application/vnd.github+json"
-      }
-    });
-
-    /* 폴더가 없으면 아무것도 표시하지 않음 */
-    if (response.status === 404) {
-      return;
-    }
-
-    if (!response.ok) {
-      throw new Error(
-        "업데이트 목록 오류: " + response.status
-      );
-    }
-
-    const result = await response.json();
-
-    if (!Array.isArray(result)) {
-      throw new Error("업데이트 목록 형식 오류");
-    }
-
-    const files = result.filter(file =>
-      file.type === "file" &&
-      /\.json$/i.test(file.name)
+    const paths = files.filter(name =>
+      name.startsWith("content/updates/") &&
+      /\.json$/i.test(name) &&
+      name.slice("content/updates/".length)
+        .indexOf("/") === -1
     );
 
-    if (files.length === 0) {
-      return;
-    }
-
     const items = await Promise.all(
-      files.map(async file => {
-        const rawUrl =
-          "https://raw.githubusercontent.com/" +
-          GITHUB_OWNER + "/" +
-          GITHUB_REPO + "/" +
-          GITHUB_BRANCH + "/" +
-          encodePath(file.path);
+      paths.map(async path => {
+        const source = await readPublicFile(
+          path
+        );
 
-        const fileResponse = await fetch(rawUrl);
-
-        if (!fileResponse.ok) {
-          throw new Error("업데이트 파일 읽기 오류");
-        }
-
-        return await fileResponse.json();
+        return JSON.parse(source);
       })
     );
 
     items.sort((a, b) =>
-      String(b.createdAt || b.date || "")
-        .localeCompare(
-          String(a.createdAt || a.date || "")
+      String(
+        b.createdAt || b.date || ""
+      ).localeCompare(
+        String(
+          a.createdAt || a.date || ""
         )
+      )
     );
 
-    container.replaceChildren();
-
-    /* 업데이트가 없으면 제목 아래만 비움 */
-    if (items.length === 0) {
-      return;
-    }
-
     for (const item of items) {
-      const row = document.createElement("div");
+      const row = document.createElement(
+        "div"
+      );
+
       row.className = "sunfish-update-row";
 
-      const content = document.createElement("span");
-      content.className = "sunfish-update-text";
-      content.textContent = String(item.text || "");
+      const content = document.createElement(
+        "span"
+      );
 
-      const date = document.createElement("span");
-      date.className = "sunfish-update-date";
-      date.textContent = String(item.date || "");
+      content.className =
+        "sunfish-update-text";
+
+      content.textContent = String(
+        item.text || ""
+      );
+
+      const date = document.createElement(
+        "span"
+      );
+
+      date.className =
+        "sunfish-update-date";
+
+      date.textContent = String(
+        item.date || ""
+      );
 
       row.append(content, date);
+
       container.appendChild(row);
     }
 
   } catch (error) {
-    /* 오류 문구를 화면에 표시하지 않음 */
-    console.error("업데이트 목록 오류:", error);
+    console.error(
+      "업데이트 조회 실패:",
+      error
+    );
+
+    /* 오류 문구는 표시하지 않음 */
     container.replaceChildren();
   }
 }
@@ -1409,5 +1573,6 @@ async function loadSunfishUpdates() {
 loadSunfishUpdates();
 
 </script>
+
 </body>
 </html>
