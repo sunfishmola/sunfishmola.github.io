@@ -727,8 +727,8 @@ function getCatalog() {
     const t = Date.now();
 
     const urls = [
-      `${window.location.origin}/content/catalog.json?t=${t}`,
-      `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/content/catalog.json?t=${t}`
+      `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/content/catalog.json?t=${t}`,
+      `${window.location.origin}/content/catalog.json?t=${t}`
     ];
 
     for (const url of urls) {
