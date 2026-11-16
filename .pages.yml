@@ -1,0 +1,34 @@
+
+media:
+  input: media
+  output: /media
+
+content:
+  - name: characters
+    label: 캐릭터 / 세계관
+    type: collection
+    path: content/characters
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: image
+        label: 대표 이미지
+        type: image
+      - name: body
+        label: 소개 및 설정
+        type: rich-text
+
+  - name: notices
+    label: 공지사항
+    type: collection
+    path: content/notices
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: body
+        label: 본문
+        type: rich-text
