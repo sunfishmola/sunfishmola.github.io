@@ -2,632 +2,1487 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SUNFISH</title>
-<link rel="preconnect" href="https://data.jsdelivr.com">
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap');
 
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:100%;overflow-x:hidden}
-body{min-height:100vh;background:#fff;color:#111;font-family:Georgia,"Times New Roman",serif}
-.page{position:relative;min-height:100vh;width:100%;display:flex;align-items:center;justify-content:flex-start;padding:40px 5vw}
-.player-area{position:relative;z-index:2;width:min(100%,650px);min-width:0;flex-shrink:0;text-align:center}
-h1{position:relative;display:inline-block;margin:0 0 8px;font-family:"Cormorant Garamond",Georgia,serif;font-size:38px;font-weight:300;line-height:1.1;letter-spacing:.035em;color:#777;text-shadow:0 0 1px #9995,0 0 4px #9993,0 0 10px #9992}
-h1::after{content:attr(data-text);position:absolute;inset:0;color:#7774;filter:blur(2.5px);transform:translate(.8px,.7px);pointer-events:none}
-.site-nav{display:flex;justify-content:center;align-items:center;gap:22px;margin:0 0 28px}
-.nav-button{padding:4px 0;border:0;background:transparent;color:#999;font:10px Georgia,serif;letter-spacing:.13em;cursor:pointer}
-.nav-button:hover,.nav-button.active{color:#444}
-.nav-button.active{border-bottom:1px solid #aaa}
-.turntable{position:relative;width:min(100%,576px);aspect-ratio:1.3/1;margin:0 auto;user-select:none;-webkit-user-select:none}
-.vinyl{position:absolute;display:block;width:100%;height:auto;left:50%;top:50%;transform:translate(-50%,-50%);transform-origin:center;pointer-events:none;-webkit-user-drag:none}
-.vinyl.playing{animation:spin 3s linear infinite}
-@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.tonearm{position:absolute;z-index:2;width:73%;height:auto;left:39%;top:-8%;transform-origin:77% 17%;cursor:grab;touch-action:none;-webkit-user-drag:none}
-.tonearm.dragging{cursor:grabbing}
-.content-area{position:fixed;z-index:1;right:0;bottom:0;width:53vw;height:100vh;pointer-events:none}
-.home-art{position:absolute;inset:0;background:url('싸움.png') no-repeat calc(100% - 120px) bottom;background-size:auto 90vh;opacity:1;visibility:visible;transition:opacity .45s,visibility .45s}
-.text-panel{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:70px 9vw 70px 5vw;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .45s,transform .45s,visibility .45s}
-.text-panel-inner{width:100%;max-width:440px;min-width:0;max-height:80vh;overflow-y:auto;overflow-x:hidden;pointer-events:auto;scrollbar-width:thin;scrollbar-color:#ccc transparent}
-.content-area[data-view="notice"] .home-art,.content-area[data-view="characters"] .home-art{opacity:0;visibility:hidden}
-.content-area[data-view="notice"] .notice-panel,.content-area[data-view="characters"] .characters-panel{opacity:1;visibility:visible;transform:translateY(0)}
-.entry-list{display:flex;flex-direction:column}
-.entry-button{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:20px 2px;border:0;border-bottom:1px solid #e6e6e6;background:transparent;text-align:left;color:#666;font:14px Georgia,serif;overflow-wrap:anywhere;cursor:pointer}
-.entry-button:hover{color:#222}
-.entry-button::after{content:'→';flex-shrink:0;font-size:16px;color:#aaa}
-.detail-view{display:none}
-.detail-view.active{display:block}
-.list-view.hidden{display:none}
-.back-button{display:inline-block;margin:0 0 30px;padding:0;border:0;background:transparent;color:#999;font:11px Georgia,serif;cursor:pointer}
-.back-button:hover{color:#444}
-.detail-title{margin:0 0 24px;font-family:"Cormorant Garamond",Georgia,serif;font-size:32px;font-weight:300;line-height:1.4;color:#555;overflow-wrap:anywhere}
-.detail-image{display:block;max-width:100%;height:auto;margin:0 0 24px}
-.markdown-body{min-width:0;color:#666;font-size:13px;line-height:2;overflow-wrap:anywhere}
-.markdown-body p{margin:0 0 1.2em}
-.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4{position:static;display:block;margin:1.5em 0 .6em;font-family:Georgia,serif;font-weight:normal;letter-spacing:normal;color:#555;text-shadow:none}
-.markdown-body h1::after{display:none}
-.markdown-body h1{font-size:22px}
-.markdown-body h2{font-size:19px}
-.markdown-body h3{font-size:16px}
-.markdown-body img,.markdown-body video,.markdown-body iframe{max-width:100%}
-.markdown-body img{display:block;height:auto;margin:20px 0}
-.markdown-body a{color:#777;text-decoration:underline;text-underline-offset:3px}
-.markdown-body blockquote{margin:18px 0;padding-left:15px;border-left:1px solid #ccc;color:#888}
-.markdown-body hr{border:0;border-top:1px solid #e5e5e5;margin:25px 0}
-.markdown-body pre{max-width:100%;overflow-x:auto;padding:12px;background:#f7f7f7}
-.markdown-body code{font-family:monospace;font-size:.9em}
-.youtube-player-wrap{position:fixed;width:1px;height:1px;left:-9999px;top:-9999px;overflow:hidden;pointer-events:none}
-.sunfish-updates{width:min(100%,440px);margin:24px auto 0;text-align:left;color:#777;font-family:Georgia,serif}
-.sunfish-updates h2{margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e6e6e6;font-size:14px;font-weight:normal;color:#666}
-.sunfish-update-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:11px 0;border-bottom:1px solid #eee;font-size:12px;line-height:1.7}
-.sunfish-update-text{flex:1;min-width:0;overflow-wrap:anywhere;white-space:pre-wrap}
-.sunfish-update-date{flex-shrink:0;color:#999;font-size:11px;white-space:nowrap}
-body[data-view="notice"] .sunfish-updates,body[data-view="characters"] .sunfish-updates{display:none}
-
-@media(max-width:900px){
-.page{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:100svh;padding:38px 16px 50px}
-.player-area{width:100%;max-width:650px;margin:0 auto}
-.turntable{width:min(76vw,480px);max-width:100%}
-.content-area{position:relative;right:auto;bottom:auto;width:100%;max-width:650px;height:auto;min-height:42svh;margin:28px auto 0;overflow:visible}
-.home-art{position:relative;width:100%;height:78svh;min-height:480px;background-size:auto 75svh;background-position:center bottom}
-.text-panel{position:absolute;padding:24px 5vw 40px}
-.text-panel-inner{max-height:none}
-body[data-view="notice"] .turntable,body[data-view="characters"] .turntable{display:none}
-body[data-view="notice"] .content-area,body[data-view="characters"] .content-area{width:100%;min-height:0;margin-top:0}
-body[data-view="notice"] .home-art,body[data-view="characters"] .home-art{display:none}
-body[data-view="notice"] .text-panel,body[data-view="characters"] .text-panel{display:none}
-body[data-view="notice"] .notice-panel,body[data-view="characters"] .characters-panel{position:relative;display:block;width:100%;min-height:0;padding:12px 12px 40px;opacity:1;visibility:visible;transform:none}
-body[data-view="notice"] .notice-panel .text-panel-inner,body[data-view="characters"] .characters-panel .text-panel-inner{width:100%;max-width:440px;max-height:none;margin:0 auto;overflow:visible}
-body[data-view="notice"] .site-nav,body[data-view="characters"] .site-nav{margin-bottom:12px}
-.entry-button{padding:18px 2px;font-size:13px}
-.detail-title{font-size:29px}
+* {
+  box-sizing: border-box;
 }
 
-@media(max-width:700px){
-.page{padding:34px 12px 40px}
-h1{font-size:32px}
-.site-nav{gap:20px;margin-bottom:18px}
-.nav-button{font-size:9px}
-.turntable{width:min(76vw,380px)}
-.content-area{width:100%;margin-top:24px}
-.home-art{height:78svh;min-height:480px;background-size:auto 75svh}
-.markdown-body{font-size:14px;line-height:1.9}
-.sunfish-updates{width:min(76vw,380px);max-width:100%;margin-top:20px}
-.sunfish-update-row{gap:12px;font-size:11px}
-.sunfish-update-date{font-size:10px}
-body[data-view="notice"] .notice-panel,body[data-view="characters"] .characters-panel{padding:8px 4px 32px}
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
-@media(prefers-reduced-motion:reduce){
-.home-art,.text-panel{transition:none}
+body {
+  min-height: 100vh;
+  background: #fff;
+  color: #111;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 5vw;
+}
+
+.player-area {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 650px);
+  min-width: 0;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+h1 {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 8px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 38px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: .035em;
+  color: #777;
+  text-shadow:
+    0 0 1px rgba(90,90,90,.25),
+    0 0 4px rgba(100,100,100,.18),
+    0 0 10px rgba(120,120,120,.12);
+}
+
+h1::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: rgba(110,110,110,.25);
+  filter: blur(2.5px);
+  transform: translate(.8px,.7px);
+  pointer-events: none;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  margin: 0 0 28px;
+}
+
+.nav-button {
+  padding: 4px 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: #999;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  letter-spacing: .13em;
+  cursor: pointer;
+  transition: color .25s ease;
+}
+
+.nav-button:hover,
+.nav-button.active {
+  color: #444;
+}
+
+.nav-button.active {
+  border-bottom-color: #aaa;
+}
+
+.turntable {
+  position: relative;
+  width: min(100%, 576px);
+  aspect-ratio: 1.3 / 1;
+  margin: 0 auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.vinyl {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.vinyl.playing {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.tonearm {
+  position: absolute;
+  z-index: 2;
+  width: 73%;
+  height: auto;
+  left: 39%;
+  top: -8%;
+  transform-origin: 77% 17%;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-drag: none;
+}
+
+.tonearm.dragging {
+  cursor: grabbing;
+}
+
+.audio-wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 54px;
+  margin: 4px auto 0;
+}
+
+.audio-wave .bar {
+  display: block;
+  width: 5px;
+  height: var(--height);
+  border-radius: 999px;
+  background: #777;
+  opacity: .65;
+  box-shadow: 0 0 5px rgba(110,110,110,.15);
+  transform-origin: center;
+  animation: waveMove var(--duration) ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.audio-wave.playing .bar {
+  animation-play-state: running;
+}
+
+@keyframes waveMove {
+  from { transform: scaleY(.3); }
+  to { transform: scaleY(1.25); }
+}
+
+.content-area {
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  width: 53vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.home-art {
+  position: absolute;
+  inset: 0;
+  background-image: url("싸움.png");
+  background-repeat: no-repeat;
+  background-size: auto 90vh;
+  background-position: calc(100% - 120px) bottom;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .45s ease, visibility .45s ease;
+}
+
+.text-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 9vw 70px 5vw;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity .45s ease,
+    transform .45s ease,
+    visibility .45s ease;
+}
+
+.text-panel-inner {
+  width: 100%;
+  max-width: 440px;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  pointer-events: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.content-area[data-view="notice"] .home-art,
+.content-area[data-view="characters"] .home-art {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.content-area[data-view="notice"] .notice-panel,
+.content-area[data-view="characters"] .characters-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.entry-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 2px;
+  border: 0;
+  border-bottom: 1px solid #e6e6e6;
+  background: transparent;
+  text-align: left;
+  color: #666;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition: color .25s ease;
+}
+
+.entry-button:hover {
+  color: #222;
+}
+
+.entry-button::after {
+  content: "→";
+  flex-shrink: 0;
+  font-size: 16px;
+  color: #aaa;
+}
+
+.detail-view {
+  display: none;
+}
+
+.detail-view.active {
+  display: block;
+}
+
+.list-view.hidden {
+  display: none;
+}
+
+.back-button {
+  display: inline-block;
+  margin: 0 0 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #999;
+  font-family: Georgia, serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  color: #444;
+}
+
+.detail-title {
+  margin: 0 0 24px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: .03em;
+  color: #777;
+  overflow-wrap: anywhere;
+}
+
+.detail-image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 380px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 28px;
+}
+
+.markdown-body {
+  min-width: 0;
+  color: #666;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  line-height: 2.15;
+  overflow-wrap: anywhere;
+}
+
+.markdown-body p {
+  margin: 0 0 18px;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  position: static;
+  display: block;
+  margin: 30px 0 14px;
+  color: #666;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-shadow: none;
+  filter: none;
+  transform: none;
+}
+
+.markdown-body h1::after {
+  content: none;
+}
+
+.markdown-body h1 { font-size: 22px; }
+.markdown-body h2 { font-size: 19px; }
+.markdown-body h3 { font-size: 16px; }
+.markdown-body h4 { font-size: 14px; }
+
+.markdown-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 24px auto;
+}
+
+.markdown-body a {
+  color: #777;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 22px;
+  margin: 0 0 20px;
+}
+
+.markdown-body blockquote {
+  margin: 20px 0;
+  padding-left: 16px;
+  border-left: 2px solid #ddd;
+  color: #888;
+}
+
+.markdown-body hr {
+  margin: 28px 0;
+  border: 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+.markdown-body pre {
+  overflow-x: auto;
+  padding: 12px;
+  background: #f7f7f7;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.markdown-body code {
+  overflow-wrap: anywhere;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 12px;
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 8px;
+  border-bottom: 1px solid #e6e6e6;
+  text-align: left;
+}
+
+.youtube-player-wrap {
+  position: fixed;
+  left: -300px;
+  top: -300px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .01;
+}
+
+#youtube-player {
+  width: 200px;
+  height: 200px;
+}
+
+/* HOME 업데이트 목록 */
+.sunfish-updates {
+  width: min(100%, 440px);
+  margin: 24px auto 0;
+  text-align: left;
+  color: #777;
+  font-family: Georgia, serif;
+}
+
+/* display:none 대신 visibility:hidden:
+   메뉴 전환 때 턴테이블 위치가 바뀌지 않도록 공간 유지 */
+body[data-view="notice"] .sunfish-updates,
+body[data-view="characters"] .sunfish-updates {
+  visibility: hidden;
+}
+
+.sunfish-updates h2 {
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 14px;
+  font-weight: normal;
+  color: #666;
+}
+
+.sunfish-update-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 11px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.sunfish-update-text {
+  flex: 1;
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.sunfish-update-date {
+  flex-shrink: 0;
+  color: #999;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* 모바일 */
+@media (max-width: 700px) {
+  .page {
+    min-height: 100svh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 34px 0 0;
+  }
+
+  .player-area {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex-shrink: 0;
+    padding: 0 12px;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .site-nav {
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+
+  .nav-button {
+    font-size: 9px;
+  }
+
+  .turntable {
+    width: min(76vw, 380px);
+  }
+
+  .audio-wave {
+    height: 48px;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  .audio-wave .bar {
+    width: 4px;
+  }
+
+  .content-area {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 78svh;
+    min-height: 360px;
+    margin-top: 36px;
+    overflow: hidden;
+  }
+
+  .home-art {
+    background-size: auto 100%;
+    background-position: center bottom;
+  }
+
+  .text-panel {
+    align-items: flex-start;
+    padding: 24px 6vw 40px;
+  }
+
+  .text-panel-inner {
+    max-height: 100%;
+  }
+
+  .entry-button {
+    padding: 18px 2px;
+    font-size: 13px;
+  }
+
+  .detail-title {
+    font-size: 29px;
+  }
+
+  .markdown-body {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .markdown-body img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .sunfish-updates {
+    width: min(76vw, 380px);
+    margin-top: 20px;
+  }
+
+  .sunfish-update-row {
+    gap: 12px;
+    font-size: 11px;
+  }
+
+  .sunfish-update-date {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio-wave .bar {
+    animation: none;
+  }
+
+  .home-art,
+  .text-panel {
+    transition: none;
+  }
 }
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
 </head>
+
 <body data-view="home">
 
 <main class="page">
-<section class="player-area">
-<h1 data-text="SUNFISH">SUNFISH</h1>
-<nav class="site-nav" aria-label="Site navigation">
-<button class="nav-button active" data-target="home" type="button" aria-pressed="true">HOME</button>
-<button class="nav-button" data-target="notice" type="button" aria-pressed="false">NOTICE</button>
-<button class="nav-button" data-target="characters" type="button" aria-pressed="false">CHARACTERS</button>
-</nav>
 
-<div class="turntable" id="turntable">
-<img src="레코드.png" class="vinyl" id="vinyl" alt="Black vinyl record" draggable="false">
-<img src="실버 턴테이블 톤암 어셈블리.png" class="tonearm" id="tonearm" alt="Turntable tonearm" draggable="false">
-</div>
+  <section class="player-area">
 
-<section class="sunfish-updates" aria-label="업데이트 목록">
-<h2>업데이트 목록</h2>
-<div id="sunfishUpdatesList"></div>
-</section>
-</section>
+    <h1 data-text="SUNFISH">SUNFISH</h1>
 
-<section class="content-area" id="contentArea" data-view="home" aria-label="Site content">
-<div class="home-art"></div>
+    <nav class="site-nav" aria-label="Site navigation">
+      <button
+        class="nav-button active"
+        type="button"
+        data-target="home"
+        aria-pressed="true"
+      >HOME</button>
 
-<article class="text-panel notice-panel">
-<div class="text-panel-inner" id="noticeScroll">
-<div class="list-view" id="noticeList">
-<div class="entry-list" id="noticeEntries"></div>
-</div>
-<div class="detail-view" id="noticeDetail">
-<button class="back-button" type="button" data-back="notice">← 목록으로</button>
-<h2 class="detail-title" id="noticeTitle"></h2>
-<div id="noticeImageArea"></div>
-<div class="markdown-body" id="noticeBody"></div>
-</div>
-</div>
-</article>
+      <button
+        class="nav-button"
+        type="button"
+        data-target="notice"
+        aria-pressed="false"
+      >NOTICE</button>
 
-<article class="text-panel characters-panel">
-<div class="text-panel-inner" id="charactersScroll">
-<div class="list-view" id="charactersList">
-<div class="entry-list" id="charactersEntries"></div>
-</div>
-<div class="detail-view" id="charactersDetail">
-<button class="back-button" type="button" data-back="characters">← 목록으로</button>
-<h2 class="detail-title" id="charactersTitle"></h2>
-<div id="charactersImageArea"></div>
-<div class="markdown-body" id="charactersBody"></div>
-</div>
-</div>
-</article>
-</section>
+      <button
+        class="nav-button"
+        type="button"
+        data-target="characters"
+        aria-pressed="false"
+      >CHARACTERS</button>
+    </nav>
+
+    <div class="turntable" id="turntable">
+      <img
+        src="레코드.png"
+        class="vinyl"
+        id="vinyl"
+        alt="Vinyl record"
+        draggable="false"
+      >
+
+      <img
+        src="실버 턴테이블 톤암 어셈블리.png"
+        class="tonearm"
+        id="tonearm"
+        alt="Turntable tonearm"
+        draggable="false"
+      >
+    </div>
+
+    <section class="sunfish-updates" aria-label="업데이트 목록">
+      <h2>업데이트 목록</h2>
+      <div id="sunfishUpdatesList"></div>
+    </section>
+
+  </section>
+
+  <section
+    class="content-area"
+    id="contentArea"
+    data-view="home"
+    aria-label="Site content"
+  >
+
+    <div class="home-art"></div>
+
+    <article class="text-panel notice-panel">
+      <div class="text-panel-inner" id="noticeScroll">
+
+        <div class="list-view" id="noticeList">
+          <div class="entry-list" id="noticeEntries"></div>
+        </div>
+
+        <div class="detail-view" id="noticeDetail">
+          <button
+            class="back-button"
+            type="button"
+            data-back="notice"
+          >← 목록으로</button>
+
+          <h2 class="detail-title" id="noticeTitle"></h2>
+
+          <div id="noticeImageArea"></div>
+          <div class="markdown-body" id="noticeBody"></div>
+        </div>
+
+      </div>
+    </article>
+
+    <article class="text-panel characters-panel">
+      <div class="text-panel-inner" id="charactersScroll">
+
+        <div class="list-view" id="charactersList">
+          <div class="entry-list" id="charactersEntries"></div>
+        </div>
+
+        <div class="detail-view" id="charactersDetail">
+          <button
+            class="back-button"
+            type="button"
+            data-back="characters"
+          >← 목록으로</button>
+
+          <h2 class="detail-title" id="charactersTitle"></h2>
+
+          <div id="charactersImageArea"></div>
+          <div class="markdown-body" id="charactersBody"></div>
+        </div>
+
+      </div>
+    </article>
+
+  </section>
+
 </main>
 
 <div class="youtube-player-wrap" aria-hidden="true">
-<div id="youtube-player"></div>
+  <div id="youtube-player"></div>
 </div>
 
 <script>
-const GITHUB_OWNER='sunfishmola';
-const GITHUB_REPO='sunfishmola.github.io';
-const GITHUB_BRANCH='main';
+/* ========================================
+   기본 설정
+======================================== */
 
-const CMS_SECTIONS={
-notice:{
-folder:'content/notices',
-listId:'noticeEntries',
-detailId:'noticeDetail',
-titleId:'noticeTitle',
-imageId:'noticeImageArea',
-bodyId:'noticeBody'
-},
-characters:{
-folder:'content/characters',
-listId:'charactersEntries',
-detailId:'charactersDetail',
-titleId:'charactersTitle',
-imageId:'charactersImageArea',
-bodyId:'charactersBody'
-}
+const GITHUB_OWNER = "sunfishmola";
+const GITHUB_REPO = "sunfishmola.github.io";
+const GITHUB_BRANCH = "main";
+
+const CMS_SECTIONS = {
+  notice: {
+    folder: "content/notices",
+    listId: "noticeEntries",
+    detailId: "noticeDetail",
+    titleId: "noticeTitle",
+    imageId: "noticeImageArea",
+    bodyId: "noticeBody"
+  },
+
+  characters: {
+    folder: "content/characters",
+    listId: "charactersEntries",
+    detailId: "charactersDetail",
+    titleId: "charactersTitle",
+    imageId: "charactersImageArea",
+    bodyId: "charactersBody"
+  }
 };
 
-const cmsCache={notice:[],characters:[]};
-
-function encodePath(path){
-return path.split('/').map(encodeURIComponent).join('/');
-}
-
-function parseMarkdownFile(source,fallbackTitle){
-const normalized=source.replace(/\r\n/g,'\n');
-let metadata={};
-let body=normalized;
-
-if(normalized.startsWith('---\n')){
-const closing=normalized.indexOf('\n---',4);
-if(closing!==-1){
-const frontmatter=normalized.slice(4,closing);
-body=normalized.slice(closing+4).trim();
-let currentKey=null;
-
-for(const line of frontmatter.split('\n')){
-const match=line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
-if(match){
-currentKey=match[1];
-metadata[currentKey]=match[2].trim();
-}else if(currentKey&&/^\s+\S/.test(line)){
-metadata[currentKey]+=' '+line.trim();
-}
-}
-}
-}
-
-for(const key of Object.keys(metadata)){
-const value=metadata[key];
-if(
-(value.startsWith('"')&&value.endsWith('"'))||
-(value.startsWith("'")&&value.endsWith("'"))
-){
-metadata[key]=value.slice(1,-1);
-}
-}
-
-return{
-title:metadata.title||fallbackTitle,
-image:metadata.image||'',
-body
+const cmsCache = {
+  notice: [],
+  characters: []
 };
+
+/* ========================================
+   경로 처리
+======================================== */
+
+function encodePath(path) {
+  return String(path)
+    .split("/")
+    .map(part => encodeURIComponent(part))
+    .join("/");
 }
 
-function resolveMediaUrl(path){
-if(!path)return'';
-const cleaned=String(path).trim();
-if(/^https?:\/\//i.test(cleaned))return cleaned;
-if(/^(data|javascript|blob):/i.test(cleaned))return'';
-return window.location.origin+'/'+encodePath(cleaned.replace(/^\//,''));
+function resolveMediaUrl(path) {
+  if (!path) return "";
+
+  const cleaned = String(path).trim();
+
+  if (/^https?:\/\//i.test(cleaned)) {
+    return cleaned;
+  }
+
+  if (/^(data|javascript|blob):/i.test(cleaned)) {
+    return "";
+  }
+
+  const root = window.location.origin;
+
+  if (cleaned.startsWith("/")) {
+    return root + encodePath(cleaned);
+  }
+
+  return root + "/" + encodePath(cleaned);
 }
 
-let publicFileListPromise=null;
+/* ========================================
+   Markdown 파일 읽기
+======================================== */
 
-async function getPublicFileList(){
-if(publicFileListPromise)return publicFileListPromise;
+function parseMarkdownFile(source, fallbackTitle) {
+  const normalized = String(source).replace(/\r\n/g, "\n");
 
-publicFileListPromise=(async()=>{
-const sources=[
-async()=>{
-const r=await fetch(
-'https://api.github.com/repos/'+GITHUB_OWNER+'/'+GITHUB_REPO+
-'/git/trees/'+GITHUB_BRANCH+'?recursive=1',
-{cache:'no-store'}
-);
-if(!r.ok)throw Error('GitHub tree '+r.status);
-const d=await r.json();
-if(d.truncated||!Array.isArray(d.tree))throw Error('GitHub tree incomplete');
-return d.tree.filter(x=>x.type==='blob').map(x=>x.path);
-},
-async()=>{
-const r=await fetch(
-'https://data.jsdelivr.com/v1/package/gh/'+
-GITHUB_OWNER+'/'+GITHUB_REPO+'@'+GITHUB_BRANCH+
-'/flat?ts='+Date.now(),
-{cache:'no-store'}
-);
-if(!r.ok)throw Error('jsDelivr '+r.status);
-const d=await r.json();
-if(!Array.isArray(d.files))throw Error('jsDelivr invalid');
-return d.files.map(x=>x.name.replace(/^\//,''));
-}
-];
+  let metadata = {};
+  let body = normalized;
 
-const errors=[];
+  if (normalized.startsWith("---\n")) {
+    const closing = normalized.indexOf("\n---", 4);
 
-for(const source of sources){
-try{
-const files=await source();
-if(files.some(x=>x.startsWith('content/')))return files;
-errors.push('content files not found');
-}catch(e){
-errors.push(e.message);
-}
-}
-throw Error(errors.join('; '));
-})();
+    if (closing !== -1) {
+      const frontmatter = normalized.slice(4, closing);
+      body = normalized.slice(closing + 4).trim();
 
-return publicFileListPromise;
-}
+      let currentKey = null;
 
-async function readPublicFile(path){
-const response=await fetch(
-window.location.origin+'/'+encodePath(path)+'?v='+Date.now(),
-{cache:'no-store'}
-);
-if(!response.ok)throw Error('파일 읽기 실패: '+response.status);
-return response.text();
+      for (const line of frontmatter.split("\n")) {
+        const match = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);
+
+        if (match) {
+          currentKey = match[1];
+          metadata[currentKey] = match[2].trim();
+        } else if (currentKey && /^\s+\S/.test(line)) {
+          metadata[currentKey] += " " + line.trim();
+        }
+      }
+    }
+  }
+
+  for (const key of Object.keys(metadata)) {
+    const value = metadata[key];
+
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      metadata[key] = value.slice(1, -1);
+    }
+  }
+
+  return {
+    title: metadata.title || fallbackTitle,
+    image: metadata.image || "",
+    body
+  };
 }
 
-async function loadCMSSection(sectionName){
-const section=CMS_SECTIONS[sectionName];
-const list=document.getElementById(section.listId);
-list.replaceChildren();
+/* ========================================
+   공개 파일 목록 가져오기
 
-try{
-const files=await getPublicFileList();
-const names=files
-.filter(name=>
-name.startsWith(section.folder+'/')&&
-/\.md$/i.test(name)&&
-name.slice(section.folder.length+1).indexOf('/')===-1
-)
-.sort((a,b)=>b.localeCompare(a));
+   1. GitHub Contents API
+   2. GitHub Git Trees API
+   3. jsDelivr 파일 목록
 
-const entries=await Promise.all(
-names.map(async path=>({
-...parseMarkdownFile(
-await readPublicFile(path),
-path.split('/').pop().replace(/\.md$/i,'')
-),
-filename:path.split('/').pop()
-}))
-);
+   하나가 실패하면 다음 방법 시도
+======================================== */
 
-cmsCache[sectionName]=entries;
-renderCMSList(sectionName);
-}catch(error){
-console.error('글 목록 조회 실패:',error);
-list.replaceChildren();
+let publicPathsPromise = null;
+
+async function getPublicPaths() {
+  if (publicPathsPromise) {
+    return publicPathsPromise;
+  }
+
+  publicPathsPromise = (async () => {
+    const urls = [
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees/${GITHUB_BRANCH}?recursive=1`,
+      `https://data.jsdelivr.com/v1/package/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${GITHUB_BRANCH}/flat`
+    ];
+
+    const errors = [];
+
+    for (const url of urls) {
+      try {
+        const response = await fetch(url, {
+          cache: "no-store"
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
+
+        const data = await response.json();
+        let paths = [];
+
+        if (Array.isArray(data.tree) && !data.truncated) {
+          paths = data.tree
+            .filter(file => file.type === "blob")
+            .map(file => file.path);
+        } else if (Array.isArray(data.files)) {
+          paths = data.files.map(file =>
+            file.name.replace(/^\//, "")
+          );
+        }
+
+        if (paths.some(path => path.startsWith("content/"))) {
+          return paths;
+        }
+
+        errors.push("목록에 content 폴더 없음");
+      } catch (error) {
+        errors.push(error.message);
+      }
+    }
+
+    throw new Error(
+      "공개 파일 목록을 가져오지 못했습니다: " +
+      errors.join(", ")
+    );
+  })();
+
+  try {
+    return await publicPathsPromise;
+  } catch (error) {
+    publicPathsPromise = null;
+    throw error;
+  }
 }
+
+async function listPublicFiles(folder, extension) {
+  const apiUrl =
+    `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}` +
+    `/contents/${folder}?ref=${GITHUB_BRANCH}`;
+
+  try {
+    const response = await fetch(apiUrl, {
+      headers: {
+        Accept: "application/vnd.github+json"
+      },
+      cache: "no-store"
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (Array.isArray(data)) {
+        return data
+          .filter(file =>
+            file.type === "file" &&
+            file.name.toLowerCase().endsWith(extension)
+          )
+          .map(file => file.path);
+      }
+    }
+  } catch (error) {
+    console.warn("GitHub Contents API 실패:", error);
+  }
+
+  const paths = await getPublicPaths();
+
+  return paths.filter(path =>
+    path.startsWith(folder + "/") &&
+    !path.slice(folder.length + 1).includes("/") &&
+    path.toLowerCase().endsWith(extension)
+  );
 }
 
-function renderCMSList(sectionName){
-const list=document.getElementById(CMS_SECTIONS[sectionName].listId);
-list.replaceChildren();
+/* ========================================
+   실제 글 파일 읽기
 
-cmsCache[sectionName].forEach((entry,index)=>{
-const button=document.createElement('button');
-button.type='button';
-button.className='entry-button';
-button.textContent=entry.title;
-button.addEventListener('click',()=>openCMSDetail(sectionName,index));
-list.appendChild(button);
+   GitHub 원본 → GitHub Pages → jsDelivr
+======================================== */
+
+async function fetchPublicText(path) {
+  const encoded = encodePath(path);
+
+  const urls = [
+    `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${encoded}`,
+    `${window.location.origin}/${encoded}`,
+    `https://cdn.jsdelivr.net/gh/${GITHUB_OWNER}/${GITHUB_REPO}@${GITHUB_BRANCH}/${encoded}`
+  ];
+
+  const errors = [];
+
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, {
+        cache: "no-store"
+      });
+
+      if (!response.ok) {
+        throw new Error("HTTP " + response.status);
+      }
+
+      return await response.text();
+    } catch (error) {
+      errors.push(error.message);
+    }
+  }
+
+  throw new Error(
+    "글 파일 읽기 실패: " +
+    path +
+    " / " +
+    errors.join(", ")
+  );
+}
+
+/* ========================================
+   NOTICE / CHARACTERS 불러오기
+======================================== */
+
+async function loadCMSSection(sectionName) {
+  const section = CMS_SECTIONS[sectionName];
+  const list = document.getElementById(section.listId);
+
+  list.replaceChildren();
+
+  try {
+    const paths = (
+      await listPublicFiles(section.folder, ".md")
+    ).sort((a, b) => b.localeCompare(a));
+
+    const results = await Promise.allSettled(
+      paths.map(async path => {
+        const source = await fetchPublicText(path);
+
+        return {
+          ...parseMarkdownFile(
+            source,
+            path.split("/").pop().replace(/\.md$/i, "")
+          ),
+          filename: path.split("/").pop()
+        };
+      })
+    );
+
+    const entries = results
+      .filter(result => result.status === "fulfilled")
+      .map(result => result.value);
+
+    results
+      .filter(result => result.status === "rejected")
+      .forEach(result =>
+        console.error("개별 게시글 오류:", result.reason)
+      );
+
+    cmsCache[sectionName] = entries;
+
+    renderCMSList(sectionName);
+  } catch (error) {
+    console.error(
+      sectionName + " 목록을 불러오지 못했습니다:",
+      error
+    );
+
+    /* 빈 목록에 안내 문구를 넣지 않음 */
+    list.replaceChildren();
+  }
+}
+
+/* ========================================
+   목록 표시
+======================================== */
+
+function renderCMSList(sectionName) {
+  const section = CMS_SECTIONS[sectionName];
+  const list = document.getElementById(section.listId);
+  const entries = cmsCache[sectionName];
+
+  list.replaceChildren();
+
+  entries.forEach((entry, index) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "entry-button";
+    button.textContent = entry.title;
+
+    button.addEventListener("click", () => {
+      openCMSDetail(sectionName, index);
+    });
+
+    list.appendChild(button);
+  });
+}
+
+/* ========================================
+   상세 글 표시
+======================================== */
+
+function openCMSDetail(sectionName, index) {
+  const section = CMS_SECTIONS[sectionName];
+  const entry = cmsCache[sectionName][index];
+
+  if (!entry) return;
+
+  const panel = document.querySelector(
+    sectionName === "notice"
+      ? ".notice-panel"
+      : ".characters-panel"
+  );
+
+  const listView = panel.querySelector(".list-view");
+  const detailView = document.getElementById(
+    section.detailId
+  );
+
+  const title = document.getElementById(
+    section.titleId
+  );
+
+  const imageArea = document.getElementById(
+    section.imageId
+  );
+
+  const bodyArea = document.getElementById(
+    section.bodyId
+  );
+
+  title.textContent = entry.title;
+
+  imageArea.replaceChildren();
+
+  if (entry.image) {
+    const imageUrl = resolveMediaUrl(entry.image);
+
+    if (imageUrl) {
+      const img = document.createElement("img");
+
+      img.src = imageUrl;
+      img.alt = entry.title;
+      img.className = "detail-image";
+      img.loading = "lazy";
+      img.onerror = () => img.remove();
+
+      imageArea.appendChild(img);
+    }
+  }
+
+  bodyArea.replaceChildren();
+
+  if (window.marked && window.DOMPurify) {
+    const html = marked.parse(entry.body, {
+      breaks: true,
+      gfm: true
+    });
+
+    const sanitized = DOMPurify.sanitize(html);
+    const template = document.createElement("template");
+
+    template.innerHTML = sanitized;
+
+    template.content.querySelectorAll("img").forEach(img => {
+      const original = img.getAttribute("src");
+      const resolved = resolveMediaUrl(original);
+
+      if (resolved) {
+        img.src = resolved;
+        img.loading = "lazy";
+      } else {
+        img.remove();
+      }
+    });
+
+    template.content.querySelectorAll("a").forEach(link => {
+      const href = link.getAttribute("href") || "";
+
+      if (!/^(https?:\/\/|mailto:|\/|#)/i.test(href)) {
+        link.removeAttribute("href");
+      }
+
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+
+    bodyArea.appendChild(template.content);
+  } else {
+    const paragraph = document.createElement("p");
+
+    paragraph.style.whiteSpace = "pre-wrap";
+    paragraph.textContent = entry.body;
+
+    bodyArea.appendChild(paragraph);
+  }
+
+  listView.classList.add("hidden");
+  detailView.classList.add("active");
+
+  panel.querySelector(".text-panel-inner").scrollTop = 0;
+}
+
+/* ========================================
+   목록으로 돌아가기
+======================================== */
+
+function resetCMSDetail(sectionName) {
+  const panel = document.querySelector(
+    sectionName === "notice"
+      ? ".notice-panel"
+      : ".characters-panel"
+  );
+
+  panel.querySelector(".detail-view")
+    .classList.remove("active");
+
+  panel.querySelector(".list-view")
+    .classList.remove("hidden");
+
+  panel.querySelector(".text-panel-inner").scrollTop = 0;
+}
+
+document.querySelectorAll("[data-back]").forEach(button => {
+  button.addEventListener("click", () => {
+    resetCMSDetail(button.dataset.back);
+  });
 });
-}
 
-function openCMSDetail(sectionName,index){
-const section=CMS_SECTIONS[sectionName];
-const entry=cmsCache[sectionName][index];
-if(!entry)return;
+/* ========================================
+   상단 메뉴 전환
+======================================== */
 
-const panel=document.querySelector(
-sectionName==='notice'?'.notice-panel':'.characters-panel'
-);
-const listView=panel.querySelector('.list-view');
-const detailView=document.getElementById(section.detailId);
+const contentArea = document.getElementById("contentArea");
+const navButtons = document.querySelectorAll(".nav-button");
 
-document.getElementById(section.titleId).textContent=entry.title;
+navButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.target;
 
-const imageArea=document.getElementById(section.imageId);
-const bodyArea=document.getElementById(section.bodyId);
-imageArea.replaceChildren();
+    contentArea.dataset.view = target;
+    document.body.dataset.view = target;
 
-if(entry.image){
-const imageUrl=resolveMediaUrl(entry.image);
-if(imageUrl){
-const img=document.createElement('img');
-img.src=imageUrl;
-img.alt=entry.title;
-img.className='detail-image';
-img.loading='lazy';
-img.onerror=()=>img.remove();
-imageArea.appendChild(img);
-}
-}
+    navButtons.forEach(navButton => {
+      const active = navButton === button;
 
-bodyArea.replaceChildren();
+      navButton.classList.toggle("active", active);
+      navButton.setAttribute(
+        "aria-pressed",
+        String(active)
+      );
+    });
 
-if(window.marked&&window.DOMPurify){
-const html=marked.parse(entry.body,{breaks:true,gfm:true});
-const template=document.createElement('template');
-template.innerHTML=DOMPurify.sanitize(html);
-
-template.content.querySelectorAll('img').forEach(img=>{
-const url=resolveMediaUrl(img.getAttribute('src'));
-if(url){
-img.src=url;
-img.loading='lazy';
-}else{
-img.remove();
-}
+    if (target === "notice" || target === "characters") {
+      resetCMSDetail(target);
+    }
+  });
 });
 
-template.content.querySelectorAll('a').forEach(link=>{
-const href=link.getAttribute('href')||'';
-if(!/^(https?:\/\/|mailto:|\/|#)/i.test(href)){
-link.removeAttribute('href');
-}
-link.target='_blank';
-link.rel='noopener noreferrer';
-});
+/* ========================================
+   게시글 로딩 시작
+======================================== */
 
-bodyArea.appendChild(template.content);
-}else{
-const p=document.createElement('p');
-p.style.whiteSpace='pre-wrap';
-p.textContent=entry.body;
-bodyArea.appendChild(p);
-}
+loadCMSSection("notice");
+loadCMSSection("characters");
 
-listView.classList.add('hidden');
-detailView.classList.add('active');
-panel.querySelector('.text-panel-inner').scrollTop=0;
+/* ========================================
+   턴테이블 / 음악
+======================================== */
 
-if(window.innerWidth<=900)window.scrollTo(0,0);
-}
+const turntable = document.getElementById("turntable");
+const vinyl = document.getElementById("vinyl");
+const tonearm = document.getElementById("tonearm");
+const audioWave = document.getElementById("audioWave");
 
-function resetCMSDetail(sectionName){
-const panel=document.querySelector(
-sectionName==='notice'?'.notice-panel':'.characters-panel'
-);
-panel.querySelector('.detail-view').classList.remove('active');
-panel.querySelector('.list-view').classList.remove('hidden');
-panel.querySelector('.text-panel-inner').scrollTop=0;
-}
+const PIVOT_X = .77;
+const PIVOT_Y = .17;
 
-document.querySelectorAll('[data-back]').forEach(button=>{
-button.addEventListener('click',()=>{
-resetCMSDetail(button.dataset.back);
-});
-});
+const REST_ANGLE = -27;
+const MIN_ANGLE = -27;
+const MAX_ANGLE = 0;
+const PLAY_THRESHOLD = -12;
 
-const contentArea=document.getElementById('contentArea');
+let currentAngle = REST_ANGLE;
+let dragging = false;
 
-document.querySelectorAll('.nav-button').forEach(button=>{
-button.addEventListener('click',()=>{
-const target=button.dataset.target;
-contentArea.dataset.view=target;
-document.body.dataset.view=target;
+let startPointerAngle = 0;
+let startTonearmAngle = REST_ANGLE;
 
-document.querySelectorAll('.nav-button').forEach(nav=>{
-const active=nav===button;
-nav.classList.toggle('active',active);
-nav.setAttribute('aria-pressed',String(active));
-});
+let youtubePlayer = null;
+let youtubeReady = false;
+let wantsToPlay = false;
 
-if(target==='notice'||target==='characters'){
-resetCMSDetail(target);
-}
-
-if(window.innerWidth<=900)window.scrollTo(0,0);
-});
-});
-
-loadCMSSection('notice');
-loadCMSSection('characters');
-
-/* 턴테이블과 음악 */
-
-const turntable=document.getElementById('turntable');
-const vinyl=document.getElementById('vinyl');
-const tonearm=document.getElementById('tonearm');
-
-const REST_ANGLE=-27;
-const MIN_ANGLE=-27;
-const MAX_ANGLE=0;
-const PLAY_THRESHOLD=-12;
-
-let currentAngle=REST_ANGLE;
-let dragging=false;
-let startPointerAngle=0;
-let startTonearmAngle=REST_ANGLE;
-let youtubePlayer=null;
-let youtubeReady=false;
-let wantsToPlay=false;
-
-const youtubeScript=document.createElement('script');
-youtubeScript.src='https://www.youtube.com/iframe_api';
+const youtubeScript = document.createElement("script");
+youtubeScript.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(youtubeScript);
 
-function onYouTubeIframeAPIReady(){
-youtubePlayer=new YT.Player('youtube-player',{
-width:200,
-height:200,
-videoId:'AJsvGtGgI6M',
-playerVars:{
-autoplay:0,
-controls:0,
-playsinline:1,
-rel:0
-},
-events:{
-onReady(){
-youtubeReady=true;
-if(wantsToPlay)youtubePlayer.playVideo();
-},
-onStateChange(event){
-if(event.data===YT.PlayerState.PLAYING&&!wantsToPlay){
-youtubePlayer.pauseVideo();
+function onYouTubeIframeAPIReady() {
+  youtubePlayer = new YT.Player("youtube-player", {
+    width: 200,
+    height: 200,
+    videoId: "AJsvGtGgI6M",
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      playsinline: 1,
+      rel: 0
+    },
+    events: {
+      onReady: function() {
+        youtubeReady = true;
+
+        if (wantsToPlay) {
+          youtubePlayer.playVideo();
+        }
+      },
+      onStateChange: function(event) {
+        if (
+          event.data === YT.PlayerState.PLAYING &&
+          !wantsToPlay
+        ) {
+          youtubePlayer.pauseVideo();
+        }
+      }
+    }
+  });
 }
+
+function syncMusic(playing) {
+  wantsToPlay = playing;
+
+  if (!youtubeReady || !youtubePlayer) {
+    return;
+  }
+
+  if (playing) {
+    youtubePlayer.playVideo();
+  } else {
+    youtubePlayer.pauseVideo();
+  }
 }
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
 }
+
+function updateTonearm(angle) {
+  currentAngle = clamp(angle, MIN_ANGLE, MAX_ANGLE);
+
+  tonearm.style.transform =
+    `rotate(${currentAngle}deg)`;
+
+  const playing = currentAngle >= PLAY_THRESHOLD;
+
+  vinyl.classList.toggle("playing", playing);
+
+  audioWave?.classList.toggle("playing", playing);
+
+  audioWave?.setAttribute(
+    "aria-label",
+    playing ? "Playing" : "Stopped"
+  );
+
+  if (playing !== wantsToPlay) {
+    syncMusic(playing);
+  }
+}
+
+function getPivotPosition() {
+  const rect = turntable.getBoundingClientRect();
+
+  const imageLeft = rect.left + rect.width * .39;
+  const imageTop = rect.top - rect.height * .08;
+  const imageWidth = rect.width * .73;
+  const imageHeight = imageWidth;
+
+  return {
+    x: imageLeft + imageWidth * PIVOT_X,
+    y: imageTop + imageHeight * PIVOT_Y
+  };
+}
+
+function getPointerAngle(event) {
+  const pivot = getPivotPosition();
+
+  return Math.atan2(
+    event.clientY - pivot.y,
+    event.clientX - pivot.x
+  ) * 180 / Math.PI;
+}
+
+tonearm.addEventListener("pointerdown", event => {
+  dragging = true;
+
+  startPointerAngle = getPointerAngle(event);
+  startTonearmAngle = currentAngle;
+
+  tonearm.classList.add("dragging");
+  tonearm.setPointerCapture(event.pointerId);
+
+  event.preventDefault();
 });
-}
 
-function syncMusic(playing){
-wantsToPlay=playing;
-if(!youtubeReady||!youtubePlayer)return;
-if(playing)youtubePlayer.playVideo();
-else youtubePlayer.pauseVideo();
-}
+tonearm.addEventListener("pointermove", event => {
+  if (!dragging) return;
 
-function clamp(value,min,max){
-return Math.max(min,Math.min(max,value));
-}
+  const pointerAngle = getPointerAngle(event);
 
-function updateTonearm(angle){
-currentAngle=clamp(angle,MIN_ANGLE,MAX_ANGLE);
-tonearm.style.transform=`rotate(${currentAngle}deg)`;
+  let difference = pointerAngle - startPointerAngle;
 
-const playing=currentAngle>=PLAY_THRESHOLD;
-vinyl.classList.toggle('playing',playing);
+  if (difference > 180) difference -= 360;
+  if (difference < -180) difference += 360;
 
-if(playing!==wantsToPlay){
-syncMusic(playing);
-}
-}
-
-function getPivotPosition(){
-const rect=turntable.getBoundingClientRect();
-const imageLeft=rect.left+rect.width*.39;
-const imageTop=rect.top-rect.height*.08;
-const imageWidth=rect.width*.73;
-
-return{
-x:imageLeft+imageWidth*.77,
-y:imageTop+imageWidth*.17
-};
-}
-
-function getPointerAngle(event){
-const pivot=getPivotPosition();
-return Math.atan2(
-event.clientY-pivot.y,
-event.clientX-pivot.x
-)*180/Math.PI;
-}
-
-tonearm.addEventListener('pointerdown',event=>{
-dragging=true;
-startPointerAngle=getPointerAngle(event);
-startTonearmAngle=currentAngle;
-tonearm.classList.add('dragging');
-tonearm.setPointerCapture(event.pointerId);
-event.preventDefault();
+  updateTonearm(startTonearmAngle + difference);
 });
 
-tonearm.addEventListener('pointermove',event=>{
-if(!dragging)return;
-
-let difference=getPointerAngle(event)-startPointerAngle;
-
-if(difference>180)difference-=360;
-if(difference< -180)difference+=360;
-
-updateTonearm(startTonearmAngle+difference);
-});
-
-function endDrag(){
-dragging=false;
-tonearm.classList.remove('dragging');
+function endDrag() {
+  dragging = false;
+  tonearm.classList.remove("dragging");
 }
 
-tonearm.addEventListener('pointerup',endDrag);
-tonearm.addEventListener('pointercancel',endDrag);
-tonearm.addEventListener('lostpointercapture',endDrag);
+tonearm.addEventListener("pointerup", endDrag);
+tonearm.addEventListener("pointercancel", endDrag);
+tonearm.addEventListener("lostpointercapture", endDrag);
 
 updateTonearm(REST_ANGLE);
 
-/* HOME 업데이트 목록 */
+/* ========================================
+   HOME 업데이트 목록
+======================================== */
 
-async function loadSunfishUpdates(){
-const container=document.getElementById('sunfishUpdatesList');
-container.replaceChildren();
+async function loadSunfishUpdates() {
+  const container = document.getElementById(
+    "sunfishUpdatesList"
+  );
 
-try{
-const files=await getPublicFileList();
+  if (!container) return;
 
-const paths=files.filter(name=>
-name.startsWith('content/updates/')&&
-/\.json$/i.test(name)&&
-name.slice('content/updates/'.length).indexOf('/')===-1
-);
+  container.replaceChildren();
 
-const items=await Promise.all(
-paths.map(async path=>JSON.parse(await readPublicFile(path)))
-);
+  try {
+    const paths = await listPublicFiles(
+      "content/updates",
+      ".json"
+    );
 
-items.sort((a,b)=>
-String(b.createdAt||b.date||'').localeCompare(
-String(a.createdAt||a.date||'')
-)
-);
+    const results = await Promise.allSettled(
+      paths.map(async path => {
+        const text = await fetchPublicText(path);
+        return JSON.parse(text);
+      })
+    );
 
-for(const item of items){
-const row=document.createElement('div');
-row.className='sunfish-update-row';
+    const items = results
+      .filter(result => result.status === "fulfilled")
+      .map(result => result.value);
 
-const content=document.createElement('span');
-content.className='sunfish-update-text';
-content.textContent=String(item.text||'');
+    results
+      .filter(result => result.status === "rejected")
+      .forEach(result =>
+        console.error("개별 업데이트 오류:", result.reason)
+      );
 
-const date=document.createElement('span');
-date.className='sunfish-update-date';
-date.textContent=String(item.date||'');
+    items.sort((a, b) =>
+      String(b.createdAt || b.date || "")
+        .localeCompare(
+          String(a.createdAt || a.date || "")
+        )
+    );
 
-row.append(content,date);
-container.appendChild(row);
-}
-}catch(error){
-console.error('업데이트 조회 실패:',error);
-container.replaceChildren();
-}
+    for (const item of items) {
+      const row = document.createElement("div");
+      row.className = "sunfish-update-row";
+
+      const content = document.createElement("span");
+      content.className = "sunfish-update-text";
+      content.textContent = String(
+        item.text || item.content || ""
+      );
+
+      const date = document.createElement("span");
+      date.className = "sunfish-update-date";
+      date.textContent = String(item.date || "");
+
+      row.append(content, date);
+      container.appendChild(row);
+    }
+  } catch (error) {
+    console.error(
+      "업데이트 목록 조회 실패:",
+      error
+    );
+
+    /* 업데이트가 없어도 제목은 유지 */
+    container.replaceChildren();
+  }
 }
 
 loadSunfishUpdates();
 </script>
+
 </body>
 </html>
