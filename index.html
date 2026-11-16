@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,7 +44,6 @@ body {
   flex-shrink: 0;
 }
 
-/* SUNFISH */
 h1 {
   position: relative;
   display: inline-block;
@@ -72,7 +70,6 @@ h1::after {
   pointer-events: none;
 }
 
-/* 메뉴 */
 .site-nav {
   display: flex;
   justify-content: center;
@@ -102,7 +99,6 @@ h1::after {
   border-bottom: 1px solid #aaa;
 }
 
-/* 턴테이블 */
 .turntable {
   position: relative;
   width: min(100%, 576px);
@@ -155,47 +151,6 @@ h1::after {
   cursor: grabbing;
 }
 
-.instructions {
-  margin: 18px 0 0;
-  font-size: 12px;
-  line-height: 1.8;
-  color: #444;
-}
-
-/* 오디오 파형 */
-.audio-wave {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  height: 54px;
-  margin: 4px auto 0;
-}
-
-.audio-wave .bar {
-  display: block;
-  width: 5px;
-  height: var(--height);
-  border-radius: 999px;
-  background: #777;
-  opacity: .65;
-  box-shadow: 0 0 5px rgba(110,110,110,.15);
-  transform-origin: center;
-  animation: waveMove var(--duration)
-    ease-in-out infinite alternate;
-  animation-play-state: paused;
-}
-
-.audio-wave.playing .bar {
-  animation-play-state: running;
-}
-
-@keyframes waveMove {
-  from { transform: scaleY(.3); }
-  to { transform: scaleY(1.25); }
-}
-
-/* 오른쪽 콘텐츠 */
 .content-area {
   position: fixed;
   z-index: 1;
@@ -260,7 +215,6 @@ h1::after {
   transform: translateY(0);
 }
 
-/* CMS 목록 */
 .entry-list {
   display: flex;
   flex-direction: column;
@@ -313,7 +267,6 @@ h1::after {
   cursor: pointer;
 }
 
-/* 상세 글 */
 .detail-view {
   display: none;
 }
@@ -348,31 +301,26 @@ h1::after {
   font-size: 32px;
   font-weight: 300;
   line-height: 1.4;
-  letter-spacing: .03em;
-  color: #777;
-  word-break: keep-all;
+  color: #555;
+  overflow-wrap: anywhere;
 }
 
 .detail-image {
   display: block;
-  width: 100%;
-  max-height: 380px;
-  object-fit: contain;
-  margin: 0 auto 28px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 24px;
 }
 
-/* CMS에서 작성한 마크다운 본문 */
 .markdown-body {
   color: #666;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: 13px;
-  line-height: 2.15;
+  line-height: 2;
   overflow-wrap: anywhere;
-  word-break: keep-all;
 }
 
 .markdown-body p {
-  margin: 0 0 18px;
+  margin: 0 0 1.2em;
 }
 
 .markdown-body h1,
@@ -381,18 +329,16 @@ h1::after {
 .markdown-body h4 {
   position: static;
   display: block;
-  margin: 30px 0 14px;
-  color: #666;
+  margin: 1.5em 0 .6em;
   font-family: Georgia, serif;
   font-weight: normal;
   letter-spacing: normal;
+  color: #555;
   text-shadow: none;
-  filter: none;
-  transform: none;
 }
 
 .markdown-body h1::after {
-  content: none;
+  display: none;
 }
 
 .markdown-body h1 {
@@ -407,16 +353,11 @@ h1::after {
   font-size: 16px;
 }
 
-.markdown-body h4 {
-  font-size: 14px;
-}
-
 .markdown-body img {
   display: block;
-  width: auto;
   max-width: 100%;
   height: auto;
-  margin: 24px auto;
+  margin: 20px 0;
 }
 
 .markdown-body a {
@@ -425,120 +366,103 @@ h1::after {
   text-underline-offset: 3px;
 }
 
-.markdown-body ul,
-.markdown-body ol {
-  padding-left: 22px;
-  margin: 0 0 20px;
-}
-
 .markdown-body blockquote {
-  margin: 20px 0;
-  padding-left: 16px;
-  border-left: 2px solid #ddd;
+  margin: 18px 0;
+  padding-left: 15px;
+  border-left: 1px solid #ccc;
   color: #888;
 }
 
 .markdown-body hr {
-  margin: 28px 0;
   border: 0;
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #e5e5e5;
+  margin: 25px 0;
 }
 
 .markdown-body pre {
+  max-width: 100%;
   overflow-x: auto;
   padding: 12px;
   background: #f7f7f7;
-  font-size: 12px;
-  line-height: 1.6;
 }
 
 .markdown-body code {
-  overflow-wrap: anywhere;
+  font-family: monospace;
+  font-size: .9em;
 }
 
-.markdown-body table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 12px;
-}
-
-.markdown-body th,
-.markdown-body td {
-  padding: 8px;
-  border-bottom: 1px solid #e6e6e6;
-  text-align: left;
-}
-
-/* 숨겨진 유튜브 */
 .youtube-player-wrap {
   position: fixed;
-  left: -300px;
-  top: -300px;
-  width: 200px;
-  height: 200px;
+  width: 1px;
+  height: 1px;
+  left: -9999px;
+  top: -9999px;
   overflow: hidden;
   pointer-events: none;
-  opacity: .01;
 }
 
-#youtube-player {
-  width: 200px;
-  height: 200px;
+/* HOME 업데이트 목록 */
+
+.sunfish-updates {
+  width: min(100%, 440px);
+  margin: 24px auto 0;
+  text-align: left;
+  color: #777;
+  font-family: Georgia, serif;
 }
 
-/* 모바일 */
-@media (max-width: 700px) {
+.sunfish-updates h2 {
+  margin: 0 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 14px;
+  font-weight: normal;
+  color: #666;
+}
+
+.sunfish-update-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 11px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.sunfish-update-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.sunfish-update-date {
+  flex-shrink: 0;
+  color: #999;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.sunfish-update-empty {
+  margin: 12px 0;
+  color: #aaa;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+@media (max-width: 900px) {
   .page {
-    min-height: 100svh;
+    align-items: flex-start;
     flex-direction: column;
-    align-items: center;
     justify-content: flex-start;
-    padding: 34px 0 0;
+    padding: 45px 5vw 60px;
   }
 
   .player-area {
     width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    flex-shrink: 0;
-    padding: 0 12px;
-  }
-
-  h1 {
-    font-size: 32px;
-    margin-bottom: 8px;
-  }
-
-  .site-nav {
-    gap: 20px;
-    margin-bottom: 18px;
-  }
-
-  .nav-button {
-    font-size: 9px;
-  }
-
-  .turntable {
-    width: min(76vw, 380px);
-  }
-
-  .instructions {
-    width: fit-content;
-    max-width: 100%;
-    margin: 18px auto 0;
-    font-size: 11px;
-    line-height: 1.7;
-  }
-
-  .audio-wave {
-    height: 48px;
-    gap: 4px;
-    margin-top: 2px;
-  }
-
-  .audio-wave .bar {
-    width: 4px;
+    margin: 0 auto;
   }
 
   .content-area {
@@ -546,20 +470,33 @@ h1::after {
     right: auto;
     bottom: auto;
     width: 100%;
-    height: 78svh;
-    min-height: 360px;
-    margin-top: 36px;
-    overflow: hidden;
+    height: auto;
+    min-height: 45vh;
+    margin-top: 30px;
   }
 
   .home-art {
-    background-size: auto 100%;
+    position: relative;
+    width: 100%;
+    height: 48vh;
+    background-size: contain;
     background-position: center bottom;
   }
 
   .text-panel {
-    align-items: flex-start;
+    position: absolute;
     padding: 28px 9vw 50px;
+  }
+
+  .content-area[data-view="notice"],
+  .content-area[data-view="characters"] {
+    min-height: 60vh;
+  }
+
+  .content-area[data-view="notice"] .text-panel,
+  .content-area[data-view="characters"] .text-panel {
+    position: relative;
+    min-height: 60vh;
   }
 
   .text-panel-inner {
@@ -581,17 +518,7 @@ h1::after {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .audio-wave .bar {
-    animation: none;
-  }
-
-  .home-art,
-  .text-panel {
-    transition: none;
-  }
-}
-  @media (max-width: 700px) {
+@media (max-width: 700px) {
   .text-panel {
     padding: 24px 6vw 40px;
   }
@@ -605,13 +532,32 @@ h1::after {
     max-width: 100%;
     height: auto;
   }
+
+  .sunfish-updates {
+    width: min(76vw, 380px);
+    margin-top: 20px;
+  }
+
+  .sunfish-update-row {
+    gap: 12px;
+    font-size: 11px;
+  }
+
+  .sunfish-update-date {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-art,
+  .text-panel {
+    transition: none;
+  }
 }
 </style>
 
-<!-- 마크다운 표시 및 HTML 안전 처리 -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
-
 </head>
 
 <body>
@@ -665,32 +611,12 @@ h1::after {
 
     </div>
 
-    <p class="instructions">
-      Move the tonearm onto the record to play.<br>
-      Move it back to stop.
-    </p>
-
-    <div
-      class="audio-wave"
-      id="audioWave"
-      role="status"
-      aria-label="Stopped"
-    >
-      <span class="bar" style="--height:22px;--duration:.75s"></span>
-      <span class="bar" style="--height:30px;--duration:1.10s"></span>
-      <span class="bar" style="--height:25px;--duration:.85s"></span>
-      <span class="bar" style="--height:40px;--duration:1.20s"></span>
-      <span class="bar" style="--height:34px;--duration:.70s"></span>
-      <span class="bar" style="--height:26px;--duration:1.05s"></span>
-      <span class="bar" style="--height:36px;--duration:.90s"></span>
-      <span class="bar" style="--height:20px;--duration:1.15s"></span>
-      <span class="bar" style="--height:44px;--duration:.80s"></span>
-      <span class="bar" style="--height:12px;--duration:1.25s"></span>
-      <span class="bar" style="--height:24px;--duration:.95s"></span>
-      <span class="bar" style="--height:30px;--duration:.72s"></span>
-      <span class="bar" style="--height:26px;--duration:1.12s"></span>
-      <span class="bar" style="--height:18px;--duration:.88s"></span>
-    </div>
+    <section class="sunfish-updates" aria-label="업데이트 목록">
+      <h2>업데이트 목록</h2>
+      <div id="sunfishUpdatesList">
+        <p class="sunfish-update-empty">불러오는 중...</p>
+      </div>
+    </section>
 
   </section>
 
@@ -701,10 +627,8 @@ h1::after {
     aria-label="Site content"
   >
 
-    <!-- HOME 이미지 -->
     <div class="home-art"></div>
 
-    <!-- NOTICE -->
     <article class="text-panel notice-panel">
       <div class="text-panel-inner" id="noticeScroll">
 
@@ -725,16 +649,12 @@ h1::after {
 
           <div id="noticeImageArea"></div>
 
-          <div
-            class="markdown-body"
-            id="noticeBody"
-          ></div>
+          <div class="markdown-body" id="noticeBody"></div>
         </div>
 
       </div>
     </article>
 
-    <!-- CHARACTERS -->
     <article class="text-panel characters-panel">
       <div class="text-panel-inner" id="charactersScroll">
 
@@ -751,17 +671,11 @@ h1::after {
             data-back="characters"
           >← 목록으로</button>
 
-          <h2
-            class="detail-title"
-            id="charactersTitle"
-          ></h2>
+          <h2 class="detail-title" id="charactersTitle"></h2>
 
           <div id="charactersImageArea"></div>
 
-          <div
-            class="markdown-body"
-            id="charactersBody"
-          ></div>
+          <div class="markdown-body" id="charactersBody"></div>
         </div>
 
       </div>
@@ -777,7 +691,7 @@ h1::after {
 
 <script>
 /* ========================================
-   SUNFISH CMS 연결 설정
+   SUNFISH CMS 설정
 ======================================== */
 
 const GITHUB_OWNER = "sunfishmola";
@@ -809,18 +723,8 @@ const cmsCache = {
 };
 
 /* ========================================
-   마크다운 파일 읽기
+   마크다운 읽기
 ======================================== */
-
-/*
-  Pages CMS 파일 예시:
-
-  ---
-  title: 테스트 캐릭터
-  image: /media/example.png
-  ---
-  안녕하세요. 테스트입니다.
-*/
 
 function parseMarkdownFile(source, fallbackTitle) {
   const normalized = source.replace(/\r\n/g, "\n");
@@ -843,10 +747,7 @@ function parseMarkdownFile(source, fallbackTitle) {
         if (match) {
           currentKey = match[1];
           metadata[currentKey] = match[2].trim();
-        } else if (
-          currentKey &&
-          /^\s+\S/.test(line)
-        ) {
+        } else if (currentKey && /^\s+\S/.test(line)) {
           metadata[currentKey] += " " + line.trim();
         }
       }
@@ -905,7 +806,7 @@ function resolveMediaUrl(path) {
 }
 
 /* ========================================
-   GitHub에서 글 목록 가져오기
+   GitHub 글 목록 가져오기
 ======================================== */
 
 async function loadCMSSection(sectionName) {
@@ -1002,6 +903,7 @@ async function loadCMSSection(sectionName) {
     retry.type = "button";
     retry.className = "retry-button";
     retry.textContent = "다시 불러오기";
+
     retry.addEventListener("click", () => {
       loadCMSSection(sectionName);
     });
@@ -1079,7 +981,6 @@ function openCMSDetail(sectionName, index) {
 
   title.textContent = entry.title;
 
-  /* 대표 이미지 */
   imageArea.replaceChildren();
 
   if (entry.image) {
@@ -1096,7 +997,6 @@ function openCMSDetail(sectionName, index) {
     }
   }
 
-  /* 마크다운 본문 */
   bodyArea.replaceChildren();
 
   if (window.marked && window.DOMPurify) {
@@ -1110,10 +1010,8 @@ function openCMSDetail(sectionName, index) {
     const template = document.createElement("template");
     template.innerHTML = sanitized;
 
-    /* 본문에 첨부된 이미지 경로도 처리 */
     template.content.querySelectorAll("img").forEach(img => {
       const original = img.getAttribute("src");
-
       const resolved = resolveMediaUrl(original);
 
       if (resolved) {
@@ -1124,13 +1022,10 @@ function openCMSDetail(sectionName, index) {
       }
     });
 
-    /* 링크는 안전한 주소만 허용 */
     template.content.querySelectorAll("a").forEach(link => {
       const href = link.getAttribute("href") || "";
 
-      if (
-        !/^(https?:\/\/|mailto:|\/|#)/i.test(href)
-      ) {
+      if (!/^(https?:\/\/|mailto:|\/|#)/i.test(href)) {
         link.removeAttribute("href");
       }
 
@@ -1141,7 +1036,6 @@ function openCMSDetail(sectionName, index) {
     bodyArea.appendChild(template.content);
 
   } else {
-    /* 외부 라이브러리를 불러오지 못한 경우 */
     const paragraph = document.createElement("p");
     paragraph.style.whiteSpace = "pre-wrap";
     paragraph.textContent = entry.body;
@@ -1209,21 +1103,16 @@ navButtons.forEach(button => {
   });
 });
 
-/* ========================================
-   CMS 글 불러오기 시작
-======================================== */
-
 loadCMSSection("characters");
 loadCMSSection("notice");
 
 /* ========================================
-   기존 턴테이블 기능
+   턴테이블
 ======================================== */
 
 const turntable = document.getElementById("turntable");
 const vinyl = document.getElementById("vinyl");
 const tonearm = document.getElementById("tonearm");
-const audioWave = document.getElementById("audioWave");
 
 const PIVOT_X = .77;
 const PIVOT_Y = .17;
@@ -1243,7 +1132,6 @@ let youtubePlayer = null;
 let youtubeReady = false;
 let wantsToPlay = false;
 
-/* 유튜브 API */
 const youtubeScript = document.createElement("script");
 youtubeScript.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(youtubeScript);
@@ -1306,13 +1194,6 @@ function updateTonearm(angle) {
   const playing = currentAngle >= PLAY_THRESHOLD;
 
   vinyl.classList.toggle("playing", playing);
-
-  audioWave.classList.toggle("playing", playing);
-
-  audioWave.setAttribute(
-    "aria-label",
-    playing ? "Playing" : "Stopped"
-  );
 
   if (playing !== wantsToPlay) {
     syncMusic(playing);
@@ -1377,7 +1258,131 @@ tonearm.addEventListener("pointercancel", endDrag);
 tonearm.addEventListener("lostpointercapture", endDrag);
 
 updateTonearm(REST_ANGLE);
-</script>
 
+/* ========================================
+   HOME 업데이트 목록
+======================================== */
+
+async function loadSunfishUpdates() {
+  const container = document.getElementById(
+    "sunfishUpdatesList"
+  );
+
+  if (!container) return;
+
+  try {
+    const apiUrl =
+      "https://api.github.com/repos/" +
+      GITHUB_OWNER + "/" +
+      GITHUB_REPO +
+      "/contents/content/updates?ref=" +
+      encodeURIComponent(GITHUB_BRANCH);
+
+    const response = await fetch(apiUrl, {
+      headers: {
+        Accept: "application/vnd.github+json"
+      }
+    });
+
+    if (response.status === 404) {
+      showUpdatesMessage("아직 업데이트가 없습니다.");
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error(
+        "업데이트 목록 오류: " + response.status
+      );
+    }
+
+    const result = await response.json();
+
+    if (!Array.isArray(result)) {
+      throw new Error("업데이트 목록 형식 오류");
+    }
+
+    const files = result.filter(file =>
+      file.type === "file" &&
+      /\.json$/i.test(file.name)
+    );
+
+    const items = await Promise.all(
+      files.map(async file => {
+        const rawUrl =
+          "https://raw.githubusercontent.com/" +
+          GITHUB_OWNER + "/" +
+          GITHUB_REPO + "/" +
+          GITHUB_BRANCH + "/" +
+          encodePath(file.path);
+
+        const fileResponse = await fetch(rawUrl);
+
+        if (!fileResponse.ok) {
+          throw new Error(
+            "업데이트 파일 읽기 오류"
+          );
+        }
+
+        return await fileResponse.json();
+      })
+    );
+
+    items.sort((a, b) =>
+      String(b.createdAt || b.date || "")
+        .localeCompare(
+          String(a.createdAt || a.date || "")
+        )
+    );
+
+    container.replaceChildren();
+
+    if (items.length === 0) {
+      showUpdatesMessage("아직 업데이트가 없습니다.");
+      return;
+    }
+
+    for (const item of items) {
+      const row = document.createElement("div");
+      row.className = "sunfish-update-row";
+
+      const content = document.createElement("span");
+      content.className = "sunfish-update-text";
+      content.textContent = String(item.text || "");
+
+      const date = document.createElement("span");
+      date.className = "sunfish-update-date";
+      date.textContent = String(item.date || "");
+
+      row.append(content, date);
+      container.appendChild(row);
+    }
+
+  } catch (error) {
+    console.error("업데이트 목록 오류:", error);
+    showUpdatesMessage(
+      "업데이트를 불러오지 못했습니다."
+    );
+  }
+}
+
+function showUpdatesMessage(message) {
+  const container = document.getElementById(
+    "sunfishUpdatesList"
+  );
+
+  if (!container) return;
+
+  container.replaceChildren();
+
+  const paragraph = document.createElement("p");
+  paragraph.className = "sunfish-update-empty";
+  paragraph.textContent = message;
+
+  container.appendChild(paragraph);
+}
+
+loadSunfishUpdates();
+
+</script>
 </body>
 </html>
