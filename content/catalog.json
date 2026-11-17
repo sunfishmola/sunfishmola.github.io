@@ -40,6 +40,12 @@
   "updates": [
     {
       "date": "JOURNAL",
+      "text": "케이크의 날 ①~④",
+      "createdAt": "2026-11-17T12:09:21.117Z",
+      "filename": "1bca0c7b-a1a4-4666-b5f2-6834bb6e6d49.json"
+    },
+    {
+      "date": "JOURNAL",
       "text": "아직 공개하지 않은 캐릭터",
       "createdAt": "2026-11-17T10:27:48.771Z",
       "filename": "c24ea516-72b5-40f9-a517-a92dfcc18984.json"
