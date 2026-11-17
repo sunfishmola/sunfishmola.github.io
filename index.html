@@ -206,7 +206,8 @@ h1::after {
 
 .text-panel-inner {
   width: 100%;
-  max-width: 440px;
+  max-width: 660px;
+  padding-right: 18px;
   max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -514,7 +515,31 @@ body[data-view="characters"] .sunfish-updates {
     padding: 24px 6vw 40px;
   }
 
-  .text-panel-inner { max-height: 100%; }
+  .text-panel-inner {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  /* NOTICE / JOURNAL: 화면 높이에 갇히지 않고 글 길이만큼 늘어남 */
+  .content-area[data-view="notice"],
+  .content-area[data-view="characters"] {
+    height: auto;
+    min-height: 50svh;
+    overflow: visible;
+  }
+
+  .content-area[data-view="notice"] .characters-panel,
+  .content-area[data-view="characters"] .notice-panel {
+    display: none;
+  }
+
+  .content-area[data-view="notice"] .notice-panel,
+  .content-area[data-view="characters"] .characters-panel {
+    position: relative;
+    inset: auto;
+    padding-bottom: 80px;
+  }
 
   .entry-button { padding: 18px 2px; font-size: 13px; }
 
