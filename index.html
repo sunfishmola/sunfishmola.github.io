@@ -551,6 +551,12 @@ body[data-view="characters"] .sunfish-updates {
 
   .sunfish-updates { width: min(76vw, 380px); margin-top: 20px; }
 
+  /* 모바일: NOTICE / JOURNAL 에서는 업데이트 목록 자리를 완전히 없앰 */
+  body[data-view="notice"] .sunfish-updates,
+  body[data-view="characters"] .sunfish-updates {
+    display: none;
+  }
+
   .sunfish-update-row { gap: 12px; font-size: 11px; }
 
   .sunfish-update-date { font-size: 10px; }
