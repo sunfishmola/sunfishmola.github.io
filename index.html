@@ -181,11 +181,12 @@ h1::after {
 
 .home-art {
   position: absolute;
-  inset: 0;
+  /* 위 10% 비우고, 오른쪽 120px 띄운 칸 안에 그림 전체가 들어가게 맞춤 */
+  inset: 10vh 120px 0 0;
   background-image: url("겨울.png");
   background-repeat: no-repeat;
-  background-size: auto 90vh;
-  background-position: calc(100% - 120px) bottom;
+  background-size: contain;
+  background-position: right bottom;
   opacity: 1;
   visibility: visible;
   transition: opacity .45s ease, visibility .45s ease;
@@ -506,6 +507,7 @@ body[data-view="characters"] .sunfish-updates {
   }
 
   .home-art {
+    inset: 0;
     background-size: contain;
     background-position: center bottom;
   }
